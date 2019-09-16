@@ -1,0 +1,27 @@
+{
+  "name": "appdevelopmentsummative-fe",
+  "version": "1.0.0",
+  "description": "This is the front end of digimart",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/risscasey/AppDevelopmentSummative-FE.git"
+  },
+  "author": "Larissa, Katherine and Annie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/risscasey/AppDevelopmentSummative-FE/issues"
+  },
+  "homepage": "https://github.com/risscasey/AppDevelopmentSummative-FE#readme",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.15.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.4"
+  }
+}
