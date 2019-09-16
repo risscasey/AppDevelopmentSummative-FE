@@ -18,6 +18,7 @@ module.exports = function(grunt) {
       }
     },
     // Annies tasks untill here
+
     sass: {
       dist: {
         files: {
@@ -31,7 +32,6 @@ module.exports = function(grunt) {
           esversion: 6
         }
     },
-
     // Larissas tasks untill here
 
 
