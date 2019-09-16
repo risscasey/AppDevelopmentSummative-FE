@@ -16,7 +16,7 @@ module.exports = function(grunt) {
         },
         src: ['css/*.css', 'css/!*.min.css']
       }
-    }
+    },
     // Annies tasks untill here
 
 
@@ -34,6 +34,7 @@ module.exports = function(grunt) {
   // Register tasks
   grunt.registerTask('minJs', ['uglify']);
   grunt.registerTask('checkCss', ['csslint']);
+
   // Calling Annies tasks untill here
 
 
