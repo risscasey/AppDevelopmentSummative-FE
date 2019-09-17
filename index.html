@@ -9,45 +9,44 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
 
-  <div class="container">
-    <div class="pt-4">
-      <button id="login" type="button" class="btn btn-primary">Login</button>
-      <button id="register" type="button" class="btn btn-outline-primary">Register</button>
-    </div>
-
-    <div class="pt-4">
-      <button id="addListing" type="button" class="btn btn-primary">add listing</button>
-      <button id="viewListing" type="button" class="btn btn-outline-primary">view listings</button>
-    </div>
-
-    <div id="addlistingForm" class="d-none mt-4">
-      <div class="form-group">
-        <label for="itemName">Item Name</label>
-        <input type="text" name="itemName" id="itemName" class="form-control">
-      </div>
-
-      <div class="form-group">
-        <label for="itemPrice">Item Price</label>
-        <input type="number" name="itemPrice" id="itemPrice" class="form-control">
-      </div>
-
-      <div class="form-group">
-        <label for="itemDescription">Item Description</label>
-        <textarea type="text" name="itemDescription" id="itemDescription" rows="3" class="form-control"></textarea>
-      </div>
-
-      <div class="form-group">
-        <label for="itemSeller">Item Seller</label>
-        <input type="text" name="itemSeller" id="itemSeller" class="form-control">
-      </div>
-
-      <div class="mt-3">
-        <button id="subitNewListing" type="button" class="btn btn-success">Submmit Listing</button>
-      </div>
-    </div>
-  </div>
-
   <body>
+    <div class="container">
+      <div class="pt-4">
+        <button id="login" type="button" class="btn btn-primary">Login</button>
+        <button id="register" type="button" class="btn btn-outline-primary">Register</button>
+      </div>
+
+      <div class="pt-4">
+        <button id="addListing" type="button" class="btn btn-primary">add listing</button>
+        <button id="viewListing" type="button" class="btn btn-outline-primary">view listings</button>
+      </div>
+
+      <div id="addlistingForm" class="d-none mt-4">
+        <div class="form-group">
+          <label for="itemName">Item Name</label>
+          <input type="text" name="itemName" id="itemName" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="itemPrice">Item Price</label>
+          <input type="number" name="itemPrice" id="itemPrice" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="itemDescription">Item Description</label>
+          <textarea type="text" name="itemDescription" id="itemDescription" rows="3" class="form-control"></textarea>
+        </div>
+
+        <div class="mt-3">
+          <button id="subitNewListing" type="button" class="btn btn-success">Submmit Listing</button>
+        </div>
+      </div>
+
+      <div id="listingDisplay"></div>
+
+    </div>
+
+
     <script src="node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js" charset="utf-8"></script>
