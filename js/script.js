@@ -5,6 +5,7 @@ $.ajax({
     success:function(keys){
         url = `${keys.SERVER_URL}:${keys.SERVER_PORT}`;
         console.log(url);
+        getListingData();
     },
     error: function(){
         console.log('cannot find config.json file, cannot run application');
@@ -45,12 +46,13 @@ $('#addListing').click(function() {
   $('#addlistingForm').removeClass('d-none');
 });
 
-getProductsData = () => {
+getListingData = () => {
   $.ajax({
-    url: `${url}listing`,
+    url: `${url}/allListings`,
     type: 'GET',
     dataType: 'json',
     success:function(result){
+      console.log(result);
       $('#listingDisplay').empty();
 
       for (var i = 0; i < result.length; i++) {
