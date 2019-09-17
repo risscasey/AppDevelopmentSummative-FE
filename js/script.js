@@ -5,6 +5,7 @@ $.ajax({
     success:function(keys){
         url = `${keys.SERVER_URL}:${keys.SERVER_PORT}`;
         console.log(url);
+        getProductsData();
     },
     error: function(){
         console.log('cannot find config.json file, cannot run application');
@@ -12,19 +13,18 @@ $.ajax({
 });
 
 $('#register').click(function() {
-  // event.preventDefault();
-  // console.log('button clicked');
-  //
-  // let fName = $('#fName').val();
-  // let username = $('#username').val();
-  // // let password = $('#password').val();
-  // let email = $('#email').val();
+  event.preventDefault();
+  console.log('button clicked');
+
+  let username = $('#username').val();
+  let password = $('#password').val();
+  let email = $('#email').val();
   $.ajax({
     url: `${url}/users`,
     type: 'POST',
     data: {
       username: username,
-      // password: password,
+      password: password,
       email: email
     },
     success:function(result){
@@ -47,12 +47,10 @@ $('#addListing').click(function() {
 
 getProductsData = () => {
   $.ajax({
-    url: `${url}listing`,
+    url: `${url}/allListings`,
     type: 'GET',
-    dataType: 'json',
     success:function(result){
-      $('#listingDisplay').empty();
-
+      // console.log('hello');
       for (var i = 0; i < result.length; i++) {
         $('#listingDisplay').append(`
           <div id="listingCard" class="col-md-4">
@@ -73,7 +71,7 @@ getProductsData = () => {
           </div>
         `);
       }
-    },
+  },
     error: function(err){
       console.log(err);
       console.log('something went wrong with getting all the products');
