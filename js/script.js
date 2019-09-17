@@ -148,11 +148,24 @@ $('#subitNewListing').click(function(){
 
 // Larissa codes untill here
 
+// Katherine codes under here
+$('#submitForm').click(function(){
+  event.preventDefault();
+
+  let commentingArea = $('#comments').val();
+
+  console.log(commentingArea);
 
 
+  $('#commentsDisplay').append(`
+    <div id="commentsCard" class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+          <p class="card-text">${commentingArea}</p>
+          </div>
+      </div>
+    </div>
+  `);
 
 
-
-
-
-// Katherine codes untill here
+});
