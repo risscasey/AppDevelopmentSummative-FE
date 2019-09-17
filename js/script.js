@@ -12,7 +12,15 @@ $.ajax({
     }
 });
 
+if(sessionStorage['userName']) {
+    console.log('you are logged in ');
+    $('#login').hide();
+    $('#logout').removeClass('d-none');
+} else {
+    console.log('please sign in');
+}
 
+console.log(sessionStorage);
 
 $('#register').click(function() {
   event.preventDefault();
@@ -41,11 +49,11 @@ $('#register').click(function() {
 });
 
 $('#login').click(function() {
-  let lUsername = $('#lUsername').val();
-  let lPassword = $('#lPassword').val();
+  let username = $('#lUsername').val();
+  let password = $('#lPassword').val();
 
-  console.log(lUsername);
-  console.log(lPassword);
+  console.log(username);
+  console.log(password);
 
   $.ajax({
     url: `${url}/getUser`,
@@ -55,11 +63,20 @@ $('#login').click(function() {
       password: password
     },
     success:function(result) {
-      sessionStorage.setItem('userID', result['_id']);
-      sessionStorage.setItem('userName', result['username']);
-      sessionStorage.setItem('userEmail', result['email']);
+      if (result === 'invalid user') {
+        console.log('Sorry, we couldn\'t find a user with that username.' );
+      } else if (result === 'invalid password') {
+        console.log('Incorrect password');
+      } else {
+        console.log('Login successful');
 
-      console.log(sessionStorage);
+        sessionStorage.setItem('userID', result['_id']);
+        sessionStorage.setItem('userName', result['username']);
+        console.log(sessionStorage);
+
+        $('#login').hide();
+        $('#logout').removeClass('d-none');
+      }
     },
     error: function(err) {
       console.log(err);
@@ -68,11 +85,17 @@ $('#login').click(function() {
   });
 });
 
-// if (sessionStorage['username']) {
-//   console.log('You have logged in successfully');
-// } else {
-//   console.log('Please sign in');
-// }
+$('#logout').click(function(){
+
+    if(!sessionStorage['userID']){
+        alert('401, permission denied');
+        return;
+    };
+    console.log('logout successful');
+    sessionStorage.clear();
+    $('#login').show();
+    $('#logout').addClass('d-none');
+});
 
 // Annie codes untill here
 
