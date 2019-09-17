@@ -167,5 +167,26 @@ $('#submitForm').click(function(){
     </div>
   `);
 
+  $.ajax({
+    url: `${url}/listing`,
+    type: 'POST',
+    data: {
+      itemName: itemName,
+      itemPrice: itemPrice,
+      itemDescription: itemDescription
+    },
+    success:function(result){
+      console.log(result);
+      $('#itemName').val(null);
+      $('#itemPrice').val(null);
+      $('#itemDescription').val(null);
+      $('#itemSeller').val(null);
+    },
+    error: function(error){
+      console.log(error);
+      console.log('something went wrong with sending the data');
+    }
+  })
+
 
 });
