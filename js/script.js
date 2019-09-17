@@ -5,6 +5,7 @@ $.ajax({
     dataType: 'json',
     success:function(keys){
         url = `${keys.SERVER_URL}:${keys.SERVER_PORT}`;
+        console.log(url);
     },
     error: function(){
         console.log('cannot find config.json file, cannot run application');
@@ -15,7 +16,6 @@ $('#register').click(function() {
   event.preventDefault();
   console.log('button clicked');
 
-  let fName = $('#fName').val();
   let username = $('#username').val();
   let password = $('#password').val();
   let email = $('#email').val();
@@ -23,7 +23,6 @@ $('#register').click(function() {
     url: `${url}/users`,
     type: 'POST',
     data: {
-      fullName: fName,
       username: username,
       password: password,
       email: email
@@ -32,7 +31,9 @@ $('#register').click(function() {
       console.log(result);
     },
     error: function(err) {
+      console.log(`${url}/users`);
       console.log(err);
+      console.log('something went wrong with registering user');
     }
-  })
+  });
 });
