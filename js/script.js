@@ -5,11 +5,7 @@ $.ajax({
     success:function(keys){
         url = `${keys.SERVER_URL}:${keys.SERVER_PORT}`;
         console.log(url);
-<<<<<<< HEAD
-        getProductsData();
-=======
         getListingData();
->>>>>>> master
     },
     error: function(){
         console.log('cannot find config.json file, cannot run application');
@@ -42,6 +38,14 @@ $('#register').click(function() {
   });
 });
 
+$('#login').click(function() {
+  let lUsername = $('#lUsername').val();
+  let lPassword = $('#lPassword').val();
+
+  console.log(lUsername);
+  console.log(lPassword);
+});
+
 // Annie codes untill here
 
 $('#addListing').click(function() {
@@ -54,13 +58,8 @@ getListingData = () => {
     url: `${url}/allListings`,
     type: 'GET',
     success:function(result){
-<<<<<<< HEAD
-      // console.log('hello');
-=======
       console.log(result);
       $('#listingDisplay').empty();
-
->>>>>>> master
       for (var i = 0; i < result.length; i++) {
         $('#listingDisplay').append(`
           <div id="listingCard" class="col-md-4">
