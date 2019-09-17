@@ -13,18 +13,19 @@ $.ajax({
 });
 
 $('#register').click(function() {
-  event.preventDefault();
-  console.log('button clicked');
-
-  let username = $('#username').val();
-  let password = $('#password').val();
-  let email = $('#email').val();
+  // event.preventDefault();
+  // console.log('button clicked');
+  //
+  // let fName = $('#fName').val();
+  // let username = $('#username').val();
+  // // let password = $('#password').val();
+  // let email = $('#email').val();
   $.ajax({
     url: `${url}/users`,
     type: 'POST',
     data: {
       username: username,
-      password: password,
+      // password: password,
       email: email
     },
     success:function(result){
