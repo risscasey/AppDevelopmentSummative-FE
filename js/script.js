@@ -12,6 +12,8 @@ $.ajax({
     }
 });
 
+
+
 $('#register').click(function() {
   event.preventDefault();
   console.log('button clicked');
@@ -44,7 +46,33 @@ $('#login').click(function() {
 
   console.log(lUsername);
   console.log(lPassword);
+
+  $.ajax({
+    url: `${url}/getUser`,
+    type: 'POST',
+    data: {
+      username: username,
+      password: password
+    },
+    success:function(result) {
+      sessionStorage.setItem('userID', result['_id']);
+      sessionStorage.setItem('userName', result['username']);
+      sessionStorage.setItem('userEmail', result['email']);
+
+      console.log(sessionStorage);
+    },
+    error: function(err) {
+      console.log(err);
+      console.log('Couldn\'t log you in');
+    }
+  });
 });
+
+// if (sessionStorage['username']) {
+//   console.log('You have logged in successfully');
+// } else {
+//   console.log('Please sign in');
+// }
 
 // Annie codes untill here
 
