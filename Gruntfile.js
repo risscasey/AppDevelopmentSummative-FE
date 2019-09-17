@@ -36,7 +36,16 @@ module.exports = function(grunt) {
 
 
     // Katherines tasks untill here
-
+    watch:{
+      sass: {
+        files: ['scss/*.scss'],
+        tasks: ['sass', 'cssmin']
+      },
+      js: {
+        files: ['js/*.js', '!js/*.min.js'],
+        tasks: ['jshint', 'uglify']
+      }
+    }
   });
 
   // Load grunt tasks
@@ -60,8 +69,10 @@ module.exports = function(grunt) {
 
 
   // Load grunt tasks
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Register tasks
+  grunt.registerTask('default', ['watch']);
 
   // Calling Katherines tasks untill here
 
