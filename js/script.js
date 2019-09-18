@@ -179,39 +179,27 @@ $('#submitForm').click(function(){
   })
 });
 
-// // Edit button to fill the form with exisiting product
-// $('#productList').on('click', '.editBtn', function() {
-//     event.preventDefault();
-//
-//     if(!sessionStorage['userID']){
-//       alert('401, permission denied');
-//       return;
-//     }
-//
-//     const id = $(this).parent().parent().data('id');
-//
-//     $.ajax({
-//         url: `${url}/product/${id}`,
-//         type: 'POST',
-//         data: {
-//             userId: sessionStorage['userID']
-//         },
-//         dataType: 'json',
-//         success:function(product){
-//           console.log(product);
-//             $('#productName').val(product['name']);
-//             $('#productPrice').val(product['price']);
-//             $('#productID').val(product['_id']);
-//             $('#addProductButton').text('Edit Product').addClass('btn-warning');
-//             $('#heading').text('Edit Product');
-//             editing = true;
-//         },
-//         error:function(err){
-//             console.log(err);
-//             console.log('something went wrong with getting the single product');
-//         }
-//     })
-// });
+// Edit button to fill the form with exisiting product
+$('#commentsDisplay').on('click', '.editBtn', function() {
+    event.preventDefault();
+
+    // const id = $(this).parent().parent().data('id');
+
+    $.ajax({
+        url: `${url}/allComments/${id}`,
+        type: 'POST',
+        dataType: 'json',
+        success:function(comment){
+          console.log(comment);
+
+            editing = true;
+        },
+        error:function(err){
+            console.log(err);
+            console.log('something went wrong with getting the single product');
+        }
+    })
+});
 //
 // // Remove a product
 // $('#productList').on('click', '.removeBtn', function(){
