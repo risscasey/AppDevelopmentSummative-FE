@@ -152,41 +152,29 @@ $('#subitNewListing').click(function(){
 $('#submitForm').click(function(){
   event.preventDefault();
 
-  let commentingArea = $('#comments').val();
-
-  console.log(commentingArea);
-
-
-  $('#commentsDisplay').append(`
-    <div id="commentsCard" class="col-md-4">
-      <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-          <p class="card-text">${commentingArea}</p>
-          </div>
-      </div>
-    </div>
-  `);
+  let commentArea = $('#comments').val();
 
   $.ajax({
-    url: `${url}/listing`,
+    url: `${url}/sendComments`,
     type: 'POST',
     data: {
-      itemName: itemName,
-      itemPrice: itemPrice,
-      itemDescription: itemDescription
+      commentDescription: commentArea
     },
     success:function(result){
-      console.log(result);
-      $('#itemName').val(null);
-      $('#itemPrice').val(null);
-      $('#itemDescription').val(null);
-      $('#itemSeller').val(null);
+      console.log(result.commentDescription);
+      $('#commentsDisplay').append(`
+        <div id="commentsCard" class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+              <p class="card-text">${result.commentDescription}</p>
+              </div>
+          </div>
+        </div>
+      `);
     },
     error: function(error){
       console.log(error);
       console.log('something went wrong with sending the data');
     }
   })
-
-
 });
