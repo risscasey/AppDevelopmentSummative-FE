@@ -13,7 +13,6 @@ $.ajax({
 });
 
 
-
 $('#register').click(function() {
   event.preventDefault();
   console.log('button clicked');
@@ -48,7 +47,7 @@ $('#login').click(function() {
   console.log(lPassword);
 
   $.ajax({
-    url: `${url}/getUser`,
+    url: `${url}/userLogin`,
     type: 'POST',
     data: {
       username: username,
