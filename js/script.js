@@ -158,10 +158,11 @@ $('#submitForm').click(function(){
     url: `${url}/sendComments`,
     type: 'POST',
     data: {
-      commentDescription: commentArea
+      commentDescription: commentAreaa
     },
     success:function(result){
       console.log(result);
+      $('#comments').val(null);
       $('#commentsDisplay').append(`
         <div id="commentsCard" class="col-md-4">
           <div class="card mb-4 shadow-sm">
@@ -178,49 +179,3 @@ $('#submitForm').click(function(){
     }
   })
 });
-
-// Edit button to fill the form with exisiting product
-$('#commentsDisplay').on('click', '.editBtn', function() {
-    event.preventDefault();
-
-    // const id = $(this).parent().parent().data('id');
-
-    $.ajax({
-        url: `${url}/allComments/${id}`,
-        type: 'POST',
-        dataType: 'json',
-        success:function(comment){
-          console.log(comment);
-
-            editing = true;
-        },
-        error:function(err){
-            console.log(err);
-            console.log('something went wrong with getting the single product');
-        }
-    })
-});
-//
-// // Remove a product
-// $('#productList').on('click', '.removeBtn', function(){
-//     event.preventDefault();
-//
-//     if(!sessionStorage['userID']){
-//       alert('401, permission denied');
-//       return;
-//     }
-//
-//     const id = $(this).parent().parent().data('id');
-//     const li = $(this).parent().parent();
-//     $.ajax({
-//       url: `${url}/product/${id}`,
-//       type: 'DELETE',
-//       success:function(result){
-//         li.remove();
-//       },
-//       error:function(err) {
-//         console.log(err);
-//         console.log('something went wrong deleting the product');
-//       }
-//     })
-// });
