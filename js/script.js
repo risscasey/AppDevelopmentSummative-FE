@@ -239,6 +239,37 @@ $('#submitForm').click(function(){
   })
 });
 
+// Annies code continued
+$('#submitResponse').click(function(){
+  event.preventDefault();
+
+  let responseArea = $('#responses').val();
+
+  $.ajax({
+    url: `${url}/sendResponse`,
+    type: 'POST',
+    data: {
+      responceDescription: responseArea
+    },
+    success:function(result){
+      console.log(result);
+      $('#commentsDisplay').append(`
+        <div id="commentsCard" class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+              <p class="card-text">${result.responceDescription}</p>
+              </div>
+          </div>
+        </div>
+      `);
+    },
+    error: function(error){
+      console.log(error);
+      console.log('something went wrong with sending the data');
+    }
+  })
+});
+
 // // Edit button to fill the form with exisiting product
 // $('#productList').on('click', '.editBtn', function() {
 //     event.preventDefault();
