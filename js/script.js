@@ -5,7 +5,7 @@ $.ajax({
     success:function(keys){
         url = `${keys.SERVER_URL}:${keys.SERVER_PORT}`;
         console.log(url);
-        getListingData();
+        // getListingData();
     },
     error: function(){
         console.log('cannot find config.json file, cannot run application');
@@ -88,7 +88,7 @@ $('#login').click(function() {
 $('#logout').click(function() {
 
     if(!sessionStorage['userID']) {
-        alert('401, permission denied');
+        console.log('You don\'t have permission to access. Please sign in.');
         return;
     }
     console.log('logout successful');
@@ -98,6 +98,10 @@ $('#logout').click(function() {
 });
 
 $('#listingDisplay').on('click', '.deleteBtn', function() {
+  if(!sessionStorage['userID']) {
+      console.log('You don\'t have permission to delete this item. Please sign in.');
+      return;
+  }
   event.preventDefault();
   console.log('Ready to be deleted');
 
@@ -121,9 +125,14 @@ $('#listingDisplay').on('click', '.deleteBtn', function() {
   });
 
 });
+
 // Annie codes untill here
 
 $('#addListing').click(function() {
+  if(!sessionStorage['userID']) {
+      console.log('You don\'t have permission to add an item. Please sign in.');
+      return;
+  }
   event.preventDefault();
   $('#addlistingForm').removeClass('d-none');
 });
@@ -163,7 +172,11 @@ getListingData = () => {
   })
 }
 
-$('#subitNewListing').click(function(){
+$('#subitNewListing').click(function() {
+  if(!sessionStorage['userID']) {
+      console.log('You don\'t have permission to add an item. Please sign in.');
+      return;
+  }
   let itemName = $('#itemName').val();
   let itemPrice = $('#itemPrice').val();
   let itemDescription = $('#itemDescription').val();
