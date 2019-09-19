@@ -1,5 +1,8 @@
+* {
+  box-sizing: border-box; }
+
 h1 {
   font-family: 'Avenir LT W01 95 Black';
-  color: #32BE76; }
+  color: red !important; }
 
 /*# sourceMappingURL=style.css.map */
