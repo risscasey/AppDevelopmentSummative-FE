@@ -20,7 +20,6 @@ $.ajax({
 //     console.log('please sign in');
 // }
 
-<<<<<<< HEAD
   let username = $('#username').val();
   let password = $('#password').val();
   let email = $('#email').val();
@@ -103,7 +102,7 @@ $('#listingDisplay').on('click', '.deleteBtn', function() {
   const id = $(this).parent().parent().parent().data('id');
   console.log(id);
   const selected = $(this).parent().parent().parent().parent();
-=======
+
 // console.log(sessionStorage);
 //
 // $('#register').click(function() {
@@ -131,7 +130,7 @@ $('#listingDisplay').on('click', '.deleteBtn', function() {
 //     }
 //   });
 // });
->>>>>>> larissaDev
+
 
 // $('#login').click(function() {
 //   let username = $('#lUsername').val();
@@ -238,15 +237,10 @@ getListingData = () => {
                 <p class="card-text">${result[i].itemDescription}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-<<<<<<< HEAD
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary deleteBtn">Delete</button>
-=======
 
                     <button id="editListing" type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                     <button id="deleteListing" type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
 
->>>>>>> larissaDev
                   </div>
                   <small class="text-muted">$${result[i].itemPrice}</small>
                 </div>
