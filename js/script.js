@@ -2,16 +2,25 @@ $.ajax({
     url: './config.json',
     type: 'GET',
     dataType: 'json',
-    success:function(keys){
+    success:function(keys) {
         url = `${keys.SERVER_URL}:${keys.SERVER_PORT}`;
         console.log(url);
         getListingData();
     },
-    error: function(){
+    error: function() {
         console.log('cannot find config.json file, cannot run application');
     }
 });
 
+if(sessionStorage['userName']) {
+    console.log('you are logged in ');
+    $('#login').hide();
+    $('#logout').removeClass('d-none');
+} else {
+    console.log('please sign in');
+}
+
+console.log(sessionStorage);
 
 $('#register').click(function() {
   event.preventDefault();
@@ -40,11 +49,11 @@ $('#register').click(function() {
 });
 
 $('#login').click(function() {
-  let lUsername = $('#lUsername').val();
-  let lPassword = $('#lPassword').val();
+  let username = $('#lUsername').val();
+  let password = $('#lPassword').val();
 
-  console.log(lUsername);
-  console.log(lPassword);
+  console.log(username);
+  console.log(password);
 
   $.ajax({
     url: `${url}/userLogin`,
@@ -54,11 +63,20 @@ $('#login').click(function() {
       password: password
     },
     success:function(result) {
-      sessionStorage.setItem('userID', result['_id']);
-      sessionStorage.setItem('userName', result['username']);
-      sessionStorage.setItem('userEmail', result['email']);
+      if (result === 'invalid user') {
+        console.log('Sorry, we couldn\'t find a user with that username.' );
+      } else if (result === 'invalid password') {
+        console.log('Incorrect password');
+      } else {
+        console.log('Login successful');
 
-      console.log(sessionStorage);
+        sessionStorage.setItem('userID', result['_id']);
+        sessionStorage.setItem('userName', result['username']);
+        console.log(sessionStorage);
+
+        $('#login').hide();
+        $('#logout').removeClass('d-none');
+      }
     },
     error: function(err) {
       console.log(err);
@@ -67,15 +85,54 @@ $('#login').click(function() {
   });
 });
 
-// if (sessionStorage['username']) {
-//   console.log('You have logged in successfully');
-// } else {
-//   console.log('Please sign in');
-// }
+$('#logout').click(function() {
+
+    if(!sessionStorage['userID']) {
+        console.log('You don\'t have permission to access. Please sign in.');
+        return;
+    }
+    console.log('logout successful');
+    sessionStorage.clear();
+    $('#login').show();
+    $('#logout').addClass('d-none');
+});
+
+$('#listingDisplay').on('click', '.deleteBtn', function() {
+  if(!sessionStorage['userID']) {
+      console.log('You don\'t have permission to delete this item. Please sign in.');
+      return;
+  }
+  event.preventDefault();
+  console.log('Ready to be deleted');
+
+  const id = $(this).parent().parent().parent().data('id');
+  console.log(id);
+  const selected = $(this).parent().parent().parent().parent();
+
+  $.ajax({
+    url: `${url}/listing/${id}`,
+    type: 'DELETE',
+    data: {
+        userId: sessionStorage['userID']
+    },
+    success:function(result){
+      selected.remove();
+    },
+    error:function(err) {
+      console.log(err);
+      console.log('something went wrong deleting the product');
+    }
+  });
+
+});
 
 // Annie codes untill here
 
 $('#addListing').click(function() {
+  if(!sessionStorage['userID']) {
+      console.log('You don\'t have permission to add an item. Please sign in.');
+      return;
+  }
   event.preventDefault();
   $('#addlistingForm').removeClass('d-none');
 });
@@ -85,22 +142,21 @@ getListingData = () => {
     url: `${url}/allListings`,
     type: 'GET',
     success:function(result){
-      console.log(result);
       $('#listingDisplay').empty();
       for (var i = 0; i < result.length; i++) {
         $('#listingDisplay').append(`
           <div id="listingCard" class="col-md-4">
             <div class="card mb-4 shadow-sm">
               <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></svg>
-              <div class="card-body">
+              <div class="card-body" data-id="${result[i]._id}">
                 <h5 class="card-title">${result[i].itemName}</h5>
                 <p class="card-text">${result[i].itemDescription}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary deleteBtn">Delete</button>
                   </div>
-                  <small class="text-muted">${result[i].itemPrice}</small>
+                  <small class="text-muted">$${result[i].itemPrice}</small>
                 </div>
               </div>
             </div>
@@ -115,7 +171,11 @@ getListingData = () => {
   })
 }
 
-$('#subitNewListing').click(function(){
+$('#subitNewListing').click(function() {
+  if(!sessionStorage['userID']) {
+      console.log('You don\'t have permission to add an item. Please sign in.');
+      return;
+  }
   let itemName = $('#itemName').val();
   let itemPrice = $('#itemPrice').val();
   let itemDescription = $('#itemDescription').val();
@@ -147,7 +207,6 @@ $('#subitNewListing').click(function(){
 
 // Larissa codes untill here
 
-// Katherine codes under here
 $('#submitForm').click(function(){
   event.preventDefault();
 
@@ -178,3 +237,93 @@ $('#submitForm').click(function(){
     }
   })
 });
+// Katherine codes until here
+
+// Annies code continued
+$('#submitResponse').click(function(){
+  event.preventDefault();
+
+  let responseArea = $('#responses').val();
+
+  $.ajax({
+    url: `${url}/sendResponse`,
+    type: 'POST',
+    data: {
+      responceDescription: responseArea
+    },
+    success:function(result){
+      console.log(result);
+      $('#commentsDisplay').append(`
+        <div id="commentsCard" class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+              <p class="card-text">${result.responceDescription}</p>
+              </div>
+          </div>
+        </div>
+      `);
+    },
+    error: function(error){
+      console.log(error);
+      console.log('something went wrong with sending the data');
+    }
+  })
+});
+
+// // Edit button to fill the form with exisiting product
+// $('#productList').on('click', '.editBtn', function() {
+//     event.preventDefault();
+//
+//     if(!sessionStorage['userID']){
+//       alert('401, permission denied');
+//       return;
+//     }
+//
+//     const id = $(this).parent().parent().data('id');
+//
+//     $.ajax({
+//         url: `${url}/product/${id}`,
+//         type: 'POST',
+//         data: {
+//             userId: sessionStorage['userID']
+//         },
+//         dataType: 'json',
+//         success:function(product){
+//           console.log(product);
+//             $('#productName').val(product['name']);
+//             $('#productPrice').val(product['price']);
+//             $('#productID').val(product['_id']);
+//             $('#addProductButton').text('Edit Product').addClass('btn-warning');
+//             $('#heading').text('Edit Product');
+//             editing = true;
+//         },
+//         error:function(err){
+//             console.log(err);
+//             console.log('something went wrong with getting the single product');
+//         }
+//     })
+// });
+//
+// // Remove a product
+// $('#productList').on('click', '.removeBtn', function(){
+//     event.preventDefault();
+//
+//     if(!sessionStorage['userID']){
+//       alert('401, permission denied');
+//       return;
+//     }
+//
+//     const id = $(this).parent().parent().data('id');
+//     const li = $(this).parent().parent();
+//     $.ajax({
+//       url: `${url}/product/${id}`,
+//       type: 'DELETE',
+//       success:function(result){
+//         li.remove();
+//       },
+//       error:function(err) {
+//         console.log(err);
+//         console.log('something went wrong deleting the product');
+//       }
+//     })
+// });
