@@ -20,33 +20,33 @@ $.ajax({
 //     console.log('please sign in');
 // }
 
-console.log(sessionStorage);
-
-$('#register').click(function() {
-  event.preventDefault();
-  console.log('button clicked');
-
-  let username = $('#username').val();
-  let password = $('#password').val();
-  let email = $('#email').val();
-  $.ajax({
-    url: `${url}/users`,
-    type: 'POST',
-    data: {
-      username: username,
-      password: password,
-      email: email
-    },
-    success:function(result){
-      console.log(result);
-    },
-    error: function(err) {
-      console.log(`${url}/users`);
-      console.log(err);
-      console.log('something went wrong with registering user');
-    }
-  });
-});
+// console.log(sessionStorage);
+//
+// $('#register').click(function() {
+//   event.preventDefault();
+//   console.log('button clicked');
+//
+//   let username = $('#username').val();
+//   let password = $('#password').val();
+//   let email = $('#email').val();
+//   $.ajax({
+//     url: `${url}/users`,
+//     type: 'POST',
+//     data: {
+//       username: username,
+//       password: password,
+//       email: email
+//     },
+//     success:function(result){
+//       console.log(result);
+//     },
+//     error: function(err) {
+//       console.log(`${url}/users`);
+//       console.log(err);
+//       console.log('something went wrong with registering user');
+//     }
+//   });
+// });
 
 // $('#login').click(function() {
 //   let username = $('#lUsername').val();
