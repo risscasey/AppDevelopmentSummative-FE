@@ -32,6 +32,17 @@ module.exports = function(grunt) {
           esversion: 6
         }
     },
+    cssmin: {
+      target: {
+        files: [{
+          expand: true,
+          cwd: 'css/',
+          src: ['*.css', '!*.min.css'],
+          dest: 'css/',
+          ext: '.min.css'
+        }]
+      }
+    },
     // Larissas tasks untill here
 
 
@@ -61,10 +72,12 @@ module.exports = function(grunt) {
   // Load grunt tasks
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   // Register tasks
   grunt.registerTask('hintJS', ['jshint']);
   grunt.registerTask('checkSASS', ['sass']);
+  grunt.registerTask('minCSS', ['sass']);
   // Calling Larissas tasks untill here
 
 

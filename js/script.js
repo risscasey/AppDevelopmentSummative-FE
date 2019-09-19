@@ -8,32 +8,27 @@ $.ajax({
         getListingData();
     },
     error: function() {
-        console.log('cannot find config.json file, cannot run application');
+        console.log('Cant connect to server, need the config file');
     }
 });
 
-$('#logout').click(function() {
-  if(sessionStorage['userName']) {
-      console.log('you are logged in ');
-      $('#login').hide();
-      $('#logout').removeClass('d-none');
-  } else {
-      console.log('please sign in');
-  }
+if(sessionStorage['userName']) {
+    console.log('you are logged in ');
+    $('#login').hide();
+    $('#logout').removeClass('d-none');
+} else {
+    console.log('please sign in');
+}
+
+console.log(sessionStorage);
+
+$('#register').click(function() {
+  event.preventDefault();
+  console.log('button clicked');
 
   let username = $('#username').val();
   let password = $('#password').val();
   let email = $('#email').val();
-
-  if(!sessionStorage['userID']) {
-      console.log('You don\'t have permission to access. Please sign in.');
-      return;
-  }
-  console.log('logout successful');
-  sessionStorage.clear();
-  $('#login').show();
-  $('#logout').addClass('d-none');
-
   $.ajax({
     url: `${url}/users`,
     type: 'POST',
@@ -62,85 +57,6 @@ $('#login').click(function() {
 
   $.ajax({
     url: `${url}/userLogin`,
-    type: 'POST',
-    data: {
-      username: username,
-      password: password
-    },
-    success:function(result) {
-      if (result === 'invalid user') {
-        console.log('Sorry, we couldn\'t find a user with that username.' );
-      } else if (result === 'invalid password') {
-        console.log('Incorrect password');
-      } else {
-        console.log('Login successful');
-
-        sessionStorage.setItem('userID', result['_id']);
-        sessionStorage.setItem('userName', result['username']);
-        console.log(sessionStorage);
-
-        $('#login').hide();
-        $('#logout').removeClass('d-none');
-      }
-    },
-    error: function(err) {
-      console.log(err);
-      console.log('Couldn\'t log you in');
-    }
-  });
-});
-
-$('#listingDisplay').on('click', '.deleteBtn', function() {
-  if(!sessionStorage['userID']) {
-      console.log('You don\'t have permission to delete this item. Please sign in.');
-      return;
-  }
-  event.preventDefault();
-  console.log('Ready to be deleted');
-
-  const id = $(this).parent().parent().parent().data('id');
-  console.log(id);
-  const selected = $(this).parent().parent().parent().parent();
-
-console.log(sessionStorage);
-});
-
-$('#register').click(function() {
-  event.preventDefault();
-  console.log('button clicked');
-
-  let username = $('#username').val();
-  let password = $('#password').val();
-  let email = $('#email').val();
-  $.ajax({
-    url: `${url}/users`,
-    type: 'POST',
-    data: {
-      username: username,
-      password: password,
-      email: email
-    },
-    success:function(result){
-      console.log(result);
-    },
-    error: function(err) {
-      console.log(`${url}/users`);
-      console.log(err);
-      console.log('something went wrong with registering user');
-    }
-  });
-});
-
-
-$('#login').click(function() {
-  let username = $('#lUsername').val();
-  let password = $('#lPassword').val();
-
-  console.log(username);
-  console.log(password);
-
-  $.ajax({
-    url: `${url}/getUser`,
     type: 'POST',
     data: {
       username: username,
@@ -239,7 +155,7 @@ getListingData = () => {
                   <div class="btn-group">
 
                     <button id="editListing" type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    <button id="deleteListing" type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+                    <button id="deleteListing" type="button" class="btn btn-sm btn-outline-secondary deleteBtn">Delete</button>
 
                   </div>
                   <small class="text-muted">$${result[i].itemPrice}</small>
@@ -382,7 +298,7 @@ $('#submitForm').click(function(){
     url: `${url}/sendComments`,
     type: 'POST',
     data: {
-      commentDescription: commentAreaa
+      commentDescription: commentArea
     },
     success:function(result){
       console.log(result);
