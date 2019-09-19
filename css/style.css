@@ -3,6 +3,11 @@
 
 h1 {
   font-family: 'Avenir LT W01 95 Black';
-  color: red !important; }
+  color: #30BE76; }
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../images/vegetables.jpeg"); }
 
 /*# sourceMappingURL=style.css.map */
