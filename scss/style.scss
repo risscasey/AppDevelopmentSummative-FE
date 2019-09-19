@@ -6,7 +6,7 @@
 //Shared Styles
 h1 {
  font-family:'Avenir LT W01 95 Black';
- color: #32BE76;
+ color: #30BE76;
 }
 
 
@@ -24,7 +24,9 @@ h1 {
 // Larissa Codes Under Here
 
 .container {
-  background-image: url("vegetables.jpeg");
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../images/vegetables.jpeg");
 }
 
 
