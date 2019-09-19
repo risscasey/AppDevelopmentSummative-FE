@@ -2,12 +2,12 @@ $.ajax({
     url: './config.json',
     type: 'GET',
     dataType: 'json',
-    success:function(keys){
+    success:function(keys) {
         url = `${keys.SERVER_URL}:${keys.SERVER_PORT}`;
         console.log(url);
-        // getListingData();
+        getListingData();
     },
-    error: function(){
+    error: function() {
         console.log('cannot find config.json file, cannot run application');
     }
 });
@@ -153,7 +153,6 @@ getListingData = () => {
                 <p class="card-text">${result[i].itemDescription}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                     <button type="button" class="btn btn-sm btn-outline-secondary deleteBtn">Delete</button>
                   </div>

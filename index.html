@@ -21,7 +21,6 @@
 
         <button id="logout" type="button" class="btn btn-light d-none">Logout</button>
 
-        <button id="editProfile" type="button" class="btn btn-primary" name="button">Edit profile</button>
         <p>Full Name</p>
         <input id="fName" type="text" name="" value="">
 
@@ -60,24 +59,38 @@
         </div>
       </div>
 
-      <!-- <div>
+      <div>
         <div id="listingDisplay"></div>
-      </div> -->
-<br><br><br><br>
+      </div>
+      <br><br><br><br>
+    <form>
+       <div class="form-group">
 
+         <div>
+           <input type="text" class="form-control w-180" id="comments" rows="3" name="comments" placeholder="Add Comment Here">
+         </div>
+       </div>
+      <button id="submitForm" type="submit" value="Submit" class="btn btn-primary" onclick="clear">Submit</button>
+    </form>
+
+      <br><br>
+
+      <div>
+       <div id="commentsDisplay">
+       </div>
+      </div>
 
       <form>
         <div class="form-group">
 
           <div>
             <input type="text" class="form-control w-180" id="responses" rows="3" name="responses" placeholder="Add Response Here">
-              <!-- <button class="btn btn-info editBtn">Edit</button>
-              <button class="btn btn-danger removeBtn">Remove</button> -->
+
           </div>
         </div>
         <button id="submitResponse" type="submit" value="Submit" class="btn btn-primary" onclick="clear">Reply</button>
       </form>
-<br><br>
+      <br><br>
       <div>
         <div id="commentsDisplay"></div>
       </div>
