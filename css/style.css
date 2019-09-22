@@ -1,51 +1,41 @@
 * {
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 h1 {
-  font-family: "Avenir";
+  font-family: 'Avenir';
   font-weight: bold;
-  color: #32BE76;
-}
+  color: #32BE76; }
 
 h4 {
-  font-family: "Avenir";
-  font-weight: bold;
-}
+  font-family: 'Avenir';
+  font-weight: bold; }
 
 h3 {
-  font-family: "Avenir";
+  font-family: 'Avenir';
   color: #828282;
-  font-size: 0.8em;
-}
+  font-size: .8em; }
 
 p {
-  font-family: "Avenir";
-  font-size: 0.9em;
-}
+  font-family: 'Avenir';
+  font-size: .9em; }
 
 .input-group-text {
   border: none;
-  background-color: white;
-}
+  background-color: white; }
 
 .form-control {
-  border: none;
-}
+  border: none; }
 
 .fa-search {
-  color: #828282;
-}
+  color: #828282; }
 
 .fa-times {
   color: red;
-  font-size: 1.5em;
-}
+  font-size: 1.5em; }
 
 .fa-bars {
   color: #828282;
-  font-size: 1.5em;
-}
+  font-size: 1.5em; }
 
 #cardImage {
   width: 90vw;
@@ -53,69 +43,57 @@ p {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/frame.jpg");
   background-size: cover;
   background-position: center;
-  box-shadow: 0px 0px 5px grey;
-}
+  box-shadow: 0px 0px 5px grey; }
 
 .imageDiv {
   box-shadow: 0px 0px 3px grey;
   border-radius: 4px;
-  padding: 35%;
-}
+  padding: 35%; }
 
 .avacadoImg {
   background-image: url("../img/avo.jpg");
   background-position: center;
-  background-size: cover;
-}
+  background-size: cover; }
 
 .onionImg {
   background-image: url("../img/onion.jpg");
   background-position: center;
-  background-size: cover;
-}
+  background-size: cover; }
 
 .tomatoImg {
   background-image: url("../img/tommos.jpeg");
   background-position: center;
-  background-size: cover;
-}
+  background-size: cover; }
 
 .carrotsImg {
   background-image: url("../img/carrots.jpg");
   background-position: center;
-  background-size: cover;
-}
+  background-size: cover; }
 
 .broccoliImg {
   background-image: url("../img/brocco.jpg");
   background-position: center;
-  background-size: cover;
-}
+  background-size: cover; }
 
 h5 {
-  font-family: "Avenir";
-  color: #828282;
-}
+  font-family: 'Avenir';
+  color: #828282; }
 
 .active {
   color: black !important;
-  font-weight: bold;
-}
+  font-weight: bold; }
 
 #navCard {
   border: none;
-  box-shadow: 0px 0px 5px grey;
-}
+  box-shadow: 0px 0px 5px grey; }
 
 li {
-  font-family: "Avenir";
+  font-family: 'Avenir';
   color: #828282;
-  font-size: 0.8em;
-}
+  font-size: .8em; }
 
 .list-group-item {
-  border: none;
-}
+  border: none; }
 
 #addNewListing {
   width: 10vw;
@@ -126,31 +104,24 @@ li {
   z-index: 5;
   position: fixed;
   bottom: 20px;
-  right: 20px;
-}
+  right: 20px; }
 
 .fa-plus {
-  color: white;
-}
+  color: white; }
 
 .modal-header {
-  border: none;
-}
-.modal-header h1 {
-  font-size: 2em;
-}
+  border: none; }
+  .modal-header h1 {
+    font-size: 2em; }
 
 .modal-footer {
-  border-top: none;
-}
+  border-top: none; }
 
 .btn-success {
   border-color: #32BE76;
-  background-color: #32BE76;
-}
+  background-color: #32BE76; }
 
 #exampleModal {
-  margin-top: 12vh;
-}
+  margin-top: 12vh; }
 
 /*# sourceMappingURL=style.css.map */
