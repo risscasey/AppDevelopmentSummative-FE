@@ -13,12 +13,22 @@ h1 {
 
 
 // Annie Codes Under Here
+.listingsImg {
+  border-top-left-radius: 10px!important;
+  border-top-right-radius: 10px!important;
+  max-width: 100%;
+  margin-bottom: 15px;
+}
 
+.cardListStyle {
+  border-radius: 10px!important;
+  box-shadow: 1px 1px 8px #888888;
 
+}
 
-
-
-
+.cardListBodyStyle {
+  padding: 5px!important;
+}
 // Larissa Codes Under Here
 h4 {
  font-family:'Avenir';

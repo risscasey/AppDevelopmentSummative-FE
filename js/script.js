@@ -142,24 +142,15 @@ getListingData = () => {
     url: `${url}/allListings`,
     type: 'GET',
     success:function(result){
-      $('#listingDisplay').empty();
+      // $('#listingDisplay').empty();
       for (var i = 0; i < result.length; i++) {
         $('#listingDisplay').append(`
-          <div class="col-12 col-sm-6 col-md-4">
-            <div class="card mb-4 shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></svg>
-              <div class="card-body" data-id="${result[i]._id}">
-                <h5 class="card-title">${result[i].itemName}</h5>
-                <p class="card-text">${result[i].itemDescription}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-
-                    <button id="editListing" type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    <button id="deleteListing" type="button" class="btn btn-sm btn-outline-secondary deleteBtn">Delete</button>
-
-                  </div>
-                  <small class="text-muted">$${result[i].itemPrice}</small>
-                </div>
+          <div class="card cardListStyle">
+            <img class="listingsImg" src="img/avo.jpg" class="card-img-top" alt="...">
+            <div class="card-body" data-id="${result[i]._id}">
+              <h6 class="card-title">${result[i].itemName}</h6>
+              <div class="d-flex justify-content-between align-items-right">
+                <small class="text-muted">Price</small>
               </div>
             </div>
           </div>
