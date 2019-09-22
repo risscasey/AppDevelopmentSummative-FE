@@ -139,13 +139,13 @@ $('#addListing').click(function() {
 
 getListingData = () => {
   $.ajax({
-    url: `http://192.168.33.10:3000/allListings`,
+    url: `http://localhost:3000/allListings`,
     type: 'GET',
     success:function(result){
       $('#listingDisplay').empty();
       for (var i = 0; i < result.length; i++) {
         $('#listingDisplay').append(`
-          <div id="listingCard" class="col-md-4">
+          <div class="col-12 col-sm-6 col-md-4">
             <div class="card mb-4 shadow-sm">
               <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></svg>
               <div class="card-body" data-id="${result[i]._id}">
