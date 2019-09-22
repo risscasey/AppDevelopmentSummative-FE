@@ -10,8 +10,6 @@ h1 {
  color: #32BE76;
 }
 
-
-
 // Annie Codes Under Here
 
 
@@ -100,6 +98,7 @@ p {
   background-image: url('../img/carrots.jpg');
   background-position: center;
   background-size: cover;
+
 }
 
 .broccoliImg{
@@ -111,16 +110,6 @@ p {
 h5 {
   font-family:'Avenir';
   color: #828282;
-}
-
-.active {
-  color: black !important;
-  font-weight: bold;
-}
-
-#navCard {
-  border: none;
-  box-shadow: 0px 0px 5px grey;
 }
 
 li {
@@ -169,4 +158,34 @@ li {
 #exampleModal{
   margin-top: 12vh;
 }
+
+.active {
+  color: black !important;
+  font-weight: bold;
+}
+
+#navCard {
+  border: none;
+  box-shadow: 0px 0px 5px grey;
+}
+
+
 // Katherine Codes Under Here
+#login {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../images/vegetables.jpeg");
+
+  #gradient {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(255,255,255, 0.9));
+  }
+
+}
+
+
+.contents {
+  width: 100%;
+  height: 100%;
+}
