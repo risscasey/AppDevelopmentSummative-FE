@@ -12,119 +12,119 @@ $.ajax({
     }
 });
 
-if(sessionStorage['userName']) {
-    console.log('you are logged in ');
-    $('#login').hide();
-    $('#logout').removeClass('d-none');
-} else {
-    console.log('please sign in');
-}
-
-console.log(sessionStorage);
-
-$('#register').click(function() {
-  event.preventDefault();
-  console.log('button clicked');
-
-  let username = $('#username').val();
-  let password = $('#password').val();
-  let email = $('#email').val();
-  $.ajax({
-    url: `${url}/users`,
-    type: 'POST',
-    data: {
-      username: username,
-      password: password,
-      email: email
-    },
-    success:function(result){
-      console.log(result);
-    },
-    error: function(err) {
-      console.log(`${url}/users`);
-      console.log(err);
-      console.log('something went wrong with registering user');
-    }
-  });
-});
-
-$('#login').click(function() {
-  let username = $('#lUsername').val();
-  let password = $('#lPassword').val();
-
-  console.log(username);
-  console.log(password);
-
-  $.ajax({
-    url: `${url}/userLogin`,
-    type: 'POST',
-    data: {
-      username: username,
-      password: password
-    },
-    success:function(result) {
-      if (result === 'invalid user') {
-        console.log('Sorry, we couldn\'t find a user with that username.' );
-      } else if (result === 'invalid password') {
-        console.log('Incorrect password');
-      } else {
-        console.log('Login successful');
-
-        sessionStorage.setItem('userID', result['_id']);
-        sessionStorage.setItem('userName', result['username']);
-        console.log(sessionStorage);
-
-        $('#login').hide();
-        $('#logout').removeClass('d-none');
-      }
-    },
-    error: function(err) {
-      console.log(err);
-      console.log('Couldn\'t log you in');
-    }
-  });
-});
-
-$('#logout').click(function() {
-
-    if(!sessionStorage['userID']) {
-        console.log('You don\'t have permission to access. Please sign in.');
-        return;
-    }
-    console.log('logout successful');
-    sessionStorage.clear();
-    $('#login').show();
-    $('#logout').addClass('d-none');
-});
-
-$('#listingDisplay').on('click', '.deleteBtn', function() {
-  if(!sessionStorage['userID']) {
-      console.log('You don\'t have permission to delete this item. Please sign in.');
-      return;
-  }
-  event.preventDefault();
-  console.log('Ready to be deleted');
-
-  const id = $(this).parent().parent().parent().data('id');
-  console.log(id);
-  const selected = $(this).parent().parent().parent().parent();
-
-  $.ajax({
-    url: `${url}/listing/${id}`,
-    type: 'DELETE',
-    data: {
-        userId: sessionStorage['userID']
-    },
-    success:function(result){
-      selected.remove();
-    },
-    error:function(err) {
-      console.log(err);
-      console.log('something went wrong deleting the product');
-    }
-  });
-
-});
+// if(sessionStorage['userName']) {
+//     console.log('you are logged in ');
+//     $('#login').hide();
+//     $('#logout').removeClass('d-none');
+// } else {
+//     console.log('please sign in');
+// }
+//
+// console.log(sessionStorage);
+//
+// $('#register').click(function() {
+//   event.preventDefault();
+//   console.log('button clicked');
+//
+//   let username = $('#username').val();
+//   let password = $('#password').val();
+//   let email = $('#email').val();
+//   $.ajax({
+//     url: `${url}/users`,
+//     type: 'POST',
+//     data: {
+//       username: username,
+//       password: password,
+//       email: email
+//     },
+//     success:function(result){
+//       console.log(result);
+//     },
+//     error: function(err) {
+//       console.log(`${url}/users`);
+//       console.log(err);
+//       console.log('something went wrong with registering user');
+//     }
+//   });
+// });
+//
+// $('#login').click(function() {
+//   let username = $('#lUsername').val();
+//   let password = $('#lPassword').val();
+//
+//   console.log(username);
+//   console.log(password);
+//
+//   $.ajax({
+//     url: `${url}/userLogin`,
+//     type: 'POST',
+//     data: {
+//       username: username,
+//       password: password
+//     },
+//     success:function(result) {
+//       if (result === 'invalid user') {
+//         console.log('Sorry, we couldn\'t find a user with that username.' );
+//       } else if (result === 'invalid password') {
+//         console.log('Incorrect password');
+//       } else {
+//         console.log('Login successful');
+//
+//         sessionStorage.setItem('userID', result['_id']);
+//         sessionStorage.setItem('userName', result['username']);
+//         console.log(sessionStorage);
+//
+//         $('#login').hide();
+//         $('#logout').removeClass('d-none');
+//       }
+//     },
+//     error: function(err) {
+//       console.log(err);
+//       console.log('Couldn\'t log you in');
+//     }
+//   });
+// });
+//
+// $('#logout').click(function() {
+//
+//     if(!sessionStorage['userID']) {
+//         console.log('You don\'t have permission to access. Please sign in.');
+//         return;
+//     }
+//     console.log('logout successful');
+//     sessionStorage.clear();
+//     $('#login').show();
+//     $('#logout').addClass('d-none');
+// });
+//
+// $('#listingDisplay').on('click', '.deleteBtn', function() {
+//   if(!sessionStorage['userID']) {
+//       console.log('You don\'t have permission to delete this item. Please sign in.');
+//       return;
+//   }
+//   event.preventDefault();
+//   console.log('Ready to be deleted');
+//
+//   const id = $(this).parent().parent().parent().data('id');
+//   console.log(id);
+//   const selected = $(this).parent().parent().parent().parent();
+//
+//   $.ajax({
+//     url: `${url}/listing/${id}`,
+//     type: 'DELETE',
+//     data: {
+//         userId: sessionStorage['userID']
+//     },
+//     success:function(result){
+//       selected.remove();
+//     },
+//     error:function(err) {
+//       console.log(err);
+//       console.log('something went wrong deleting the product');
+//     }
+//   });
+//
+// });
 
 // Annie codes untill here
 
@@ -139,7 +139,7 @@ $('#addListing').click(function() {
 
 getListingData = () => {
   $.ajax({
-    url: `http://192.168.33.10:3000/allListings`,
+    url: `${url}/allListings`,
     type: 'GET',
     success:function(result){
       $('#listingDisplay').empty();
@@ -164,14 +164,14 @@ getListingData = () => {
             </div>
           </div>
         `);
-      };
+      }
     },
     error: function(err){
       console.log(err);
       console.log('something went wrong with getting all the products');
     }
-  })
-}
+  });
+};
 
 $('#subitNewListing').click(function() {
   if(!sessionStorage['userID']) {
@@ -218,9 +218,6 @@ $('#listingDisplay').on('click', '#editListing', function() {
     <div id="addlistingForm" class="d-none mt-4">
 
     </div>
-
-
-
 
     <div id="listingCard" class="col-md-4">
       <div class="card mb-4 shadow-sm">
@@ -286,6 +283,37 @@ $('#listingDisplay').on('click', '#editListing', function() {
   // })
 });
 
+$("#popularItemsCards" ).owlCarousel({
+  loop:true,
+  margin:10,
+  responsive:{
+      0:{
+          items:3
+      },
+      600:{
+          items:3
+      },
+      1000:{
+          items:5
+      }
+  }
+});
+
+$(document).ready(function(){
+  $(".owl-carousel").owlCarousel();
+});
+
+$('#hamburgerNav').click(function(){
+  if ($('#navDropDown').hasClass('d-none')) {
+    $('#navDropDown').removeClass('d-none');
+    $('#hamburgerNav').empty();
+    $('#hamburgerNav').append('<i class="fas fa-times pl-4"></i>');
+  } else {
+    $('#navDropDown').addClass('d-none');
+    $('#hamburgerNav').empty();
+    $('#hamburgerNav').append('<i class="fas fa-bars pl-4">');
+  }
+});
 
 // Larissa codes untill here
 
