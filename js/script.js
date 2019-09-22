@@ -139,7 +139,7 @@ $('#addListing').click(function() {
 
 getListingData = () => {
   $.ajax({
-    url: `http://localhost:3000/allListings`,
+    url: `http://192.168.33.10:3000/allListings`,
     type: 'GET',
     success:function(result){
       $('#listingDisplay').empty();
