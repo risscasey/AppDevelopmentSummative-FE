@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>digimart</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="plugins/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="plugins/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/style.min.css">
   </head>
 
   <body>
@@ -16,9 +18,138 @@
       <button type="button"><a href="register.html">REGISTER</a></button>
 
       <div id="heading">
+        <div class="row mb-3">
+          <div class="col-12 d-flex justify-content-around mt-4">
+            <h1>digimart</h1>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div id="searchForm" class="col-9 d-flex flex-row align-items-center">
+            <form class="input-group border-bottom ml-2">
+              <div class="input-group-prepend">
+                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+               </div>
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            </form>
+          </div>
+
+          <div class="col-3">
+              <button id="hamburgerNav" type="button" class="btn btn-link text-dark"><i class="fas fa-bars pl-4"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <div id="navDropDown" class="pt-4 d-none">
         <div class="row">
           <div class="col-12">
-            <h1>digimart</h1>
+            <div id="navCard" class="card p-3 d-flex flex-row">
+              <div class="col-4 mr-4 d-flex justify-content-center align-items-center flex-column">
+                <button type="button" class="btn btn-success px-4">Login</button>
+                <button type="button" class="btn btn-outline-success px-3 mt-3">Register</button>
+              </div>
+
+              <div class="col-8 border-left">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">About digimart</li>
+                  <li class="list-group-item">About our Team</li>
+                  <li class="list-group-item">Selling with digimart</li>
+                  <li class="list-group-item">FAQ's</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="welcomeCard" class="pt-4">
+        <div class="row">
+          <div class="col-12 d-flex justify-content-center">
+            <div id="cardImage" class="card bg-dark text-white">
+              <div class="card-img-overlay d-flex flex-column justify-content-center">
+                <h4 class="card-title text-center">Welcome to digimart!</h4>
+                <p class="text-center">Sourcing local, buying smarter.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="popularItems" class="mt-4">
+        <div class="row mb-1 mt-3">
+          <div class="col-12">
+            <h3 class="ml-1">Popular this week</h3>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div id="popularItemsCards" class="owl-carousel" style="width: 90vw; border: none;">
+              <div class="card-body imageDiv ml-1 avacadoImg"></div>
+              <div class="card-body imageDiv ml-1 onionImg"></div>
+              <div class="card-body imageDiv ml-1 tomatoImg"></div>
+              <div class="card-body imageDiv ml-1 carrotsImg"></div>
+              <div class="card-body imageDiv ml-1 broccoliImg"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="filters" class="mt-4">
+        <div class="row">
+          <div class="col-4">
+            <h5 class="text-center active">All</h5>
+          </div>
+
+          <div class="col-4">
+            <h5 class="text-center">Fruit</h5>
+          </div>
+
+          <div class="col-4">
+            <h5 class="text-center">Vegges</h5>
+          </div>
+        </div>
+      </div>
+
+      <div id="addNewListing" class="d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i></div>
+
+      <div id="addProductForm">
+        <div class="row">
+          <div class="col-12">
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header d-flex justify-content-center align-items-center">
+                    <h1 class="modal-title" id="exampleModalLabel">Add new listing</h1>
+                  </div>
+                  <div class="modal-body">
+
+                    <div class="form-group pt-3">
+                      <input type="text" name="itemName" id="itemName" class="form-control border-bottom" placeholder="Enter a Name for this Item">
+                    </div>
+
+                    <div class="form-group pt-3">
+                      <input type="number" name="itemPrice" id="itemPrice" class="form-control border-bottom" placeholder="Enter a Price for this Item">
+                    </div>
+
+                    <div class="form-group pt-3">
+                      <input type="file" name="itemImage" id="itemImage" class="form-control-file border-bottom" placeholder="Choose an Image for this Item">
+                    </div>
+
+                    <div class="form-group pt-3">
+                      <input type="text" name="itemDescription" id="itemDescription" rows="3" class="form-control border-bottom" placeholder="Enter a Description for this Item">
+                    </div>
+
+                    <div class="form-group pt-3">
+                      <input type="text" name="itemSeller" id="itemSeller" class="form-control border-bottom" placeholder="Item Seller">
+                    </div>
+
+                  <div class="modal-footer d-flex justify-content-center align-items-center mt-4">
+                    <button type="button" class="btn btn-success mt-4" id="subitNewListing">Submit Listing</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -29,6 +160,8 @@
     <script src="node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js" charset="utf-8"></script>
+    <script src="https://kit.fontawesome.com/4ac3ef5deb.js" crossorigin="anonymous"></script>
+    <script src="plugins/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
     <script src="js/script.js" charset="utf-8"></script>
   </body>
 
