@@ -145,11 +145,11 @@ getListingData = () => {
       // $('#listingDisplay').empty();
       for (var i = 0; i < result.length; i++) {
         $('#listingDisplay').append(`
-          <div class="card cardListStyle">
-            <img class="listingsImg" src="img/avo.jpg" class="card-img-top" alt="...">
-            <div class="card-body" data-id="${result[i]._id}">
+          <div class="card cardListStyle mt-4">
+          <img class="listingsImg" class="listingsImg" src="img/avo.jpg" class="card-img-top" alt="...">
+            <div class="card-body cardListBodyStyle" data-id="${result[i]._id}">
               <h6 class="card-title">${result[i].itemName}</h6>
-              <div class="d-flex justify-content-between align-items-right">
+              <div class="d-flex justify-content-between align-items-center">
                 <small class="text-muted">Price</small>
               </div>
             </div>

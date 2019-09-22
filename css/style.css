@@ -7,14 +7,13 @@ h1 {
   color: #32BE76; }
 
 .listingsImg {
-  border-top-left-radius: 10px !important;
-  border-top-right-radius: 10px !important;
-  max-width: 100%;
-  margin-bottom: 15px; }
+  border-top-left-radius: 5px !important;
+  border-top-right-radius: 5px !important;
+  max-width: 100%; }
 
 .cardListStyle {
-  border-radius: 10px !important;
-  box-shadow: 5px 10px 8px #888888; }
+  border-radius: 5px !important;
+  box-shadow: 0px 0px 5px grey; }
 
 .cardListBodyStyle {
   padding: 5px !important; }
