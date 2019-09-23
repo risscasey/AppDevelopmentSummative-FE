@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 
@@ -184,7 +186,7 @@ li {
 
 
 // Katherine Codes Under Here
-#login {
+#loginCard {
   width: 100vw;
   height: 100vh;
   background-image: url("../img/vege.jpeg");
