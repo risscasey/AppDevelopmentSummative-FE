@@ -166,41 +166,4 @@ li {
     height: 100%;
     background-image: linear-gradient(to top, rgba(255, 255, 255, 0.6), white); }
 
-.contents {
-  width: 100vw;
-  height: 100vh; }
-  .contents h1 {
-    margin-top: 10vh; }
-  .contents .card {
-    box-shadow: 0px 0px 5px grey;
-    border-radius: 10px; }
-    .contents .card .btn {
-      width: 60%;
-      border-radius: 10px;
-      font-family: 'Avenir';
-      font-weight: 500;
-      color: white;
-      letter-spacing: 0.5px; }
-    .contents .card .loginLink {
-      font-size: 13px; }
-      .contents .card .loginLink a {
-        font-family: 'Avenir';
-        font-weight: bold;
-        color: #32BE76; }
-
-@media only screen and (min-width: 600px) {
-  .card {
-    width: 28rem !important; } }
-@media only screen and (min-width: 800px) {
-  .card {
-    width: 28rem !important; } }
-@media only screen and (min-width: 1000px) {
-  .card {
-    width: 35rem !important; } }
-@media only screen and (min-width: 1200px) {
-  .card {
-    width: 42rem !important; }
-    .card form ::placeholder {
-      font-size: 20px; } }
-
 /*# sourceMappingURL=style.css.map */
