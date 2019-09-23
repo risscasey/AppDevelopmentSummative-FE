@@ -6,6 +6,12 @@ h1 {
   font-weight: bold;
   color: #32BE76; }
 
+#listingDisplay--listings {
+  padding-top: 15px; }
+  @media only screen and (max-width: 600px) {
+    #listingDisplay--listings {
+      column-count: 2; } }
+
 .listingsImg {
   border-top-left-radius: 5px !important;
   border-top-right-radius: 5px !important;
@@ -13,7 +19,10 @@ h1 {
 
 .cardListStyle {
   border-radius: 5px !important;
-  box-shadow: 0px 0px 5px grey; }
+  box-shadow: 0px 0px 5px grey;
+  margin-bottom: 15px; }
+  .cardListStyle:last-child {
+    margin-bottom: 0; }
 
 .cardListBodyStyle {
   padding: 5px !important; }
