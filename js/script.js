@@ -365,7 +365,7 @@ $('#submitForm').click(function(){
       $('#commentsDisplay').append(`
         <div id="commentsCard" class="col-md-4">
           <div class="card mb-4 shadow-sm">
-            <div class="card-body">
+            <div class="card-body" id="commentBody">
               <p class="card-text">${result.commentDescription}</p>
               </div>
           </div>
