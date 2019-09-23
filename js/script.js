@@ -200,6 +200,9 @@ $('#listingDisplay').on('click', '.listingCard', function(listingNumber){
 $('#addNewListing').click(function() {
   event.preventDefault();
   if(!sessionStorage['userID']) {
+    $('#invalidPremissionsModal').append(`
+
+      `);
       console.log('You don\'t have permission to add an item. Please sign in.');
       return;
   }
