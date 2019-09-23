@@ -12,15 +12,15 @@ h1 {
 
 // Annie Codes Under Here
 .listingsImg {
-  border-top-left-radius: 10px!important;
-  border-top-right-radius: 10px!important;
+  border-top-left-radius: 5px!important;
+  border-top-right-radius: 5px!important;
   max-width: 100%;
   margin-bottom: 15px;
 }
 
 .cardListStyle {
-  border-radius: 10px!important;
-  box-shadow: 1px 1px 8px #888888;
+  border-radius: 5px!important;
+  box-shadow: 0px 0px 5px grey;
 
 }
 
@@ -84,7 +84,6 @@ p {
 }
 
 .imageDiv {
-  box-shadow: 0px 0px 3px grey;
   border-radius: 4px;
   padding: 35%;
 }
@@ -138,7 +137,7 @@ li {
 #addNewListing{
   width: 10vw;
   height: 4.5vh;
-  border-radius: 50px;
+  border-radius: 50%;
   background-color: #32BE76 !important;
   box-shadow: 0px 0px 8px #2d3436;
   z-index: 5;
@@ -181,6 +180,13 @@ li {
   border: none;
   box-shadow: 0px 0px 5px grey;
 }
+
+.card {
+  border: none !important;
+}
+
+
+
 
 
 // Katherine Codes Under Here

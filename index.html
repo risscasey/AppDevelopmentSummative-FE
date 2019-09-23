@@ -13,6 +13,7 @@
 
   <body>
     <div class="container">
+
       <div id="heading">
         <div class="row mb-3">
           <div class="col-12 d-flex justify-content-around mt-4">
@@ -107,16 +108,16 @@
         </div>
       </div>
 
-      <div id="addNewListing" class="d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i></div>
+      <div id="addNewListing" class="d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#addLisingModal"><i class="fas fa-plus"></i></div>
 
-      <div id="addProductForm">
+      <div id="addListingForm">
         <div class="row">
           <div class="col-12">
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div id="addLisingModal" class="modal fade mt-4" tabindex="-1" role="dialog">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header d-flex justify-content-center align-items-center">
-                    <h1 class="modal-title" id="exampleModalLabel">Add new listing</h1>
+                    <h1 class="modal-title pt-2" id="exampleModalLabel">Add new listing</h1>
                   </div>
                   <div class="modal-body">
 
@@ -136,7 +137,7 @@
                       <input type="text" name="itemDescription" id="itemDescription" rows="3" class="form-control border-bottom" placeholder="Enter a Description for this Item">
                     </div>
 
-                    <div class="form-group pt-3">
+                    <div class="form-group pt-3 d-none">
                       <input type="text" name="itemSeller" id="itemSeller" class="form-control border-bottom" placeholder="Item Seller">
                     </div>
 
@@ -149,9 +150,37 @@
           </div>
         </div>
       </div>
-
-      <div id="listingDisplay" class="mt-4"></div>
     </div>
+
+    <div id="allCards" class="mt-4">
+      <div class="row">
+        <div class="col-12">
+          <div id="listingDisplay"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="card cardListStyle">
+            <img class="listingsImg" src="img/avo.jpg" class="card-img-top" alt="...">
+            <div class="card-body d-flex justify-content-between flex-column">
+              <div class="col-10">
+                <h6 class="card-title" id="resultName"></h6>
+              </div>
+              <div class="col-2">
+                <small class="text-muted" id="resultPrice"></small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- katherines comments here -->
+    </div>
+
+  </div>
 
     <script src="node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
