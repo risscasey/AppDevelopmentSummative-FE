@@ -1,7 +1,5 @@
 * {
-  box-sizing: border-box;
-  overflow-x: hidden;
-  overflow-y: hidden; }
+  box-sizing: border-box; }
 
 h1 {
   font-family: 'Avenir';
@@ -160,7 +158,9 @@ li {
   height: 100vh;
   background-image: url("../img/vege.jpeg");
   background-repeat: no-repeat;
-  background-size: cover; }
+  background-size: cover;
+  overflow-x: hidden;
+  overflow-y: hidden; }
   #loginCard #gradient {
     width: 100%;
     height: 100%;

@@ -12,7 +12,7 @@ $.ajax({
     }
 });
 
-if(sessionStorage['userName']) {
+if(sessionStorage.userName) {
     console.log('you are logged in ');
     $('#login').hide();
     // $('#logout').removeClass('d-none');
@@ -52,9 +52,6 @@ $('#login').click(function() {
   let username = $('#lUsername').val();
   let password = $('#lPassword').val();
 
-  console.log(username);
-  console.log(password);
-
   $.ajax({
     url: `${url}/userLogin`,
     type: 'POST',
@@ -70,8 +67,8 @@ $('#login').click(function() {
       } else {
         console.log('Login successful');
 
-        sessionStorage.setItem('userID', result['_id']);
-        sessionStorage.setItem('userName', result['username']);
+        sessionStorage.setItem('userID', result._id);
+        sessionStorage.setItem('userName', result.username);
         console.log(sessionStorage);
 
         $('#login').hide();
@@ -129,10 +126,10 @@ $('#login').click(function() {
 // Annie codes untill here
 
 $('#addListing').click(function() {
-  if(!sessionStorage['userID']) {
-      console.log('You don\'t have permission to add an item. Please sign in.');
-      return;
-  }
+  // if(!sessionStorage['userID']) {
+  //     console.log('You don\'t have permission to add an item. Please sign in.');
+  //     return;
+  // }
   event.preventDefault();
   $('#addlistingForm').removeClass('d-none');
 });
@@ -165,10 +162,10 @@ getListingData = () => {
 };
 
 $('#subitNewListing').click(function() {
-  if(!sessionStorage['userID']) {
-      console.log('You don\'t have permission to add an item. Please sign in.');
-      return;
-  }
+  // if(!sessionStorage['userID']) {
+  //     console.log('You don\'t have permission to add an item. Please sign in.');
+  //     return;
+  // }
   let itemName = $('#itemName').val();
   let itemPrice = $('#itemPrice').val();
   let itemDescription = $('#itemDescription').val();
