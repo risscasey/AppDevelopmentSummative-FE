@@ -12,78 +12,78 @@ $.ajax({
     }
 });
 
-// if(sessionStorage['userName']) {
-//     console.log('you are logged in ');
-//     $('#login').hide();
-//     $('#logout').removeClass('d-none');
-// } else {
-//     console.log('please sign in');
-// }
-//
-// console.log(sessionStorage);
-//
-// $('#register').click(function() {
-//   event.preventDefault();
-//   console.log('button clicked');
-//
-//   let username = $('#username').val();
-//   let password = $('#password').val();
-//   let email = $('#email').val();
-//   $.ajax({
-//     url: `${url}/users`,
-//     type: 'POST',
-//     data: {
-//       username: username,
-//       password: password,
-//       email: email
-//     },
-//     success:function(result){
-//       console.log(result);
-//     },
-//     error: function(err) {
-//       console.log(`${url}/users`);
-//       console.log(err);
-//       console.log('something went wrong with registering user');
-//     }
-//   });
-// });
-//
-// $('#login').click(function() {
-//   let username = $('#lUsername').val();
-//   let password = $('#lPassword').val();
-//
-//   console.log(username);
-//   console.log(password);
-//
-//   $.ajax({
-//     url: `${url}/userLogin`,
-//     type: 'POST',
-//     data: {
-//       username: username,
-//       password: password
-//     },
-//     success:function(result) {
-//       if (result === 'invalid user') {
-//         console.log('Sorry, we couldn\'t find a user with that username.' );
-//       } else if (result === 'invalid password') {
-//         console.log('Incorrect password');
-//       } else {
-//         console.log('Login successful');
-//
-//         sessionStorage.setItem('userID', result['_id']);
-//         sessionStorage.setItem('userName', result['username']);
-//         console.log(sessionStorage);
-//
-//         $('#login').hide();
-//         $('#logout').removeClass('d-none');
-//       }
-//     },
-//     error: function(err) {
-//       console.log(err);
-//       console.log('Couldn\'t log you in');
-//     }
-//   });
-// });
+if(sessionStorage['userName']) {
+    console.log('you are logged in ');
+    $('#login').hide();
+    // $('#logout').removeClass('d-none');
+} else {
+    console.log('please sign in');
+}
+
+console.log(sessionStorage);
+
+$('#register').click(function() {
+  event.preventDefault();
+  console.log('button clicked');
+
+  let username = $('#username').val();
+  let password = $('#password').val();
+  let email = $('#email').val();
+  $.ajax({
+    url: `${url}/users`,
+    type: 'POST',
+    data: {
+      username: username,
+      password: password,
+      email: email
+    },
+    success:function(result){
+      console.log(result);
+    },
+    error: function(err) {
+      console.log(`${url}/users`);
+      console.log(err);
+      console.log('something went wrong with registering user');
+    }
+  });
+});
+
+$('#login').click(function() {
+  let username = $('#lUsername').val();
+  let password = $('#lPassword').val();
+
+  console.log(username);
+  console.log(password);
+
+  $.ajax({
+    url: `${url}/userLogin`,
+    type: 'POST',
+    data: {
+      username: username,
+      password: password
+    },
+    success:function(result) {
+      if (result === 'invalid user') {
+        console.log('Sorry, we couldn\'t find a user with that username.' );
+      } else if (result === 'invalid password') {
+        console.log('Incorrect password');
+      } else {
+        console.log('Login successful');
+
+        sessionStorage.setItem('userID', result['_id']);
+        sessionStorage.setItem('userName', result['username']);
+        console.log(sessionStorage);
+
+        $('#login').hide();
+        $('#logout').removeClass('d-none');
+      }
+    },
+    error: function(err) {
+      console.log(err);
+      console.log('Couldn\'t log you in');
+    }
+  });
+});
 //
 // $('#logout').click(function() {
 //
@@ -145,7 +145,7 @@ getListingData = () => {
                 <h6 class="card-title">${result[i].itemName}</h6>
               </div>
               <div class="col-3 border-left">
-                <small class="text-muted pl-4">$${result[i].itemPrice}</small>
+                <small class="text-muted pl-2">$${result[i].itemPrice}</small>
               </div>
             </div>
           </div>
@@ -171,24 +171,9 @@ $('#listingDisplay').on('click', '.listingCard', function(listingNumber){
     type: 'GET',
     dataType: 'json',
     success:function(result){
-      // console.log('gottem');
-      $('#listingDisplay').append(`
-        <div class="modal fade col-12" id="listingModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-id="${result._id}">
-          <div class="modal-dialog-scrollable" role="document">
-              <div class="card cardListStyle mt-4" data-toggle="modal" data-target="#listingModel">
-                <img class="listingsImg" src="img/avo.jpg" class="card-img-top" alt="...">
-                <div class="card-body d-flex justify-content-between flex-column">
-                  <div class="col-10">
-                    <h6 class="card-title">${result.itemName}</h6>
-                  </div>
-                  <div class="col-2">
-                    <small class="text-muted">$${result.itemPrice}</small>
-                  </div>
-                </div>
-              </div>
-          </div>
-        </div>
-       `);
+      $('#myModal').modal('show')
+      $('#resultName').append(`${result.itemName}`)
+      $('#resultPrice').append(`$${result.itemPrice}`)
     },
     error:function(err){
         console.log(err);
@@ -200,11 +185,27 @@ $('#listingDisplay').on('click', '.listingCard', function(listingNumber){
 $('#addNewListing').click(function() {
   event.preventDefault();
   if(!sessionStorage['userID']) {
-    $('#invalidPremissionsModal').append(`
+    $('#addLisingModal').html(`
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header d-flex justify-content-center align-items-center">
+            <h1 class="modal-title pt-2" id="exampleModalLabel">Whoops!</h1>
+          </div>
 
-      `);
-      console.log('You don\'t have permission to add an item. Please sign in.');
-      return;
+          <div class="modal-body text-center">
+            <p>Sorry, to add an Item you have to have to either Register or Sign in</p>
+          </div>
+
+          <div class="col-12 d-flex justify-content-around justify-content-center align-items-center flex-row py-4">
+            <a href="login.html"><button type="button" class="btn btn-success px-4">Login</button></a>
+            <a href="register.html"><button type="button" class="btn btn-outline-success px-4">Register</button></a>
+          </div>
+
+        </div>
+      </div>
+    `);
+    console.log('You don\'t have permission to add an item. Please sign in.');
+    return;
   }
 });
 
