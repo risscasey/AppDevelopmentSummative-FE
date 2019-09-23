@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>digimart</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="plugins/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="plugins/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css">
+
     <link rel="stylesheet" href="css/style.css">
   </head>
 
@@ -17,18 +20,20 @@
            <div id="gradient">
              <div class="contents d-flex flex-column align-items-center">
                <h1>digimart</h1>
-               <div class="card" style="width: 18rem;">
+               <div class="card mt-4" style="width: 21rem;">
                  <div class="card-body">
                      <form>
-                       <div class="form-row">
-                         <div class="form-group col-md-6">
-                            <input class="form-control border-bottom" type="email" id="inputEmail4" placeholder="Enter your Username">
+                       <div class="form-row d-flex flex-column align-items-center">
+                         <div class="form-group col-md-6 mt-4">
+                            <input class="form-control border-bottom" type="email" id="lUsername" placeholder="Enter your Username">
                          </div>
-                         <div class="form-group col-md-6">
-                            <input class="form-control border-bottom" type="password" id="inputPassword4" placeholder="Enter your Password">
+                         <div class="form-group col-md-6 mt-4">
+                            <input class="form-control border-bottom" type="password" id="lPassword" placeholder="Enter your Password">
                          </div>
-                           <button type="submit" class=" align-middle btn btn-success">Sign in</button>
-                           <small id="loginLink" class="form-text text-muted">Don't have an account? <a href="register.html">Sign Up Here...</a></small>
+                           <button type="submit" class="d-flex flex-column justify-content-center align-items-center btn btn-success mt-4">Login</button>
+                           <small id="loginLink" class="form-text text-muted mt-4">Don't have an account? <a href="register.html">Register Here</a></small>
+                           <small id="loginLink" class="form-text text-muted">Continue as <a href="index.html">Guest</a></small>
+
                        </div>
                     </form>
                   </div>
@@ -39,10 +44,38 @@
        </div>
     </div>
 
+    <div class="pt-4">
+      <p>username</p>
+      <input id="lUsername" type="text" name="" value="">
+      <p>password</p>
+      <input id="lPassword" type="password" name="" value="">
+      <button id="login" type="button" class="btn btn-primary">Login</button>
+
+      <button id="logout" type="button" class="btn btn-light d-none">Logout</button>
+
+      <p>Full Name</p>
+      <input id="fName" type="text" name="" value="">
+
+      <p>Username</p>
+      <input id="username" type="text" name="" value="">
+
+      <p>password</p>
+      <input id="password" type="password" name="" value="">
+
+      <button id="register" type="button" class="btn btn-outline-primary">Register</button>
+
+      <div class="pt-4">
+        <button id="addListing" type="button" class="btn btn-primary">add listing</button>
+        <button id="viewListing" type="button" class="btn btn-outline-primary">view listings</button>
+      </div>
+    </div>
+
 
     <script src="node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js" charset="utf-8"></script>
+    <script src="https://kit.fontawesome.com/4ac3ef5deb.js" crossorigin="anonymous"></script>
+    <script src="plugins/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
     <script src="js/script.js" charset="utf-8"></script>
   </body>
 
