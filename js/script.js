@@ -125,29 +125,24 @@ $('#login').click(function() {
 
 // Annie codes untill here
 
-$('#addListing').click(function() {
-  // if(!sessionStorage['userID']) {
-  //     console.log('You don\'t have permission to add an item. Please sign in.');
-  //     return;
-  // }
-  event.preventDefault();
-  $('#addlistingForm').removeClass('d-none');
-});
 
 getListingData = () => {
   $.ajax({
     url: `${url}/allListings`,
     type: 'GET',
     success:function(result){
+      // console.log(result[0]._id);
       // $('#listingDisplay').empty();
       for (var i = 0; i < result.length; i++) {
         $('#listingDisplay').append(`
-          <div class="card cardListStyle mt-4">
-          <img class="listingsImg" class="listingsImg" src="img/avo.jpg" class="card-img-top" alt="...">
-            <div class="card-body cardListBodyStyle" data-id="${result[i]._id}">
-              <h6 class="card-title">${result[i].itemName}</h6>
-              <div class="d-flex justify-content-between align-items-center">
-                <small class="text-muted">Price</small>
+          <div class="card cardListStyle mb-4 listingCard" data-toggle="modal" data-target="#listingModel" data-id="${result[i]._id}">
+            <img class="listingsImg" src="img/avo.jpg" class="card-img-top" alt="...">
+            <div class="card-body d-flex justify-content-between flex-row">
+              <div class="col-9">
+                <h6 class="card-title">${result[i].itemName}</h6>
+              </div>
+              <div class="col-3 border-left">
+                <small class="text-muted pl-2">$${result[i].itemPrice}</small>
               </div>
             </div>
           </div>
@@ -161,11 +156,62 @@ getListingData = () => {
   });
 };
 
+$('#listingDisplay').on('click', '.listingCard', function(listingNumber){
+  event.preventDefault();
+
+  const cardId = $(this).data('id');
+  // console.log(this);
+  // console.log(cardId);
+
+  $.ajax({
+    url: `${url}/listing/${cardId}`,
+    type: 'GET',
+    dataType: 'json',
+    success:function(result){
+      $('#myModal').modal('show')
+      $('#resultName').append(`${result.itemName}`)
+      $('#resultPrice').append(`$${result.itemPrice}`)
+    },
+    error:function(err){
+        console.log(err);
+        console.log('something went wrong with getting the single product');
+    }
+  });
+});
+
+$('#addNewListing').click(function() {
+  event.preventDefault();
+  if(!sessionStorage['userID']) {
+    $('#addLisingModal').html(`
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header d-flex justify-content-center align-items-center">
+            <h1 class="modal-title pt-2" id="exampleModalLabel">Whoops!</h1>
+          </div>
+
+          <div class="modal-body text-center">
+            <p>Sorry, to add an Item you have to have to either Register or Sign in</p>
+          </div>
+
+          <div class="col-12 d-flex justify-content-around justify-content-center align-items-center flex-row py-4">
+            <a href="login.html"><button type="button" class="btn btn-success px-4">Login</button></a>
+            <a href="register.html"><button type="button" class="btn btn-outline-success px-4">Register</button></a>
+          </div>
+
+        </div>
+      </div>
+    `);
+    console.log('You don\'t have permission to add an item. Please sign in.');
+    return;
+  }
+});
+
 $('#subitNewListing').click(function() {
   // if(!sessionStorage['userID']) {
-  //     console.log('You don\'t have permission to add an item. Please sign in.');
+  //     alert('You don\'t have permission to add an item. Please sign in.');
   //     return;
   // }
+
   let itemName = $('#itemName').val();
   let itemPrice = $('#itemPrice').val();
   let itemDescription = $('#itemDescription').val();
@@ -183,10 +229,7 @@ $('#subitNewListing').click(function() {
     },
     success:function(result){
       console.log(result);
-      $('#itemName').val(null);
-      $('#itemPrice').val(null);
-      $('#itemDescription').val(null);
-      $('#itemSeller').val(null);
+      $('#addListingForm').toggle();
     },
     error: function(error){
       console.log(error);
@@ -195,48 +238,48 @@ $('#subitNewListing').click(function() {
   });
 });
 
-$('#listingDisplay').on('click', '#editListing', function() {
-  event.preventDefault();
-
-  const id = $(this).parent().parent().parent().data('id');
-  console.log(id);
-
-  // $('#listingCard').empty();
-  $('#listingDisplay').append(`
-    <div id="addlistingForm" class="d-none mt-4">
-
-    </div>
-
-    <div id="listingCard" class="col-md-4">
-      <div class="card mb-4 shadow-sm">
-        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></svg>
-        <div class="card-body" data-id="${result[i]._id}">
-          <div class="form-group">
-            <label for="editedName">Item Name</label>
-            <input type="text" name="editedName" id="editedName" class="form-control">
-          </div>
-
-          <div class="form-group">
-            <label for="editedPrice">Item Price</label>
-            <input type="number" name="editedPrice" id="editedPrice" class="form-control">
-          </div>
-
-          <div class="form-group">
-            <label for="editedDescription">Item Description</label>
-            <textarea type="text" name="editedDescription" id="editedDescription" rows="3" class="form-control"></textarea>
-          </div>
-
-          <div class="mt-3">
-            <button id="editNewListing" type="button" class="btn btn-success">Edit Listing</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-
-  `);
+// $('#listingDisplay').on('click', '#editListing', function() {
+//   event.preventDefault();
+//
+//   const id = $(this).parent().parent().parent().data('id');
+//   console.log(id);
+//
+//   // $('#listingCard').empty();
+//   $('#listingDisplay').append(`
+//     <div id="addlistingForm" class="d-none mt-4">
+//
+//     </div>
+//
+//     <div id="listingCard" class="col-md-4">
+//       <div class="card mb-4 shadow-sm">
+//         <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></svg>
+//         <div class="card-body" data-id="${result[i]._id}">
+//           <div class="form-group">
+//             <label for="editedName">Item Name</label>
+//             <input type="text" name="editedName" id="editedName" class="form-control">
+//           </div>
+//
+//           <div class="form-group">
+//             <label for="editedPrice">Item Price</label>
+//             <input type="number" name="editedPrice" id="editedPrice" class="form-control">
+//           </div>
+//
+//           <div class="form-group">
+//             <label for="editedDescription">Item Description</label>
+//             <textarea type="text" name="editedDescription" id="editedDescription" rows="3" class="form-control"></textarea>
+//           </div>
+//
+//           <div class="mt-3">
+//             <button id="editNewListing" type="button" class="btn btn-success">Edit Listing</button>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//
+//
+//
+//
+//   `);
 
 
   // $.ajax({
@@ -269,7 +312,7 @@ $('#listingDisplay').on('click', '#editListing', function() {
   //     console.log('something went wrong with getting the single product');
   //   }
   // })
-});
+// });
 
 $("#popularItemsCards" ).owlCarousel({
   loop:true,

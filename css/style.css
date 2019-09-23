@@ -67,7 +67,6 @@ p {
   box-shadow: 0px 0px 5px grey; }
 
 .imageDiv {
-  box-shadow: 0px 0px 3px grey;
   border-radius: 4px;
   padding: 35%; }
 
@@ -119,7 +118,7 @@ li {
 #addNewListing {
   width: 10vw;
   height: 4.5vh;
-  border-radius: 50px;
+  border-radius: 50%;
   background-color: #32BE76 !important;
   box-shadow: 0px 0px 8px #2d3436;
   z-index: 5;
@@ -153,22 +152,23 @@ li {
   border: none;
   box-shadow: 0px 0px 5px grey; }
 
+.card {
+  border: none !important; }
+
 #loginCard {
   width: 100vw;
   height: 100vh;
   background-image: url("../img/vege.jpeg");
   background-repeat: no-repeat;
-  background-size: cover;
-  overflow-x: hidden;
-  overflow-y: hidden; }
+  background-size: cover; }
   #loginCard #gradient {
     width: 100%;
     height: 100%;
     background-image: linear-gradient(to top, rgba(255, 255, 255, 0.6), white); }
 
 .contents {
-  width: 100%;
-  height: 100%; }
+  width: 100vw;
+  height: 100vh; }
   .contents h1 {
     margin-top: 10vh; }
   .contents .card {
@@ -181,11 +181,26 @@ li {
       font-weight: 500;
       color: white;
       letter-spacing: 0.5px; }
-    .contents .card #loginLink {
+    .contents .card .loginLink {
       font-size: 13px; }
-      .contents .card #loginLink a {
+      .contents .card .loginLink a {
         font-family: 'Avenir';
         font-weight: bold;
         color: #32BE76; }
+
+@media only screen and (min-width: 600px) {
+  .card {
+    width: 28rem !important; } }
+@media only screen and (min-width: 800px) {
+  .card {
+    width: 28rem !important; } }
+@media only screen and (min-width: 1000px) {
+  .card {
+    width: 35rem !important; } }
+@media only screen and (min-width: 1200px) {
+  .card {
+    width: 42rem !important; }
+    .card form ::placeholder {
+      font-size: 20px; } }
 
 /*# sourceMappingURL=style.css.map */

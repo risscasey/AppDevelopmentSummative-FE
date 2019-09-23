@@ -12,11 +12,8 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
 
-
-
-
   <body>
-    <div class="row">
+    <div id="loginPage" class="row">
        <div class="col-12">
          <div id="loginCard">
            <div id="gradient">
@@ -26,15 +23,15 @@
                  <div class="card-body">
                      <form>
                        <div class="form-row d-flex flex-column align-items-center">
-                         <div class="form-group col-md-6 mt-4">
-                            <input class="form-control border-bottom" placeholder="Enter your Username" id="lUsername" type="text" name="" value="">
+                         <div class="form-group col-md-10 mt-4">
+                            <input class="form-control border-bottom" placeholder="Enter your Username" id="lUsername" type="text">
                          </div>
-                         <div class="form-group col-md-6 mt-4">
-                            <input class="form-control border-bottom" placeholder="Enter your Password" id="lPassword" type="password" name="" value="">
+                         <div class="form-group col-md-10 mt-4">
+                            <input class="form-control border-bottom" placeholder="Enter your Password" id="lPassword" type="password">
                          </div>
                            <button id="login" type="button" class="d-flex flex-column justify-content-center align-items-center btn btn-success mt-4">Login</button>
-                           <small id="loginLink" class="form-text text-muted mt-4">Don't have an account? <a href="register.html">Register Here</a></small>
-                           <small id="loginLink" class="form-text text-muted">Continue as <a href="index.html">Guest</a></small>
+                           <small class="loginLink form-text text-muted mt-4">Don't have an account? <a href="register.html">Register Here</a></small>
+                           <small class="loginLink form-text text-muted">Continue as <a href="index.html">Guest</a></small>
                        </div>
                     </form>
                   </div>
