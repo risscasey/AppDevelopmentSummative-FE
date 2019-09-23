@@ -193,18 +193,18 @@ li {
         color: #32BE76; }
 
 @media only screen and (min-width: 600px) {
-  .card {
+  .cardStyle {
     width: 28rem !important; } }
 @media only screen and (min-width: 800px) {
-  .card {
+  .cardStyle {
     width: 28rem !important; } }
 @media only screen and (min-width: 1000px) {
-  .card {
+  .cardStyle {
     width: 35rem !important; } }
 @media only screen and (min-width: 1200px) {
-  .card {
+  .cardStyle {
     width: 42rem !important; }
-    .card form ::placeholder {
+    .cardStyle form ::placeholder {
       font-size: 20px; } }
 
 /*# sourceMappingURL=style.css.map */
