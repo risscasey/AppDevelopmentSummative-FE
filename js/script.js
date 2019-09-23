@@ -12,78 +12,78 @@ $.ajax({
     }
 });
 
-// if(sessionStorage['userName']) {
-//     console.log('you are logged in ');
-//     $('#login').hide();
-//     $('#logout').removeClass('d-none');
-// } else {
-//     console.log('please sign in');
-// }
-//
-// console.log(sessionStorage);
-//
-// $('#register').click(function() {
-//   event.preventDefault();
-//   console.log('button clicked');
-//
-//   let username = $('#username').val();
-//   let password = $('#password').val();
-//   let email = $('#email').val();
-//   $.ajax({
-//     url: `${url}/users`,
-//     type: 'POST',
-//     data: {
-//       username: username,
-//       password: password,
-//       email: email
-//     },
-//     success:function(result){
-//       console.log(result);
-//     },
-//     error: function(err) {
-//       console.log(`${url}/users`);
-//       console.log(err);
-//       console.log('something went wrong with registering user');
-//     }
-//   });
-// });
-//
-// $('#login').click(function() {
-//   let username = $('#lUsername').val();
-//   let password = $('#lPassword').val();
-//
-//   console.log(username);
-//   console.log(password);
-//
-//   $.ajax({
-//     url: `${url}/userLogin`,
-//     type: 'POST',
-//     data: {
-//       username: username,
-//       password: password
-//     },
-//     success:function(result) {
-//       if (result === 'invalid user') {
-//         console.log('Sorry, we couldn\'t find a user with that username.' );
-//       } else if (result === 'invalid password') {
-//         console.log('Incorrect password');
-//       } else {
-//         console.log('Login successful');
-//
-//         sessionStorage.setItem('userID', result['_id']);
-//         sessionStorage.setItem('userName', result['username']);
-//         console.log(sessionStorage);
-//
-//         $('#login').hide();
-//         $('#logout').removeClass('d-none');
-//       }
-//     },
-//     error: function(err) {
-//       console.log(err);
-//       console.log('Couldn\'t log you in');
-//     }
-//   });
-// });
+if(sessionStorage['userName']) {
+    console.log('you are logged in ');
+    $('#login').hide();
+    // $('#logout').removeClass('d-none');
+} else {
+    console.log('please sign in');
+}
+
+console.log(sessionStorage);
+
+$('#register').click(function() {
+  event.preventDefault();
+  console.log('button clicked');
+
+  let username = $('#username').val();
+  let password = $('#password').val();
+  let email = $('#email').val();
+  $.ajax({
+    url: `${url}/users`,
+    type: 'POST',
+    data: {
+      username: username,
+      password: password,
+      email: email
+    },
+    success:function(result){
+      console.log(result);
+    },
+    error: function(err) {
+      console.log(`${url}/users`);
+      console.log(err);
+      console.log('something went wrong with registering user');
+    }
+  });
+});
+
+$('#login').click(function() {
+  let username = $('#lUsername').val();
+  let password = $('#lPassword').val();
+
+  console.log(username);
+  console.log(password);
+
+  $.ajax({
+    url: `${url}/userLogin`,
+    type: 'POST',
+    data: {
+      username: username,
+      password: password
+    },
+    success:function(result) {
+      if (result === 'invalid user') {
+        console.log('Sorry, we couldn\'t find a user with that username.' );
+      } else if (result === 'invalid password') {
+        console.log('Incorrect password');
+      } else {
+        console.log('Login successful');
+
+        sessionStorage.setItem('userID', result['_id']);
+        sessionStorage.setItem('userName', result['username']);
+        console.log(sessionStorage);
+
+        $('#login').hide();
+        $('#logout').removeClass('d-none');
+      }
+    },
+    error: function(err) {
+      console.log(err);
+      console.log('Couldn\'t log you in');
+    }
+  });
+});
 //
 // $('#logout').click(function() {
 //

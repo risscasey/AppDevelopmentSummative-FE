@@ -6,51 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>digimart</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="plugins/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="plugins/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css">
+
     <link rel="stylesheet" href="css/style.css">
   </head>
+
+
 
 
   <body>
     <div class="row">
        <div class="col-12">
-         <div id="login">
+         <div id="loginCard">
            <div id="gradient">
-
-             <div class="contents d-flex flex-column justify-content-center align-items-center">
+             <div class="contents d-flex flex-column align-items-center">
                <h1>digimart</h1>
-               <div class="card" style="width: 18rem;">
+               <div class="card mt-4" style="width: 21rem;">
                  <div class="card-body">
-                   <form>
-                       <div class="form-row">
-                         <div class="form-group col-md-6">
-                           <label for="inputEmail4">Username</label>
-                           <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                     <form>
+                       <div class="form-row d-flex flex-column align-items-center">
+                         <div class="form-group col-md-6 mt-4">
+                            <input class="form-control border-bottom" placeholder="Enter your Username" id="lUsername" type="text" name="" value="">
                          </div>
-                         <div class="form-group col-md-6">
-                           <label for="inputPassword4">Password</label>
-                           <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                         <div class="form-group col-md-6 mt-4">
+                            <input class="form-control border-bottom" placeholder="Enter your Password" id="lPassword" type="password" name="" value="">
                          </div>
-                         <button type="submit" class=" align-middle btn btn-success">Sign in</button>
-                         <small id="loginLink" class="form-text text-muted">Don't have an account? <a href="register.html">Sign Up Here...</a></small>
-                         </div>
-                     </form>
-                 </div>
+                           <button id="login" type="button" class="d-flex flex-column justify-content-center align-items-center btn btn-success mt-4">Login</button>
+                           <small id="loginLink" class="form-text text-muted mt-4">Don't have an account? <a href="register.html">Register Here</a></small>
+                           <small id="loginLink" class="form-text text-muted">Continue as <a href="index.html">Guest</a></small>
+                       </div>
+                    </form>
+                  </div>
                </div>
              </div>
            </div>
          </div>
        </div>
-      </div>
-
-
-
-
-
+    </div>
 
 
     <script src="node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js" charset="utf-8"></script>
+    <script src="https://kit.fontawesome.com/4ac3ef5deb.js" crossorigin="anonymous"></script>
+    <script src="plugins/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
     <script src="js/script.js" charset="utf-8"></script>
   </body>
 
