@@ -168,9 +168,9 @@ $('#listingDisplay').on('click', '.listingCard', function(listingNumber){
     type: 'GET',
     dataType: 'json',
     success:function(result){
-      $('#myModal').modal('show')
-      $('#resultName').append(`${result.itemName}`)
-      $('#resultPrice').append(`$${result.itemPrice}`)
+      $('#myModal').modal('show');
+      $('#resultName').append(`${result.itemName}`);
+      $('#resultPrice').append(`$${result.itemPrice}`);
     },
     error:function(err){
         console.log(err);
@@ -322,7 +322,7 @@ $("#popularItemsCards" ).owlCarousel({
           items:3
       },
       600:{
-          items:3
+          items:4
       },
       1000:{
           items:5
