@@ -1,7 +1,5 @@
 * {
   box-sizing: border-box;
-  overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 
@@ -192,6 +190,8 @@ li {
   background-image: url("../img/vege.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
+  overflow-x: hidden;
+  overflow-y: hidden;
 
   #gradient {
     width: 100%;
@@ -232,3 +232,5 @@ li {
       }
   }
 }
+
+@import 'mediaQueries.scss';

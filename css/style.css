@@ -1,7 +1,5 @@
 * {
-  box-sizing: border-box;
-  overflow-x: hidden;
-  overflow-y: hidden; }
+  box-sizing: border-box; }
 
 h1 {
   font-family: 'Avenir';
@@ -144,7 +142,9 @@ li {
   height: 100vh;
   background-image: url("../img/vege.jpeg");
   background-repeat: no-repeat;
-  background-size: cover; }
+  background-size: cover;
+  overflow-x: hidden;
+  overflow-y: hidden; }
   #loginCard #gradient {
     width: 100%;
     height: 100%;
@@ -171,5 +171,20 @@ li {
         font-family: 'Avenir';
         font-weight: bold;
         color: #32BE76; }
+
+@media only screen and (min-width: 600px) {
+  .card {
+    width: 28rem !important; } }
+@media only screen and (min-width: 800px) {
+  .card {
+    width: 28rem !important; } }
+@media only screen and (min-width: 1000px) {
+  .card {
+    width: 35rem !important; } }
+@media only screen and (min-width: 1200px) {
+  .card {
+    width: 42rem !important; }
+    .card form ::placeholder {
+      font-size: 20px; } }
 
 /*# sourceMappingURL=style.css.map */

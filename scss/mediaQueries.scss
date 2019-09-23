@@ -1,79 +1,93 @@
 @media only screen and (min-width: 400px) {
 
-// Annie codes under Here
+  // Annie codes under Here
 
 
 
 
-// Larissa codes under Here
+  // Larissa codes under Here
 
 
 
 
-// Katherine codes under here
+  // Katherine codes under here
 
 }
 
 @media only screen and (min-width: 600px) {
 
-// Annie codes under Here
+  // Annie codes under Here
 
 
 
 
-// Larissa codes under Here
+  // Larissa codes under Here
 
 
 
 
-// Katherine codes under here
-
+  // Katherine codes under here
+  .card {
+    width: 28rem !important;
+  }
 }
 
 @media only screen and (min-width: 800px) {
 
-// Annie codes under Here
+  // Annie codes under Here
 
 
 
 
-// Larissa codes under Here
+  // Larissa codes under Here
 
 
 
 
-// Katherine codes under here
-
+  // Katherine codes under here
+  .card {
+    width: 28rem !important;
+  }
 }
 
 @media only screen and (min-width: 1000px) {
 
-// Annie codes under Here
+  // Annie codes under Here
 
 
 
 
-// Larissa codes under Here
+  // Larissa codes under Here
 
 
 
 
-// Katherine codes under here
-
+  // Katherine codes under here
+  .card {
+    width: 35rem !important;
+  }
 }
 
 @media only screen and (min-width: 1200px) {
 
-// Annie codes under Here
+  // Annie codes under Here
 
 
 
 
-// Larissa codes under Here
+  // Larissa codes under Here
 
 
 
 
-// Katherine codes under here
+  // Katherine codes under here
+  .card {
+    width: 42rem !important;
 
+    form {
+      ::placeholder {
+        font-size: 20px;
+      }
+    }
+  }
 }
