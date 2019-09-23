@@ -128,68 +128,29 @@ $.ajax({
 
 // Annie codes untill here
 
-$('#addListing').click(function() {
-  if(!sessionStorage['userID']) {
-      console.log('You don\'t have permission to add an item. Please sign in.');
-      return;
-  }
-  event.preventDefault();
-  $('#addlistingForm').removeClass('d-none');
-});
 
 getListingData = () => {
   $.ajax({
-    url: `http://192.168.33.10:3000/allListings`,
+    url: `${url}/allListings`,
     type: 'GET',
     success:function(result){
       // console.log(result[0]._id);
       // $('#listingDisplay').empty();
       for (var i = 0; i < result.length; i++) {
         $('#listingDisplay').append(`
-          <div id="" class="card cardListStyle mt-4 listingCard" data-toggle="modal" data-target="#listingModel">
+          <div class="card cardListStyle mb-4 listingCard" data-toggle="modal" data-target="#listingModel" data-id="${result[i]._id}">
             <img class="listingsImg" src="img/avo.jpg" class="card-img-top" alt="...">
-            <div class="card-body" data-id="${result[i]._id}">
-              <h6 class="card-title">${result[i].itemName}</h6>
-              <div class="d-flex justify-content-between align-items-right">
-                <small class="text-muted">Price</small>
+            <div class="card-body d-flex justify-content-between flex-row">
+              <div class="col-9">
+                <h6 class="card-title">${result[i].itemName}</h6>
+              </div>
+              <div class="col-3 border-left">
+                <small class="text-muted pl-4">$${result[i].itemPrice}</small>
               </div>
             </div>
           </div>
         `);
       }
-
-      $('#listingDisplay').on('click', '.listingCard', function(listingNumber)
-      let singleListing;
-      for (var i = 0; i < result.length; i++) {
-
-          if(result[i].id === listingNumber){
-              singleListing = result[i];
-              console.log(singleListing);
-          }
-        // console.log(result[0]._id);
-        // for (var i = 0; i < result.length; i++) {
-        //   console.log(result[i]._id);
-        //
-        //   // $('#listingDisplay').append(`
-        //   //   <div class="modal fade" id="listingModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        //   //     <div class="modal-dialog" role="document">
-        //   //
-        //   //         <div class="card cardListStyle mt-4" data-toggle="modal" data-target="#listingModel">
-        //   //           <img class="listingsImg" src="img/avo.jpg" class="card-img-top" alt="...">
-        //   //           <div class="card-body" data-id="${result[i]._id}">
-        //   //             <h6 class="card-title">${result[i].itemName}</h6>
-        //   //             <div class="d-flex justify-content-between align-items-right">
-        //   //               <small class="text-muted">Price</small>
-        //   //             </div>
-        //   //           </div>
-        //   //         </div>
-        //   //
-        //   //     </div>
-        //   //   </div>
-        //   // `);
-        // }
-      });
-
     },
     error: function(err){
       console.log(err);
@@ -198,11 +159,58 @@ getListingData = () => {
   });
 };
 
-$('#subitNewListing').click(function() {
+$('#listingDisplay').on('click', '.listingCard', function(listingNumber){
+  event.preventDefault();
+
+  const cardId = $(this).data('id');
+  // console.log(this);
+  // console.log(cardId);
+
+  $.ajax({
+    url: `${url}/listing/${cardId}`,
+    type: 'GET',
+    dataType: 'json',
+    success:function(result){
+      // console.log('gottem');
+      $('#listingDisplay').append(`
+        <div class="modal fade col-12" id="listingModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-id="${result._id}">
+          <div class="modal-dialog-scrollable" role="document">
+              <div class="card cardListStyle mt-4" data-toggle="modal" data-target="#listingModel">
+                <img class="listingsImg" src="img/avo.jpg" class="card-img-top" alt="...">
+                <div class="card-body d-flex justify-content-between flex-column">
+                  <div class="col-10">
+                    <h6 class="card-title">${result.itemName}</h6>
+                  </div>
+                  <div class="col-2">
+                    <small class="text-muted">$${result.itemPrice}</small>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+       `);
+    },
+    error:function(err){
+        console.log(err);
+        console.log('something went wrong with getting the single product');
+    }
+  });
+});
+
+$('#addNewListing').click(function() {
+  event.preventDefault();
   if(!sessionStorage['userID']) {
       console.log('You don\'t have permission to add an item. Please sign in.');
       return;
   }
+});
+
+$('#subitNewListing').click(function() {
+  // if(!sessionStorage['userID']) {
+  //     alert('You don\'t have permission to add an item. Please sign in.');
+  //     return;
+  // }
+
   let itemName = $('#itemName').val();
   let itemPrice = $('#itemPrice').val();
   let itemDescription = $('#itemDescription').val();
@@ -220,10 +228,7 @@ $('#subitNewListing').click(function() {
     },
     success:function(result){
       console.log(result);
-      $('#itemName').val(null);
-      $('#itemPrice').val(null);
-      $('#itemDescription').val(null);
-      $('#itemSeller').val(null);
+      $('#addListingForm').toggle();
     },
     error: function(error){
       console.log(error);

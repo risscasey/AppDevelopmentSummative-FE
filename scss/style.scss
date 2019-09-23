@@ -139,7 +139,7 @@ li {
 #addNewListing{
   width: 10vw;
   height: 4.5vh;
-  border-radius: 50px;
+  border-radius: 50%;
   background-color: #32BE76 !important;
   box-shadow: 0px 0px 8px #2d3436;
   z-index: 5;
@@ -182,6 +182,13 @@ li {
   border: none;
   box-shadow: 0px 0px 5px grey;
 }
+
+.card {
+  border: none !important;
+}
+
+
+
 
 
 // Katherine Codes Under Here

@@ -109,14 +109,14 @@
 
       <div id="addNewListing" class="d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i></div>
 
-      <div id="addProductForm">
+      <div id="addListingForm">
         <div class="row">
           <div class="col-12">
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" tabindex="-1" role="dialog">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header d-flex justify-content-center align-items-center">
-                    <h1 class="modal-title" id="exampleModalLabel">Add new listing</h1>
+                    <h1 class="modal-title pt-2" id="exampleModalLabel">Add new listing</h1>
                   </div>
                   <div class="modal-body">
 
@@ -136,7 +136,7 @@
                       <input type="text" name="itemDescription" id="itemDescription" rows="3" class="form-control border-bottom" placeholder="Enter a Description for this Item">
                     </div>
 
-                    <div class="form-group pt-3">
+                    <div class="form-group pt-3 d-none">
                       <input type="text" name="itemSeller" id="itemSeller" class="form-control border-bottom" placeholder="Item Seller">
                     </div>
 
@@ -149,8 +149,14 @@
           </div>
         </div>
       </div>
+    </div>
 
-      <div id="listingDisplay" class="mt-4"></div>
+    <div id="allCards" class="mt-4">
+      <div class="row">
+        <div class="col-12">
+          <div id="listingDisplay"></div>
+        </div>
+      </div>
     </div>
 
     <script src="node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
