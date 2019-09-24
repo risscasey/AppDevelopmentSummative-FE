@@ -125,6 +125,7 @@ $('#login').click(function() {
 
 // Annie codes untill here
 
+let currentCardId;
 
 getListingData = () => {
   $.ajax({
@@ -156,21 +157,83 @@ getListingData = () => {
   });
 };
 
+getCommentData = () => {
+  $.ajax({
+    url: `${url}/allComments`,
+    type: 'GET',
+    success:function(commentsResult){
+      for (var i = 0; i < commentsResult.length; i++) {
+        if (commentsResult[i].commentID === currentCardId) {
+          $('#comments').val(null);
+          $('#commentsDisplay').empty();
+          $('#commentsDisplay').append(`
+            <div id="commentsCard" class="col-md-4">
+              <div class="card mb-4 shadow-sm">
+                <div class="card-body" id="commentBody">
+                  <p class="card-text">${commentsResult[i].commentDescription}</p>
+                  </div>
+              </div>
+            </div>
+          `);
+        } else {
+          console.log('id no match');
+        }
+      }
+    },
+    error: function(err){
+      console.log(err);
+      console.log('something went wrong with getting all the products');
+    }
+  });
+};
+
+$('#submitForm').click(function(){
+  event.preventDefault();
+  console.log(currentCardId);
+
+  let commentIdFromCard = currentCardId;
+  let commentArea = $('#comments').val();
+
+  $.ajax({
+    url: `${url}/sendComments`,
+    type: 'POST',
+    data: {
+      commentDescription: commentArea,
+      commentID:commentIdFromCard
+    },
+    success:function(result){
+      console.log(result);
+      $('#comments').val(null);
+      getCommentData();
+    },
+    error: function(error){
+      console.log(error);
+      console.log('something went wrong with sending the data');
+    }
+  });
+});
+
+
+
 $('#listingDisplay').on('click', '.listingCard', function(listingNumber){
   event.preventDefault();
 
-  const cardId = $(this).data('id');
+  currentCardId = $(this).data('id');
   // console.log(this);
   // console.log(cardId);
 
   $.ajax({
-    url: `${url}/listing/${cardId}`,
+    url: `${url}/listing/${currentCardId}`,
     type: 'GET',
     dataType: 'json',
     success:function(result){
-      $('#myModal').modal('show');
+      $('#myModal').modal('show')
+      $('#resultName').empty();
+      $('#resultPrice').empty();
       $('#resultName').append(`${result.itemName}`);
       $('#resultPrice').append(`$${result.itemPrice}`);
+
+      getCommentData();
     },
     error:function(err){
         console.log(err);
@@ -181,7 +244,7 @@ $('#listingDisplay').on('click', '.listingCard', function(listingNumber){
 
 $('#addNewListing').click(function() {
   event.preventDefault();
-  if(!sessionStorage['userID']) {
+  if(!sessionStorage.userID) {
     $('#addLisingModal').html(`
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -201,8 +264,8 @@ $('#addNewListing').click(function() {
         </div>
       </div>
     `);
-    console.log('You don\'t have permission to add an item. Please sign in.');
-    return;
+  } else {
+    $('#addLisingModal').modal('show')
   }
 });
 
@@ -346,64 +409,37 @@ $('#hamburgerNav').click(function(){
   }
 });
 
-// Larissa codes untill here
-
-$('#submitForm').click(function(){
-  event.preventDefault();
-  const cardId = $(this).data('id');
-
-  let commentArea = $('#comments').val();
-
-  $.ajax({
-    url: `${url}/sendComments`,
-    type: 'POST',
-    data: {
-      commentDescription: commentArea
-    },
-    success:function(result){
-      console.log(result);
-      $('#comments').val(null);
-      $('#commentsDisplay').append(`
-        <div id="commentsCard" class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <div class="card-body" id="commentBody">
-              <p class="card-text">${result.commentDescription}</p>
-              </div>
-          </div>
-        </div>
-      `);
-    },
-    error: function(error){
-      console.log(error);
-      console.log('something went wrong with sending the data');
-    }
-  });
-});
-// Katherine codes until here
-
-// Annies code continued
 $('#submitResponse').click(function(){
   event.preventDefault();
 
+  const cardId = $(this).data('id');
   let responseArea = $('#responses').val();
+
+  console.log(cardId);
 
   $.ajax({
     url: `${url}/sendResponse`,
     type: 'POST',
     data: {
-      responceDescription: responseArea
+      responceDescription: responseArea,
+      commentID: cardId
     },
     success:function(result){
       console.log(result);
-      $('#commentsDisplay').append(`
-        <div id="commentsCard" class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <div class="card-body">
-              <p class="card-text">${result.responceDescription}</p>
-              </div>
-          </div>
-        </div>
-      `);
+
+      // $('#commentsDisplay').append(`
+      //   <div id="commentsCard" >
+      //     <div class="row">
+      //       <div class="col-12">
+      //         <div class="card mb-4 shadow-sm">
+      //           <div class="card-body col-12">
+      //             <p class="card-text">${result.responceDescription}</p>
+      //             </div>
+      //         </div>
+      //       </div>
+      //     </div>
+      //   </div>
+      // `);
     },
     error: function(error){
       console.log(error);
@@ -411,3 +447,39 @@ $('#submitResponse').click(function(){
     }
   });
 });
+
+// Larissa codes untill here
+
+
+// Katherine codes until here
+
+// Annies code continued
+// $('#submitResponse').click(function(){
+//   event.preventDefault();
+//
+//   let responseArea = $('#responses').val();
+//
+//   $.ajax({
+//     url: `${url}/sendResponse`,
+//     type: 'POST',
+//     data: {
+//       responceDescription: responseArea
+//     },
+//     success:function(result){
+//       console.log(result);
+//       $('#commentsDisplay').append(`
+//         <div id="commentsCard" class="col-md-4">
+//           <div class="card mb-4 shadow-sm">
+//             <div class="card-body">
+//               <p class="card-text">${result.responceDescription}</p>
+//               </div>
+//           </div>
+//         </div>
+//       `);
+//     },
+//     error: function(error){
+//       console.log(error);
+//       console.log('something went wrong with sending the data');
+//     }
+//   });
+// });
