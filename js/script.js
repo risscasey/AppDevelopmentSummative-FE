@@ -12,13 +12,13 @@ $.ajax({
     }
 });
 
-if(sessionStorage.userName) {
-    console.log('you are logged in ');
-    $('#login').hide();
-    // $('#logout').removeClass('d-none');
-} else {
-    console.log('please sign in');
-}
+// if(sessionStorage.userName) {
+//     console.log('you are logged in ');
+//     $('#login').hide();
+//     // $('#logout').removeClass('d-none');
+// } else {
+//     console.log('please sign in');
+// }
 
 console.log(sessionStorage);
 
@@ -136,7 +136,7 @@ getListingData = () => {
       for (var i = 0; i < result.length; i++) {
         $('#listingDisplay').append(`
           <div class="card cardListStyle mb-4 listingCard" data-toggle="modal" data-target="#listingModel" data-id="${result[i]._id}">
-            <img class="listingsImg" src="img/avo.jpg" class="card-img-top" alt="...">
+            <img class="listingsImg" src="${url}/${result[i].itemImage}" class="card-img-top" alt="...">
             <div class="card-body d-flex justify-content-between flex-row">
               <div class="col-9">
                 <h6 class="card-title">${result[i].itemName}</h6>
@@ -206,6 +206,14 @@ $('#addNewListing').click(function() {
   }
 });
 
+$('#itemImage').change(function(e){
+        console.log(e.target.files.length);
+        if(e.target.files.length > 0){
+            const fileName = e.target.files[0].name;
+            $(this).next('.custom-file-label').html(fileName);
+        }
+    });
+
 $('#subitNewListing').click(function() {
   // if(!sessionStorage['userID']) {
   //     alert('You don\'t have permission to add an item. Please sign in.');
@@ -215,18 +223,24 @@ $('#subitNewListing').click(function() {
   let itemName = $('#itemName').val();
   let itemPrice = $('#itemPrice').val();
   let itemDescription = $('#itemDescription').val();
+  let itemImage = $('#itemImage').val();
+  let fd = new FormData();
 
-  let newListing = itemName + ' $' + itemPrice + ' ' + itemDescription;
+  const file = $('#itemImage')[0].files[0];
+  fd.append('uploadImage', file);
+  fd.append('itemName', itemName);
+  fd.append('itemPrice', itemPrice);
+  fd.append('itemDescription', itemDescription);
+
+  let newListing = itemName + ' $' + itemPrice + ' ' + itemDescription + ' ' + fd;
   console.log(newListing);
 
   $.ajax({
     url: `${url}/listing`,
     type: 'POST',
-    data: {
-      itemName: itemName,
-      itemPrice: itemPrice,
-      itemDescription: itemDescription
-    },
+    data: fd,
+    processData: false,
+    contentType: false,
     success:function(result){
       console.log(result);
       $('#addListingForm').toggle();
