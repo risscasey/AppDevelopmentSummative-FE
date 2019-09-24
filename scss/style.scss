@@ -209,7 +209,7 @@ li {
 
 // Katherine Codes Under Here
 
-#guest{
+.guest{
   font-family:'Avenir';
   font-weight: bold;
   color: #32BE76;
@@ -221,8 +221,11 @@ li {
   color: #32BE76;
 }
 
-
-
+#signUpHere{
+  font-family:'Avenir';
+  font-weight: bold;
+  color: #32BE76;
+}
 
 #commentsCard {
   #commentBody{

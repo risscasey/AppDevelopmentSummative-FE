@@ -75,7 +75,7 @@ $('#login').click(function() {
 
 
           $('#login').addClass('d-none');
-          $('#index').removeClass('d-none')
+          $('#index').removeClass('d-none');
       }
     },
     error: function(err) {
@@ -355,6 +355,14 @@ $('#logBtn').click(function(){
 $('#regoBtn').click(function(){
   $('#index').addClass('d-none');
   $('#rego').removeClass('d-none');
+});
+
+$('.guest').click(function(){
+  $('#index').removeClass('d-none');
+});
+
+$('#signInHere').click(function(){
+  $('#index').removeClass('d-none');
 });
 
 
