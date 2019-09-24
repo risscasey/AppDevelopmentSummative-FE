@@ -369,6 +369,12 @@ $('#signInHere').click(function(){
   $('#rego').addClass('d-none');
 });
 
+$('#signUpHere').click(function(){
+  $('#index').addClass('d-none');
+  $('#signIn').removeClass('d-none');
+  $('#rego').addClass('d-none');
+});
+
 $('#submitForm').click(function(){
   event.preventDefault();
   const cardId = $(this).data('id');
