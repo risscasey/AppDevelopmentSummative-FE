@@ -385,6 +385,9 @@ $('.guest').click(function(){
   $('#index').removeClass('d-none');
   $('#signIn').addClass('d-none');
   $('#rego').addClass('d-none');
+  $('#logBtn').removeClass('d-none');
+  $('#regoBtn').removeClass('d-none');
+  $('#logout').addClass('d-none');
 });
 
 $('#signInHere').click(function(){
