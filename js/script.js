@@ -194,26 +194,41 @@ $('#submitForm').click(function(){
   event.preventDefault();
   console.log(currentCardId);
 
-  let commentIdFromCard = currentCardId;
-  let commentArea = $('#comments').val();
+  if(!sessionStorage.userID) {
+    $('#comments').val(null);
+    $('#invalidModal').modal('show')
+  } else {
+    let commentIdFromCard = currentCardId;
+    let commentArea = $('#comments').val();
 
-  $.ajax({
-    url: `${url}/sendComments`,
-    type: 'POST',
-    data: {
-      commentDescription: commentArea,
-      commentID:commentIdFromCard
-    },
-    success:function(result){
-      console.log(result);
-      $('#comments').val(null);
-      getCommentData();
-    },
-    error: function(error){
-      console.log(error);
-      console.log('something went wrong with sending the data');
-    }
-  });
+    $.ajax({
+      url: `${url}/sendComments`,
+      type: 'POST',
+      data: {
+        commentDescription: commentArea,
+        commentID:commentIdFromCard
+      },
+      success:function(result){
+        console.log(result);
+        $('#comments').val(null);
+        getCommentData();
+        $('#commentsDisplay').append(`
+          <div id="commentsCard" class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+              <div class="card-body" id="commentBody">
+                <p class="card-text">${result.commentDescription}</p>
+                </div>
+            </div>
+          </div>
+        `);
+
+      },
+      error: function(error){
+        console.log(error);
+        console.log('something went wrong with sending the data');
+      }
+    });
+  }
 });
 
 
@@ -248,25 +263,7 @@ $('#listingDisplay').on('click', '.listingCard', function(listingNumber){
 $('#addNewListing').click(function() {
   event.preventDefault();
   if(!sessionStorage.userID) {
-    $('#addLisingModal').html(`
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header d-flex justify-content-center align-items-center">
-            <h1 class="modal-title pt-2" id="exampleModalLabel">Whoops!</h1>
-          </div>
-
-          <div class="modal-body text-center">
-            <p>Sorry, to add an Item you have to have to either Register or Sign in</p>
-          </div>
-
-          <div class="col-12 d-flex justify-content-around justify-content-center align-items-center flex-row py-4">
-            <a href="login.html"><button type="button" class="btn btn-success px-4">Login</button></a>
-            <a href="register.html"><button type="button" class="btn btn-outline-success px-4">Register</button></a>
-          </div>
-
-        </div>
-      </div>
-    `);
+    $('#invalidModal').modal('show')
   } else {
     $('#addLisingModal').modal('show')
   }
@@ -309,7 +306,21 @@ $('#subitNewListing').click(function() {
     contentType: false,
     success:function(result){
       console.log(result);
-      $('#addListingForm').toggle();
+      $('#addLisingModal').modal('hide')
+
+      $('#listingDisplay').append(`
+        <div class="card cardListStyle mb-4 listingCard" data-toggle="modal" data-target="#listingModel" data-id="${result._id}">
+          <img class="listingsImg" src="${url}/${result.itemImage}" class="card-img-top" alt="...">
+          <div class="card-body d-flex justify-content-between flex-row">
+            <div class="col-9">
+              <h6 class="card-title">${result.itemName}</h6>
+            </div>
+            <div class="col-3 border-left">
+              <small class="text-muted pl-2">$${result.itemPrice}</small>
+            </div>
+          </div>
+        </div>
+      `);
     },
     error: function(error){
       console.log(error);
@@ -423,7 +434,9 @@ $('#hamburgerNav').click(function(){
   }
 });
 
-// Larissa codes untill here
+// larissa untill here
+
+
 $('#logBtn').click(function(){
   $('#index').addClass('d-none');
   $('#signIn').removeClass('d-none');
@@ -451,49 +464,6 @@ $('#signUpHere').click(function(){
   $('#signIn').removeClass('d-none');
   $('#rego').addClass('d-none');
 });
-
-$('#submitForm').click(function(){
-  event.preventDefault();
-
-  const cardId = $(this).data('id');
-  let responseArea = $('#responses').val();
-
-  console.log(cardId);
-
-  $.ajax({
-    url: `${url}/sendResponse`,
-    type: 'POST',
-    data: {
-      responceDescription: responseArea,
-      commentID: cardId
-    },
-    success:function(result){
-      console.log(result);
-
-      // $('#commentsDisplay').append(`
-      //   <div id="commentsCard" >
-      //     <div class="row">
-      //       <div class="col-12">
-      //         <div class="card mb-4 shadow-sm">
-      //           <div class="card-body col-12">
-      //             <p class="card-text">${result.responceDescription}</p>
-      //             </div>
-      //         </div>
-      //       </div>
-      //     </div>
-      //   </div>
-      // `);
-    },
-    error: function(error){
-      console.log(error);
-      console.log('something went wrong with sending the data');
-    }
-  });
-});
-
-// Larissa codes untill here
-
-
 // Katherine codes until here
 
 // Annies code continued
