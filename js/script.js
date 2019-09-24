@@ -344,6 +344,16 @@ $('#hamburgerNav').click(function(){
 });
 
 // Larissa codes untill here
+$('#logBtn').click(function(){
+  $('#index').addClass('d-none');
+  $('#signIn').removeClass('d-none');
+});
+
+$('#regoBtn').click(function(){
+  $('#index').addClass('d-none');
+  $('#rego').removeClass('d-none');
+});
+
 
 $('#submitForm').click(function(){
   event.preventDefault();
