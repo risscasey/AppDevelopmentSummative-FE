@@ -209,6 +209,10 @@ li {
   .card {
     width: 28rem !important; } }
 @media only screen and (min-width: 800px) {
+  #addNewListing {
+    width: 8vw;
+    height: 7vh; }
+
   .card {
     width: 28rem !important; } }
 @media only screen and (min-width: 1000px) {
