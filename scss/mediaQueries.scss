@@ -8,6 +8,9 @@
   // Larissa codes under Here
 
 
+  .ml-1 {
+    margin-left: .5rem !important;
+  }
 
 
   // Katherine codes under here
@@ -22,12 +25,30 @@
 
 
   // Larissa codes under Here
+  #addNewListing{
+    width: 8vw;
+    height: 5vh;
+  }
 
+  #cardImage{
+    width: 100% !important;
+    height: 30vh;
+  }
+
+  h1 {
+    font-size: 3.5em;
+  }
+
+  .container {
+    max-width: 1400px;
+  }
 
 
 
   // Katherine codes under here
-
+  .cardStyle {
+    width: 28rem !important;
+  }
 }
 
 @media only screen and (min-width: 800px) {
@@ -39,11 +60,16 @@
 
   // Larissa codes under Here
 
-
+  #addNewListing{
+    width: 8vw;
+    height: 7vh;
+  }
 
 
   // Katherine codes under here
-
+  .cardStyle {
+    width: 28rem !important;
+  }
 }
 
 @media only screen and (min-width: 1000px) {
@@ -59,7 +85,9 @@
 
 
   // Katherine codes under here
-
+  .cardStyle {
+    width: 35rem !important;
+  }
 }
 
 @media only screen and (min-width: 1200px) {
@@ -75,5 +103,13 @@
 
 
   // Katherine codes under here
+  .cardStyle {
+    width: 42rem !important;
 
+    form {
+      ::placeholder {
+        font-size: 20px;
+      }
+    }
+  }
 }

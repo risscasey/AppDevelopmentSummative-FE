@@ -1,6 +1,13 @@
 * {
   box-sizing: border-box;
 }
+
+// body {
+//   overflow-y: scroll;
+//   overflow-x: hidden;
+//   width: 100vw;
+//   height: 100vh;
+// }
 //Shared Styles
 h1 {
  font-family:'Avenir';
@@ -37,33 +44,41 @@ h4 {
  font-family:'Avenir';
  font-weight: bold;
 }
+
 h3 {
  font-family:'Avenir';
  color: #828282;
  font-size: .8em;
 }
+
 p {
  font-family:'Avenir';
  font-size: .9em;
 }
+
 .input-group-text {
   border: none;
   background-color: white;
 }
+
 .form-control {
   border: none;
 }
+
 .fa-search{
   color: #828282;
 }
+
 .fa-times{
   color: red;
   font-size: 1.5em;
 }
+
 .fa-bars{
   color: #828282;
   font-size: 1.5em;
 }
+
 #cardImage{
   width: 90vw;
   height: 25vh;
@@ -85,35 +100,42 @@ p {
   background-position: center;
   background-size: cover;
 }
+
 .onionImg{
   background-image: url('../img/onion.jpg');
   background-position: center;
   background-size: cover;
 }
+
 .tomatoImg{
   background-image: url('../img/tommos.jpeg');
   background-position: center;
   background-size: cover;
 }
+
 .carrotsImg{
   background-image: url('../img/carrots.jpg');
   background-position: center;
   background-size: cover;
 
 }
+
 .broccoliImg{
   background-image: url('../img/brocco.jpg');
   background-position: center;
   background-size: cover;
 }
+
 h5 {
   font-family:'Avenir';
   color: #828282;
 }
+
 .active {
   color: black !important;
   font-weight: bold;
 }
+
 #navCard {
   border: none;
   box-shadow: 0px 0px 5px grey;
@@ -124,9 +146,11 @@ li {
  color: #828282;
  font-size: .8em;
 }
+
 .list-group-item {
   border: none;
 }
+
 #addNewListing{
   width: 10vw;
   height: 4.5vh;
@@ -138,22 +162,27 @@ li {
   bottom: 20px;
   right: 20px;
 }
+
 .fa-plus{
   color: white;
 }
+
 .modal-header{
   border: none;
   h1{
     font-size: 2em;
   }
 }
+
 .modal-footer{
   border-top: none;
 }
+
 .btn-success {
   border-color: #32BE76;
   background-color: #32BE76;
 }
+
 #exampleModal{
   margin-top: 12vh;
 }
@@ -173,18 +202,39 @@ li {
 }
 
 
-
-
-
 // Katherine Codes Under Here
+
+.guest{
+  font-family:'Avenir';
+  font-weight: bold;
+  color: #32BE76;
+}
+
+#signInHere{
+  font-family:'Avenir';
+  font-weight: bold;
+  color: #32BE76;
+}
+
+#signUpHere{
+  font-family:'Avenir';
+  font-weight: bold;
+  color: #32BE76;
+}
+
+#commentsCard {
+  #commentBody{
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 5px;
+  }
+}
+
 #loginCard {
   width: 100vw;
   height: 100vh;
   background-image: url("../img/vege.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
-  // overflow-x: hidden;
-  // overflow-y: hidden;
 
   #gradient {
     width: 100%;
@@ -193,37 +243,36 @@ li {
   }
 }
 
-// .contents {
-//   width: 100vw;
-//   height: 100vh;
-//
-//   h1 {
-//     margin-top: 10vh;
-//   }
-//
-//   .card {
-//     box-shadow: 0px 0px 5px grey;
-//     border-radius: 10px;
-//
-//       .btn {
-//         width: 60%;
-//         border-radius: 10px;
-//          font-family:'Avenir';
-//          font-weight:500 ;
-//          color: white;
-//          letter-spacing: 0.5px;
-//       }
-//
-//       .loginLink{
-//         font-size: 13px;
-//
-//         a {
-//           font-family:'Avenir';
-//           font-weight: bold;
-//           color: #32BE76;
-//         }
-//       }
-//   }
-// }
+.contents {
+  width: 100vw;
+  height: 100vh;
 
+  h1 {
+    margin-top: 10vh;
+  }
+
+  .card {
+    box-shadow: 0px 0px 5px grey;
+    border-radius: 10px;
+
+      .btn {
+        width: 60%;
+        border-radius: 10px;
+         font-family:'Avenir';
+         font-weight:500 ;
+         color: white;
+         letter-spacing: 0.5px;
+      }
+
+      .loginLink{
+        font-size: 13px;
+
+        a {
+          font-family:'Avenir';
+          font-weight: bold;
+          color: #32BE76;
+        }
+      }
+  }
+}
 @import 'mediaQueries.scss';
