@@ -350,6 +350,7 @@ $('#hamburgerNav').click(function(){
 
 $('#submitForm').click(function(){
   event.preventDefault();
+  const cardId = $(this).data('id');
 
   let commentArea = $('#comments').val();
 
