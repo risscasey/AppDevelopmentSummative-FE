@@ -311,7 +311,7 @@ $('#listingDisplay').on('click', '#editListing', function() {
       console.log(err);
       console.log('something went wrong with getting the single product');
     }
-  })
+  });
 });
 
 $("#popularItemsCards" ).owlCarousel({
@@ -350,7 +350,17 @@ $('#hamburgerNav').click(function(){
 $('#logBtn').click(function(){
   $('#index').addClass('d-none');
   $('#signIn').removeClass('d-none');
+  $('#logBtn').addClass('d-none');
+  $('#regoBtn').addClass('d-none');
+  $('#logout').removeClass('d-none');
 });
+
+$('#logout').click(function(){
+  $('#logBtn').removeClass('d-none');
+  $('#regoBtn').removeClass('d-none');
+  $('#logout').addClass('d-none');
+});
+
 
 $('#regoBtn').click(function(){
   $('#index').addClass('d-none');
@@ -371,8 +381,8 @@ $('#signInHere').click(function(){
 
 $('#signUpHere').click(function(){
   $('#index').addClass('d-none');
-  $('#signIn').removeClass('d-none');
-  $('#rego').addClass('d-none');
+  $('#signIn').addClass('d-none');
+  $('#rego').removeClass('d-none');
 });
 
 $('#submitForm').click(function(){
