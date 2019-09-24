@@ -192,11 +192,32 @@ li {
         font-weight: bold;
         color: #32BE76; }
 
+@media only screen and (min-width: 400px) {
+  .ml-1 {
+    margin-left: .5rem !important; } }
 @media only screen and (min-width: 600px) {
-  .cardStyle {
+  #addNewListing {
+    width: 8vw;
+    height: 5vh; }
+
+  #cardImage {
+    width: 100% !important;
+    height: 30vh; }
+
+  h1 {
+    font-size: 3.5em; }
+
+  .container {
+    max-width: 1400px; }
+
+  .card {
     width: 28rem !important; } }
 @media only screen and (min-width: 800px) {
-  .cardStyle {
+  #addNewListing {
+    width: 8vw;
+    height: 7vh; }
+
+  .card {
     width: 28rem !important; } }
 @media only screen and (min-width: 1000px) {
   .cardStyle {
