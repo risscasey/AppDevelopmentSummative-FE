@@ -17,18 +17,15 @@ h1 {
 // Annie Codes Under Here
 #listingDisplay--listings {
   padding-top: 15px;
-
   @media only screen and (max-width: 600px) {
     column-count: 2;
   }
 }
-
 .listingsImg {
   border-top-left-radius: 5px!important;
   border-top-right-radius: 5px!important;
   max-width: 100%;
 }
-
 .cardListStyle {
   border-radius: 5px !important;
   box-shadow: 0px 0px 5px grey;
@@ -37,11 +34,9 @@ h1 {
     margin-bottom: 0;
   }
 }
-
 .cardListBodyStyle {
   padding: 5px!important;
 }
-
 
 
 // Larissa Codes Under Here
