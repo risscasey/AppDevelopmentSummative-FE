@@ -225,7 +225,12 @@ $('#subitNewListing').click(function() {
     data: {
       itemName: itemName,
       itemPrice: itemPrice,
-      itemDescription: itemDescription
+      itemDescription: itemDescription,
+      itemImage: {
+        data: fd,
+        contentType: false,
+        processData: false
+      }
     },
     success:function(result){
       console.log(result);
