@@ -359,12 +359,15 @@ $('#regoBtn').click(function(){
 
 $('.guest').click(function(){
   $('#index').removeClass('d-none');
+  $('#signIn').addClass('d-none');
+  $('#rego').addClass('d-none');
 });
 
 $('#signInHere').click(function(){
-  $('#index').removeClass('d-none');
+  $('#index').addClass('d-none');
+  $('#signIn').removeClass('d-none');
+  $('#rego').addClass('d-none');
 });
-
 
 $('#submitForm').click(function(){
   event.preventDefault();
