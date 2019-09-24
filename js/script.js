@@ -97,7 +97,7 @@ $('#logout').click(function() {
     $('#logout').addClass('d-none');
 });
 
-$('#listingDisplay').on('click', '.deleteBtn', function() {
+$('.listingDisplay').on('click', '.deleteBtn', function() {
   if(!sessionStorage['userID']) {
       console.log('You don\'t have permission to delete this item. Please sign in.');
       return;
@@ -135,20 +135,19 @@ getListingData = () => {
     type: 'GET',
     success:function(result){
       // console.log(result[0]._id);
-      // $('#listingDisplay').empty();
+      // $('.listingDisplay').empty();
       for (var i = 0; i < result.length; i++) {
-        $('#listingDisplay').append(`
-          <div class="card cardListStyle mb-4 listingCard" data-toggle="modal" data-target="#listingModel" data-id="${result[i]._id}">
-            <img class="listingsImg" src="${url}/${result[i].itemImage}" class="card-img-top" alt="...">
-            <div class="card-body d-flex justify-content-between flex-row">
-              <div class="col-9">
-                <h6 class="card-title">${result[i].itemName}</h6>
-              </div>
-              <div class="col-3 border-left">
-                <small class="text-muted pl-2">$${result[i].itemPrice}</small>
+        $('.listingDisplay').append(`
+          <div class="card cardListStyle listingCard" data-toggle="modal" data-target="#listingModel" data-id="${result[i]._id}">
+            <img class="listingsImg card-img-top" src="${url}/${result[i].itemImage}" alt="...">
+            <div class="card-body cardListBodyStyle" data-id="${result[i]._id}">
+              <h6 class="card-title">${result[i].itemName}</h6>
+              <div class="d-flex justify-content-between align-items-center border-left">
+                <small class="text-muted">$${result[i].itemPrice}</small>
               </div>
             </div>
           </div>
+
         `);
       }
     },
@@ -159,7 +158,7 @@ getListingData = () => {
   });
 };
 
-$('#listingDisplay').on('click', '.listingCard', function(listingNumber){
+$('.listingDisplay').on('click', '.listingCard', function(listingNumber){
   event.preventDefault();
 
   const cardId = $(this).data('id');
@@ -255,14 +254,14 @@ $('#subitNewListing').click(function() {
   });
 });
 
-$('#listingDisplay').on('click', '#editListing', function() {
+$('.listingDisplay').on('click', '#editListing', function() {
   event.preventDefault();
 
   const id = $(this).parent().parent().parent().data('id');
   console.log(id);
 
   // $('#listingCard').empty();
-  $('#listingDisplay').append(`
+  $('.listingDisplay').append(`
     <div id="addlistingForm" class="d-none mt-4">
 
     </div>
