@@ -155,6 +155,16 @@ li {
 .card {
   border: none !important; }
 
+#guest {
+  font-family: 'Avenir';
+  font-weight: bold;
+  color: #32BE76; }
+
+#signInHere {
+  font-family: 'Avenir';
+  font-weight: bold;
+  color: #32BE76; }
+
 #commentsCard #commentBody {
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 5px; }

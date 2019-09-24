@@ -39,6 +39,8 @@ $('#register').click(function() {
     },
     success:function(result){
       console.log(result);
+        $('#rego').addClass('d-none');
+        $('#signIn').removeClass('d-none');
     },
     error: function(err) {
       console.log(`${url}/users`);
@@ -71,8 +73,9 @@ $('#login').click(function() {
         sessionStorage.setItem('userName', result.username);
         console.log(sessionStorage);
 
-        $('#login').hide();
-        $('#logout').removeClass('d-none');
+
+          $('#login').addClass('d-none');
+          $('#index').removeClass('d-none')
       }
     },
     error: function(err) {
