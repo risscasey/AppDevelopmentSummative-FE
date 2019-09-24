@@ -81,47 +81,47 @@ $('#login').click(function() {
     }
   });
 });
-//
-// $('#logout').click(function() {
-//
-//     if(!sessionStorage['userID']) {
-//         console.log('You don\'t have permission to access. Please sign in.');
-//         return;
-//     }
-//     console.log('logout successful');
-//     sessionStorage.clear();
-//     $('#login').show();
-//     $('#logout').addClass('d-none');
-// });
-//
-// $('#listingDisplay').on('click', '.deleteBtn', function() {
-//   if(!sessionStorage['userID']) {
-//       console.log('You don\'t have permission to delete this item. Please sign in.');
-//       return;
-//   }
-//   event.preventDefault();
-//   console.log('Ready to be deleted');
-//
-//   const id = $(this).parent().parent().parent().data('id');
-//   console.log(id);
-//   const selected = $(this).parent().parent().parent().parent();
-//
-//   $.ajax({
-//     url: `${url}/listing/${id}`,
-//     type: 'DELETE',
-//     data: {
-//         userId: sessionStorage['userID']
-//     },
-//     success:function(result){
-//       selected.remove();
-//     },
-//     error:function(err) {
-//       console.log(err);
-//       console.log('something went wrong deleting the product');
-//     }
-//   });
-//
-// });
+
+$('#logout').click(function() {
+
+    if(!sessionStorage['userID']) {
+        console.log('You don\'t have permission to access. Please sign in.');
+        return;
+    }
+    console.log('logout successful');
+    sessionStorage.clear();
+    $('#login').show();
+    $('#logout').addClass('d-none');
+});
+
+$('#listingDisplay').on('click', '.deleteBtn', function() {
+  if(!sessionStorage['userID']) {
+      console.log('You don\'t have permission to delete this item. Please sign in.');
+      return;
+  }
+  event.preventDefault();
+  console.log('Ready to be deleted');
+
+  const id = $(this).parent().parent().parent().data('id');
+  console.log(id);
+  const selected = $(this).parent().parent().parent().parent();
+
+  $.ajax({
+    url: `${url}/listing/${id}`,
+    type: 'DELETE',
+    data: {
+        userId: sessionStorage['userID']
+    },
+    success:function(result){
+      selected.remove();
+    },
+    error:function(err) {
+      console.log(err);
+      console.log('something went wrong deleting the product');
+    }
+  });
+
+});
 
 // Annie codes untill here
 
@@ -238,81 +238,78 @@ $('#subitNewListing').click(function() {
   });
 });
 
-// $('#listingDisplay').on('click', '#editListing', function() {
-//   event.preventDefault();
-//
-//   const id = $(this).parent().parent().parent().data('id');
-//   console.log(id);
-//
-//   // $('#listingCard').empty();
-//   $('#listingDisplay').append(`
-//     <div id="addlistingForm" class="d-none mt-4">
-//
-//     </div>
-//
-//     <div id="listingCard" class="col-md-4">
-//       <div class="card mb-4 shadow-sm">
-//         <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></svg>
-//         <div class="card-body" data-id="${result[i]._id}">
-//           <div class="form-group">
-//             <label for="editedName">Item Name</label>
-//             <input type="text" name="editedName" id="editedName" class="form-control">
-//           </div>
-//
-//           <div class="form-group">
-//             <label for="editedPrice">Item Price</label>
-//             <input type="number" name="editedPrice" id="editedPrice" class="form-control">
-//           </div>
-//
-//           <div class="form-group">
-//             <label for="editedDescription">Item Description</label>
-//             <textarea type="text" name="editedDescription" id="editedDescription" rows="3" class="form-control"></textarea>
-//           </div>
-//
-//           <div class="mt-3">
-//             <button id="editNewListing" type="button" class="btn btn-success">Edit Listing</button>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//
-//
-//
-//
-//   `);
+$('#listingDisplay').on('click', '#editListing', function() {
+  event.preventDefault();
+
+  const id = $(this).parent().parent().parent().data('id');
+  console.log(id);
+
+  // $('#listingCard').empty();
+  $('#listingDisplay').append(`
+    <div id="addlistingForm" class="d-none mt-4">
+
+    </div>
+
+    <div id="listingCard" class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></svg>
+        <div class="card-body" data-id="${result[i]._id}">
+          <div class="form-group">
+            <label for="editedName">Item Name</label>
+            <input type="text" name="editedName" id="editedName" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label for="editedPrice">Item Price</label>
+            <input type="number" name="editedPrice" id="editedPrice" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label for="editedDescription">Item Description</label>
+            <textarea type="text" name="editedDescription" id="editedDescription" rows="3" class="form-control"></textarea>
+          </div>
+
+          <div class="mt-3">
+            <button id="editNewListing" type="button" class="btn btn-success">Edit Listing</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  `);
 
 
-  // $.ajax({
-  //   url: `${url}/updateListing/${id}`,
-  //   type: 'get',
-  //   // data: {
-  //   //   userId: sessionStorage['userID']
-  //   // },
-  //   dataType: 'json',
-  //   success:function(product){
-  //     console.log(product);
-  //     // if(product == '401'){
-  //     //   alert('401 UNAUTHORIZED');
-  //     // } else {
-  //     //   // replace the input fields with the name and price from the database
-  //     //   $('#productName').val(product['name']);
-  //     //   $('#productPrice').val(product['price']);
-  //     //   // we have a hidden input field which we need to give it the value of the products id
-  //     //   $('#productID').val(product['_id']);
-  //     //   // Change the buttons text to edit and add the warning class
-  //     //   $('#addProductButton').text('Edit Product').addClass('btn-warning');
-  //     //   // Change the heading text
-  //     //   $('#heading').text('Edit Product');
-  //     //   // set the global variable of editing to true
-  //     //   editing = true;
-  //     // }
-  //   },
-  //   error:function(err){
-  //     console.log(err);
-  //     console.log('something went wrong with getting the single product');
-  //   }
-  // })
-// });
+  $.ajax({
+    url: `${url}/updateListing/${id}`,
+    type: 'get',
+    // data: {
+    //   userId: sessionStorage['userID']
+    // },
+    dataType: 'json',
+    success:function(product){
+      console.log(product);
+      // if(product == '401'){
+      //   alert('401 UNAUTHORIZED');
+      // } else {
+      //   // replace the input fields with the name and price from the database
+      //   $('#productName').val(product['name']);
+      //   $('#productPrice').val(product['price']);
+      //   // we have a hidden input field which we need to give it the value of the products id
+      //   $('#productID').val(product['_id']);
+      //   // Change the buttons text to edit and add the warning class
+      //   $('#addProductButton').text('Edit Product').addClass('btn-warning');
+      //   // Change the heading text
+      //   $('#heading').text('Edit Product');
+      //   // set the global variable of editing to true
+      //   editing = true;
+      // }
+    },
+    error:function(err){
+      console.log(err);
+      console.log('something went wrong with getting the single product');
+    }
+  })
+});
 
 $("#popularItemsCards" ).owlCarousel({
   loop:true,
