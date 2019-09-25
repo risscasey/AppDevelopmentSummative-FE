@@ -93,8 +93,8 @@ $('#logout').click(function() {
     }
     console.log('logout successful');
     sessionStorage.clear();
-    $('#login').show();
-    $('#logout').addClass('d-none');
+    // $('#login').show();
+    // $('#logout').addClass('d-none');
 });
 
 $('#listingDisplay').on('click', '.deleteBtn', function() {
