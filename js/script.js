@@ -103,7 +103,7 @@ $('#logout').click(function() {
     $('#logout').addClass('d-none');
 });
 
-$('#listingDisplay').on('click', '.deleteBtn', function() {
+$('.listingDisplay').on('click', '.deleteBtn', function() {
   if(!sessionStorage['userID']) {
       console.log('You don\'t have permission to delete this item. Please sign in.');
       return;
@@ -140,9 +140,10 @@ getListingData = () => {
   $.ajax({
     url: `${url}/allListings`,
     type: 'GET',
-    success:function(result){
+    success:function(result) {
       // console.log(result[0]._id);
-      // $('#listingDisplay').empty();
+      // $('.listingDisplay').empty();
+
       for (var i = 0; i < result.length; i++) {
         $('#listingDisplay').append(`
           <div class="card cardListStyle mb-4 listingCard" data-toggle="modal" data-target="#listingModel" data-id="${result[i]._id}">
@@ -158,6 +159,7 @@ getListingData = () => {
               </div>
             </div>
           </div>
+
         `);
       }
     },
@@ -342,7 +344,7 @@ $('#subitNewListing').click(function() {
   });
 });
 
-// $('#listingDisplay').on('click', '#editListing', function() {
+// $('.listingDisplay').on('click', '#editListing', function() {
 //   event.preventDefault();
 //
 //   if(!sessionStorage.userID) {
