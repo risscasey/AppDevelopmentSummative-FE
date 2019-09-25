@@ -133,16 +133,17 @@ getListingData = () => {
   $.ajax({
     url: `${url}/allListings`,
     type: 'GET',
-    success:function(result){
+    success:function(result) {
       // console.log(result[0]._id);
       // $('.listingDisplay').empty();
+
       for (var i = 0; i < result.length; i++) {
         $('.listingDisplay').append(`
           <div class="card cardListStyle listingCard" data-toggle="modal" data-target="#listingModel" data-id="${result[i]._id}">
             <img class="listingsImg card-img-top" src="${url}/${result[i].itemImage}" alt="...">
             <div class="card-body cardListBodyStyle" data-id="${result[i]._id}">
+              <div class="d-flex justify-content-between align-items-center">
               <h6 class="card-title">${result[i].itemName}</h6>
-              <div class="d-flex justify-content-between align-items-center border-left">
                 <small class="text-muted">$${result[i].itemPrice}</small>
               </div>
             </div>
@@ -158,7 +159,7 @@ getListingData = () => {
   });
 };
 
-$('.listingDisplay').on('click', '.listingCard', function(listingNumber){
+$('.listingDisplay').on('click', '.listingCard', function(listingNumber) {
   event.preventDefault();
 
   const cardId = $(this).data('id');

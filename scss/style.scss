@@ -17,7 +17,7 @@ h1 {
 // Annie Codes Under Here
 .listingDisplay {
   padding-top: 15px;
-  @media only screen and (max-width: 600px) {
+  @media screen and (max-width: 600px) {
     column-count: 2;
   }
 }
