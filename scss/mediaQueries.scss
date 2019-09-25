@@ -112,13 +112,12 @@
     font-size: 23px;
   }
 
-  #searchText{
+  .searchForm{
     .form-control{
-      font-size: 5em !important;
+      ::placeholder{
+        font-size: 41px !important;
+      }
     }
-
-
-
   }
 
 }

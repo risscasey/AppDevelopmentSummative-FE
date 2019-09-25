@@ -268,8 +268,8 @@ li {
   .fa-search {
     font-size: 23px; }
 
-  #searchText .form-control {
-    font-size: 5em !important; } }
+  .searchForm .form-control ::placeholder {
+    font-size: 41px !important; } }
 @media only screen and (min-width: 900px) {
   #addNewListing {
     width: 8vw;
