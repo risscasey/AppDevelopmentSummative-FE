@@ -225,6 +225,9 @@ li {
   .container {
     max-width: 1400px; }
 
+  .fa-search {
+    font-size: 20px; }
+
   .cardStyle {
     width: 28rem !important; }
 
@@ -254,13 +257,19 @@ li {
     font-size: 1.6em; }
 
   h1 {
-    font-size: 3.7em; }
+    font-size: 3.9em; }
 
   .fa-bars {
     font-size: 1.9em; }
 
   .fa-times {
-    font-size: 1.9em; } }
+    font-size: 1.9em; }
+
+  .fa-search {
+    font-size: 23px; }
+
+  #searchText .form-control {
+    font-size: 5em !important; } }
 @media only screen and (min-width: 900px) {
   #addNewListing {
     width: 8vw;
@@ -285,7 +294,10 @@ li {
     font-size: 2.3em; }
 
   .fa-times {
-    font-size: 2.3em; } }
+    font-size: 2.3em; }
+
+  .fa-search {
+    font-size: 26px; } }
 @media only screen and (min-width: 1000px) {
   .cardStyle {
     width: 35rem !important; }
@@ -294,7 +306,7 @@ li {
     height: 35vh; }
 
   h1 {
-    font-size: 3.7em; }
+    font-size: 4.3em; }
 
   .fa-bars {
     font-size: 2.3em; }
@@ -306,6 +318,9 @@ li {
     width: 42rem !important; }
     .cardStyle form ::placeholder {
       font-size: 20px; }
+
+  h1 {
+    font-size: 5em; }
 
   h4 {
     font-size: 3.5rem; }
@@ -320,6 +335,9 @@ li {
     font-size: 2.6em; }
 
   .fa-times {
-    font-size: 2.6em; } }
+    font-size: 2.6em; }
+
+  .fa-search {
+    font-size: 29px; } }
 
 /*# sourceMappingURL=style.css.map */

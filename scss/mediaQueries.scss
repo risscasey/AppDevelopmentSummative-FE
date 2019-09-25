@@ -14,7 +14,6 @@
 
 
   // Katherine codes under here
-
 }
 
 @media only screen and (min-width: 600px) {
@@ -43,7 +42,9 @@
     max-width: 1400px;
   }
 
-
+  .fa-search {
+    font-size: 20px;
+  }
   // Katherine codes under here
   .cardStyle {
     width: 28rem !important;
@@ -96,7 +97,7 @@
   }
 
   h1 {
-    font-size: 3.7em;
+    font-size: 3.9em;
   }
 
   .fa-bars {
@@ -106,6 +107,20 @@
   .fa-times {
     font-size: 1.9em;
   }
+
+  .fa-search {
+    font-size: 23px;
+  }
+
+  #searchText{
+    .form-control{
+      font-size: 5em !important;
+    }
+
+
+
+  }
+
 }
 
 @media only screen and (min-width: 900px) {
@@ -151,6 +166,10 @@
   .fa-times {
     font-size: 2.3em;
   }
+
+  .fa-search {
+    font-size: 26px;
+  }
 }
 
 @media only screen and (min-width: 1000px) {
@@ -175,7 +194,7 @@
   }
 
   h1 {
-    font-size: 3.7em;
+    font-size: 4.3em;
   }
 
   .fa-bars {
@@ -210,6 +229,10 @@
     }
   }
 
+  h1 {
+    font-size: 5em;
+  }
+
   h4 {
     font-size: 3.5rem;
   }
@@ -228,5 +251,9 @@
 
   .fa-times {
     font-size: 2.6em;
+  }
+
+  .fa-search {
+    font-size: 29px;
   }
 }
