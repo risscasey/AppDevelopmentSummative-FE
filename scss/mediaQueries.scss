@@ -44,11 +44,27 @@
   }
 
 
-
   // Katherine codes under here
   .cardStyle {
     width: 28rem !important;
   }
+
+  h4 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1.3em;
+  }
+
+  .fa-bars {
+    font-size: 1.8em;
+  }
+
+  .fa-times {
+    font-size: 1.8em;
+  }
+
 }
 
 @media only screen and (min-width: 800px) {
@@ -70,6 +86,71 @@
   .cardStyle {
     width: 28rem !important;
   }
+
+  h4 {
+    font-size: 2.5rem;
+  }
+
+  p {
+    font-size: 1.6em;
+  }
+
+  h1 {
+    font-size: 3.7em;
+  }
+
+  .fa-bars {
+    font-size: 1.9em;
+  }
+
+  .fa-times {
+    font-size: 1.9em;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+
+  // Annie codes under Here
+
+
+
+
+  // Larissa codes under Here
+
+  #addNewListing{
+    width: 8vw;
+    height: 7vh;
+  }
+
+
+  // Katherine codes under here
+  .cardStyle {
+    width: 28rem !important;
+  }
+
+  h4 {
+    font-size: 2.7rem;
+  }
+
+  p {
+    font-size: 1.8em;
+  }
+
+  .imageDiv {
+    padding: 27%;
+  }
+
+  h1 {
+    font-size: 4em;
+  }
+
+  .fa-bars {
+    font-size: 2.3em;
+  }
+
+  .fa-times {
+    font-size: 2.3em;
+  }
 }
 
 @media only screen and (min-width: 1000px) {
@@ -87,6 +168,22 @@
   // Katherine codes under here
   .cardStyle {
     width: 35rem !important;
+  }
+
+  #cardImage {
+    height: 35vh;
+  }
+
+  h1 {
+    font-size: 3.7em;
+  }
+
+  .fa-bars {
+    font-size: 2.3em;
+  }
+
+  .fa-times {
+    font-size: 2.3em;
   }
 }
 
@@ -111,5 +208,25 @@
         font-size: 20px;
       }
     }
+  }
+
+  h4 {
+    font-size: 3.5rem;
+  }
+
+  p {
+    font-size: 2em;
+  }
+
+  #cardImage {
+    height: 40vh;
+  }
+
+  .fa-bars {
+    font-size: 2.6em;
+  }
+
+  .fa-times {
+    font-size: 2.6em;
   }
 }

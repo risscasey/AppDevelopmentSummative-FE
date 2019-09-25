@@ -14,13 +14,28 @@
   <body>
     <div class="container" id="index">
 
-        <div id="heading">
-          <div class="row mb-3">
-            <div class="col-12 d-flex justify-content-around mt-4">
-              <h1 class="mt-1">digimart</h1>
-                <button id="hamburgerNav" type="button" class="btn btn-link text-dark"><i class="fas fa-bars pl-4"></i></button>
+      <div id="heading">
+        <div class="row mb-3">
+          <div class="col-12 d-flex justify-content-around mt-4">
+            <h1>digimart</h1>
           </div>
         </div>
+
+        <div class="row mt-4 ">
+          <div id="searchForm" class="col-9 d-flex flex-row align-items-center">
+            <form class="input-group border-bottom ml-2">
+              <div class="input-group-prepend">
+                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+               </div>
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            </form>
+          </div>
+
+          <div class="col-3">
+              <button id="hamburgerNav" type="button" class="btn btn-link text-dark"><i class="fas fa-bars pl-4"></i></button>
+          </div>
+        </div>
+      </div>
 
         <div id="navDropDown" class="pt-4 d-none">
           <div class="row">
@@ -34,10 +49,10 @@
 
                 <div class="col-8 border-left">
                   <ul class="list-group list-group-flush">
-                    <li class="list-group-item">About digimart</li>
-                    <li class="list-group-item">About our Team</li>
-                    <li class="list-group-item">Selling with digimart</li>
-                    <li class="list-group-item">FAQ's</li>
+                    <li class="list-group-item">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tempor eleifend viverra. Morbi porttitor dolor lectus,
+                      eu venenatis augue feugiat sit amet. Suspendisse potenti.
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -50,8 +65,8 @@
             <div class="col-12 d-flex justify-content-center">
               <div id="cardImage" class="card bg-dark text-white">
                 <div class="card-img-overlay d-flex flex-column justify-content-center">
-                  <h4 class="card-title text-center">Welcome to digimart!</h4>
-                  <p class="text-center">Sourcing local, buying smarter.</p>
+                  <h4 class="card-title text-center ">Welcome to digimart!</h4>
+                  <p class="text-center ">Sourcing local, buying smarter.</p>
                 </div>
               </div>
             </div>
@@ -111,21 +126,15 @@
                         <input type="text" name="itemName" id="itemName" class="form-control border-bottom" placeholder="Enter a Name for this Item">
                       </div>
 
-
-                    <form id="uploadImage" enctype="multipart/form-data">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input form-control-file border-bottom" id="itemImage" placeholder="Choose an Image for this Item">
-                        <label class="custom-file-label" for="itemImage">Choose file</label>
-                      </div>
-                    </form>
+                      <form id="uploadImage" enctype="multipart/form-data">
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input form-control-file border-bottom" id="itemImage" placeholder="Choose an Image for this Item">
+                          <label class="custom-file-label" for="itemImage">Choose file</label>
+                        </div>
+                      </form>
 
                       <div class="form-group pt-3">
                         <input type="number" name="itemPrice" id="itemPrice" class="form-control border-bottom" placeholder="Enter a Price for this Item">
-                      </div>
-
-
-                      <div class="form-group pt-3">
-                        <input type="file" name="itemImage" id="itemImage" class="form-control-file border-bottom" placeholder="Choose an Image for this Item">
                       </div>
 
                       <div class="form-group pt-3">
@@ -136,15 +145,15 @@
                         <input type="text" name="itemSeller" id="itemSeller" class="form-control border-bottom" placeholder="Item Seller">
                       </div>
 
-                    <div class="modal-footer d-flex justify-content-center align-items-center mt-4">
-                      <button type="button" class="btn btn-success mt-4" id="subitNewListing">Submit Listing</button>
+                      <div class="modal-footer d-flex justify-content-center align-items-center mt-4">
+                        <button type="button" class="btn btn-success mt-4" id="subitNewListing">Submit Listing</button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
         </div>
 
         <div id="allCards" class="mt-4">
@@ -156,10 +165,10 @@
         </div>
 
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="card cardListStyle" id="cardModal">
-                <img class="listingsImg" src="img/avo.jpg" class="card-img-top" alt="...">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="card cardListStyle" id="cardModal">
+              <img class="listingsImg" src="img/avo.jpg" class="card-img-top" alt="...">
                 <div class="card-body d-flex justify-content-between flex-column">
                   <div class="col-10">
                     <h6 class="card-title" id="resultName"></h6>
@@ -168,20 +177,19 @@
                     <small class="text-muted" id="resultPrice"></small>
                   </div>
                 </div>
+            </div>
+            <div class="input-group mb-3 px-2">
+              <input type="text" class="form-control w-180" id="comments" rows="3" name="comments" placeholder="Add Comment Here">
+              <div class="input-group-append">
+                <button class="btn btn-success" type="button" id="submitForm">Button</button>
               </div>
-              <!-- katherines comments here -->
-              <div class="input-group mb-3 px-2">
-                <input type="text" class="form-control w-180" id="comments" rows="3" name="comments" placeholder="Add Comment Here">
-                <div class="input-group-append">
-                  <button class="btn btn-success" type="button" id="submitForm">Button</button>
-                </div>
-              </div>
-              <div>
-                <div id="commentsDisplay"></div>
-              </div>
+            </div>
+            <div>
+              <div id="commentsDisplay"></div>
             </div>
           </div>
         </div>
+      </div>
     </div>
 
     <div class="d-none" id="signIn">
