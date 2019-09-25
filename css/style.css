@@ -6,10 +6,10 @@ h1 {
   font-weight: bold;
   color: #32BE76; }
 
-#listingDisplay--listings {
+.listingDisplay {
   padding-top: 15px; }
-  @media only screen and (max-width: 600px) {
-    #listingDisplay--listings {
+  @media screen and (max-width: 600px) {
+    .listingDisplay {
       column-count: 2; } }
 
 .listingsImg {
