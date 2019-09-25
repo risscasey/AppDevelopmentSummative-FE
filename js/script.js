@@ -145,7 +145,7 @@ getListingData = () => {
       // $('.listingDisplay').empty();
 
       for (var i = 0; i < result.length; i++) {
-        $('#listingDisplay').append(`
+        $('.listingDisplay').append(`
           <div class="card cardListStyle mb-4 listingCard" data-toggle="modal" data-target="#listingModel" data-id="${result[i]._id}">
             <div>
               <img class="listingsImg" src="${url}/${result[i].itemImage}" class="card-img-top">
@@ -244,7 +244,7 @@ $('#submitForm').click(function(){
 
 
 
-$('#listingDisplay').on('click', '.listingCard', function(listingNumber){
+$('.listingDisplay').on('click', '.listingCard', function(listingNumber){
   event.preventDefault();
 
   currentCardId = $(this).data('id');
@@ -262,7 +262,7 @@ $('#listingDisplay').on('click', '.listingCard', function(listingNumber){
       $('#resultName').empty();
       $('#resultPrice').empty();
 
-      $('#listingImage').append(`<img class="listingsImg" src="${url}/${result.itemImage}" class="card-img-top">`);
+      $('#listingImage').append(`src="${url}/${result.itemImage}" class="card-img-top">`);
       $('#resultName').append(`${result.itemName}`);
       $('#resultPrice').append(`$${result.itemPrice}`);
 
