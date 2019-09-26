@@ -50,6 +50,8 @@ $('#register').click(function() {
   });
 });
 
+let seller;
+
 $('#login').click(function() {
   let username = $('#lUsername').val();
   let password = $('#lPassword').val();
@@ -71,11 +73,15 @@ $('#login').click(function() {
 
         sessionStorage.setItem('userID', result._id);
         sessionStorage.setItem('userName', result.username);
+
+        seller = sessionStorage['userName'];
         console.log(sessionStorage);
 
+        $('#lUsername').val(null);
+        $('#lPassword').val(null);
 
-          $('#login').addClass('d-none');
-          $('#index').removeClass('d-none');
+        $('#login').addClass('d-none');
+        $('#index').removeClass('d-none');
       }
     },
     error: function(err) {
@@ -97,7 +103,7 @@ $('#logout').click(function() {
     // $('#logout').addClass('d-none');
 });
 
-$('#listingDisplay').on('click', '.deleteBtn', function() {
+$('.listingDisplay').on('click', '.deleteBtn', function() {
   if(!sessionStorage['userID']) {
       console.log('You don\'t have permission to delete this item. Please sign in.');
       return;
@@ -128,18 +134,22 @@ $('#listingDisplay').on('click', '.deleteBtn', function() {
 
 // Annie codes untill here
 
+let currentCardId;
 
 getListingData = () => {
   $.ajax({
     url: `${url}/allListings`,
     type: 'GET',
-    success:function(result){
+    success:function(result) {
       // console.log(result[0]._id);
-      // $('#listingDisplay').empty();
+      // $('.listingDisplay').empty();
+
       for (var i = 0; i < result.length; i++) {
-        $('#listingDisplay').append(`
+        $('.listingDisplay').append(`
           <div class="card cardListStyle mb-4 listingCard" data-toggle="modal" data-target="#listingModel" data-id="${result[i]._id}">
-            <img class="listingsImg" src="${url}/${result[i].itemImage}" class="card-img-top" alt="...">
+            <div>
+              <img class="listingsImg" src="${url}/${result[i].itemImage}" class="card-img-top">
+            </div>
             <div class="card-body d-flex justify-content-between flex-row">
               <div class="col-9">
                 <h6 class="card-title">${result[i].itemName}</h6>
@@ -149,6 +159,7 @@ getListingData = () => {
               </div>
             </div>
           </div>
+
         `);
       }
     },
@@ -159,21 +170,103 @@ getListingData = () => {
   });
 };
 
-$('#listingDisplay').on('click', '.listingCard', function(listingNumber){
+getCommentData = () => {
+  $.ajax({
+    url: `${url}/allComments`,
+    type: 'GET',
+    success:function(commentsResult){
+      for (var i = 0; i < commentsResult.length; i++) {
+        if (commentsResult[i].commentID === currentCardId) {
+          $('#comments').val(null);
+          $('#commentsDisplay').empty();
+          $('#commentsDisplay').append(`
+            <div id="commentsCard" class="col-md-4">
+              <div class="card mb-4 shadow-sm">
+                <div class="card-body" id="commentBody">
+                  <p class="card-text">${commentsResult[i].commentDescription}</p>
+                  </div>
+              </div>
+            </div>
+          `);
+        } else {
+          console.log('id no match');
+        }
+      }
+    },
+    error: function(err){
+      console.log(err);
+      console.log('something went wrong with getting all the products');
+    }
+  });
+};
+
+$('#submitForm').click(function(){
+  event.preventDefault();
+  console.log(currentCardId);
+
+  if(!sessionStorage.userID) {
+    $('#comments').val(null);
+    $('#myModal').modal('hide')
+    $('#invalidModal').modal('show')
+  } else {
+    let commentIdFromCard = currentCardId;
+    let commentArea = $('#comments').val();
+
+    $.ajax({
+      url: `${url}/sendComments`,
+      type: 'POST',
+      data: {
+        commentDescription: commentArea,
+        commentID:commentIdFromCard
+      },
+      success:function(result){
+        console.log(result);
+        $('#comments').val(null);
+        getCommentData();
+        $('#commentsDisplay').append(`
+          <div id="commentsCard" class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+              <div class="card-body" id="commentBody">
+                <p class="card-text">${result.commentDescription}</p>
+                </div>
+            </div>
+          </div>
+        `);
+
+      },
+      error: function(error){
+        console.log(error);
+        console.log('something went wrong with sending the data');
+      }
+    });
+  }
+});
+
+
+
+$('.listingDisplay').on('click', '.listingCard', function(listingNumber){
   event.preventDefault();
 
-  const cardId = $(this).data('id');
+  currentCardId = $(this).data('id');
   // console.log(this);
   // console.log(cardId);
 
   $.ajax({
-    url: `${url}/listing/${cardId}`,
+    url: `${url}/listing/${currentCardId}`,
     type: 'GET',
     dataType: 'json',
     success:function(result){
-      $('#myModal').modal('show');
+      $('#myModal').modal('show')
+
+      $('#listingImage').empty();
+      $('#resultName').empty();
+      $('#resultPrice').empty();
+
+      $('#listingImage').append(`src="${url}/${result.itemImage}" class="card-img-top">`);
       $('#resultName').append(`${result.itemName}`);
       $('#resultPrice').append(`$${result.itemPrice}`);
+
+      getCommentData();
     },
     error:function(err){
         console.log(err);
@@ -184,28 +277,12 @@ $('#listingDisplay').on('click', '.listingCard', function(listingNumber){
 
 $('#addNewListing').click(function() {
   event.preventDefault();
-  if(!sessionStorage['userID']) {
-    $('#addLisingModal').html(`
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header d-flex justify-content-center align-items-center">
-            <h1 class="modal-title pt-2" id="exampleModalLabel">Whoops!</h1>
-          </div>
-
-          <div class="modal-body text-center">
-            <p>Sorry, to add an Item you have to have to either Register or Sign in</p>
-          </div>
-
-          <div class="col-12 d-flex justify-content-around justify-content-center align-items-center flex-row py-4">
-            <a href="login.html"><button type="button" class="btn btn-success px-4">Login</button></a>
-            <a href="register.html"><button type="button" class="btn btn-outline-success px-4">Register</button></a>
-          </div>
-
-        </div>
-      </div>
-    `);
-    console.log('You don\'t have permission to add an item. Please sign in.');
-    return;
+  if(!sessionStorage.userID) {
+    $('#invalidModal').modal('show')
+  } else {
+    $('#addLisingModal').modal('show')
+    $('#itemSeller').val(seller)
+    console.log(seller);
   }
 });
 
@@ -218,25 +295,23 @@ $('#itemImage').change(function(e){
     });
 
 $('#subitNewListing').click(function() {
-  // if(!sessionStorage['userID']) {
-  //     alert('You don\'t have permission to add an item. Please sign in.');
-  //     return;
-  // }
 
   let itemName = $('#itemName').val();
   let itemPrice = $('#itemPrice').val();
   let itemDescription = $('#itemDescription').val();
   let itemImage = $('#itemImage').val();
+  let itemSeller = $('#itemSeller').val();
   let fd = new FormData();
 
   const file = $('#itemImage')[0].files[0];
   fd.append('uploadImage', file);
   fd.append('itemName', itemName);
   fd.append('itemPrice', itemPrice);
-  fd.append('itemDescription', itemDescription);
+  fd.append('itemImage', itemImage);
+  fd.append('itemSeller', itemSeller);
 
-  let newListing = itemName + ' $' + itemPrice + ' ' + itemDescription + ' ' + fd;
-  console.log(newListing);
+  // let newListing = itemName + ' $' + itemPrice + ' ' + itemDescription + ' ' + fd;
+  // console.log(newListing);
 
   $.ajax({
     url: `${url}/listing`,
@@ -246,7 +321,21 @@ $('#subitNewListing').click(function() {
     contentType: false,
     success:function(result){
       console.log(result);
-      $('#addListingForm').toggle();
+      $('#addLisingModal').modal('hide')
+
+      $('#listingDisplay').append(`
+        <div class="card cardListStyle mb-4 listingCard" data-toggle="modal" data-target="#listingModel" data-id="${result._id}">
+          <img class="listingsImg" src="${url}/${result.itemImage}" class="card-img-top" alt="...">
+          <div class="card-body d-flex justify-content-between flex-row">
+            <div class="col-9">
+              <h6 class="card-title">${result.itemName}</h6>
+            </div>
+            <div class="col-3 border-left">
+              <small class="text-muted pl-2">$${result.itemPrice}</small>
+            </div>
+          </div>
+        </div>
+      `);
     },
     error: function(error){
       console.log(error);
@@ -255,14 +344,14 @@ $('#subitNewListing').click(function() {
   });
 });
 
-$('#listingDisplay').on('click', '#editListing', function() {
+$('.listingDisplay').on('click', '#editListing', function() {
   event.preventDefault();
 
   const id = $(this).parent().parent().parent().data('id');
   console.log(id);
 
   // $('#listingCard').empty();
-  $('#listingDisplay').append(`
+  $('.listingDisplay').append(`
     <div id="addlistingForm" class="d-none mt-4">
 
     </div>
@@ -360,40 +449,42 @@ $('#hamburgerNav').click(function(){
   }
 });
 
-// Larissa codes untill here
+// larissa untill here
+
+
 $('#logBtn').click(function(){
-  $('#index').addClass('d-none');
-  $('#signIn').removeClass('d-none');
-  $('#logBtn').addClass('d-none');
-  $('#regoBtn').addClass('d-none');
-  $('#logout').removeClass('d-none');
+ $('#index').addClass('d-none');
+ $('#signIn').removeClass('d-none');
+ $('#logBtn').addClass('d-none');
+ $('#regoBtn').addClass('d-none');
+ $('#logout').removeClass('d-none');
 });
 
 $('#logout').click(function(){
-  $('#logBtn').removeClass('d-none');
-  $('#regoBtn').removeClass('d-none');
-  $('#logout').addClass('d-none');
+ $('#logBtn').removeClass('d-none');
+ $('#regoBtn').removeClass('d-none');
+ $('#logout').addClass('d-none');
 });
 
 
 $('#regoBtn').click(function(){
-  $('#index').addClass('d-none');
-  $('#rego').removeClass('d-none');
+ $('#index').addClass('d-none');
+ $('#rego').removeClass('d-none');
 });
 
 $('.guest').click(function(){
-  $('#index').removeClass('d-none');
-  $('#signIn').addClass('d-none');
-  $('#rego').addClass('d-none');
-  $('#logBtn').removeClass('d-none');
-  $('#regoBtn').removeClass('d-none');
-  $('#logout').addClass('d-none');
+ $('#index').removeClass('d-none');
+ $('#signIn').addClass('d-none');
+ $('#rego').addClass('d-none');
+ $('#logBtn').removeClass('d-none');
+ $('#regoBtn').removeClass('d-none');
+ $('#logout').addClass('d-none');
 });
 
 $('#signInHere').click(function(){
-  $('#index').addClass('d-none');
-  $('#signIn').removeClass('d-none');
-  $('#rego').addClass('d-none');
+ $('#index').addClass('d-none');
+ $('#signIn').removeClass('d-none');
+ $('#rego').addClass('d-none');
 });
 
 $('#signUpHere').click(function(){
@@ -436,32 +527,32 @@ $('#submitForm').click(function(){
 // Katherine codes until here
 
 // Annies code continued
-$('#submitResponse').click(function(){
-  event.preventDefault();
-
-  let responseArea = $('#responses').val();
-
-  $.ajax({
-    url: `${url}/sendResponse`,
-    type: 'POST',
-    data: {
-      responceDescription: responseArea
-    },
-    success:function(result){
-      console.log(result);
-      $('#commentsDisplay').append(`
-        <div id="commentsCard" class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <div class="card-body">
-              <p class="card-text">${result.responceDescription}</p>
-              </div>
-          </div>
-        </div>
-      `);
-    },
-    error: function(error){
-      console.log(error);
-      console.log('something went wrong with sending the data');
-    }
-  });
-});
+// $('#submitResponse').click(function(){
+//   event.preventDefault();
+//
+//   let responseArea = $('#responses').val();
+//
+//   $.ajax({
+//     url: `${url}/sendResponse`,
+//     type: 'POST',
+//     data: {
+//       responceDescription: responseArea
+//     },
+//     success:function(result){
+//       console.log(result);
+//       $('#commentsDisplay').append(`
+//         <div id="commentsCard" class="col-md-4">
+//           <div class="card mb-4 shadow-sm">
+//             <div class="card-body">
+//               <p class="card-text">${result.responceDescription}</p>
+//               </div>
+//           </div>
+//         </div>
+//       `);
+//     },
+//     error: function(error){
+//       console.log(error);
+//       console.log('something went wrong with sending the data');
+//     }
+//   });
+// });
