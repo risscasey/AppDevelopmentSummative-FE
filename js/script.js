@@ -260,11 +260,14 @@ $('.listingDisplay').on('click', '.listingCard', function(listingNumber){
 
       $('#listingImage').empty();
       $('#resultName').empty();
+      $('#listingCardDescription').empty();
       $('#resultPrice').empty();
+      $('#resultSeller').empty();
 
-      $('#listingImage').append(`src="${url}/${result.itemImage}" class="card-img-top">`);
+      $('#listingImage').append(`<img src="${url}/${result.itemImage}" class="card-img-top" style="width: 100%">`);
       $('#resultName').append(`${result.itemName}`);
       $('#resultPrice').append(`$${result.itemPrice}`);
+      $('#resultSeller').append(seller);
 
       getCommentData();
     },
@@ -323,7 +326,7 @@ $('#subitNewListing').click(function() {
       console.log(result);
       $('#addLisingModal').modal('hide')
 
-      $('#listingDisplay').append(`
+      $('.listingDisplay').append(`
         <div class="card cardListStyle mb-4 listingCard" data-toggle="modal" data-target="#listingModel" data-id="${result._id}">
           <img class="listingsImg" src="${url}/${result.itemImage}" class="card-img-top" alt="...">
           <div class="card-body d-flex justify-content-between flex-row">
@@ -331,7 +334,7 @@ $('#subitNewListing').click(function() {
               <h6 class="card-title">${result.itemName}</h6>
             </div>
             <div class="col-3 border-left">
-              <small class="text-muted pl-2">$${result.itemPrice}</small>
+              <small class="text-muted">$${result.itemPrice}</small>
             </div>
           </div>
         </div>
