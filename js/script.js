@@ -117,7 +117,7 @@ getListingData = () => {
 
       for (var i = 0; i < result.length; i++) {
         $('.listingDisplay').append(`
-          <div class="card cardListStyle mb-4 listingCard ${result[i]._id}" data-toggle="modal" data-target="#listingModel" data-id="${result[i]._id}">
+          <div class="card cardListStyle mb-4 listingCard" id="${result[i]._id}" data-toggle="modal" data-target="#listingModel" data-id="${result[i]._id}">
             <div>
               <img class="listingsImg" src="${url}/${result[i].itemImage}" class="card-img-top">
             </div>
@@ -172,44 +172,29 @@ getCommentData = () => {
 };
 
 $('#cardsAndComment').on('click', '.deleteBtn', function() {
-  // if(!sessionStorage['userID']) {
-  //     console.log('You don\'t have permission to delete this item. Please sign in.');
-  //     return;
-  // } else {
+  if(!sessionStorage['userID']) {
+      console.log('You don\'t have permission to delete this item. Please sign in.');
+      return;
+  } else {
     event.preventDefault();
-    console.log(currentCardId);
-    // $('currentCardId').remove(currentCard)
+    $('#myModal').modal('hide')
 
-    // $('#myModal').modal('hide')
-    //
-    if ($('.listingCard').hasClass(currentCardId)) {
-      console.log('yeet');
-    }
+    $.ajax({
+      url: `${url}/listing/${currentCardId}`,
+      type: 'DELETE',
+      data: {
+          userId: sessionStorage['userID']
+      },
+      success:function(result){
+        document.getElementById(currentCardId).remove();
 
-    // for (var i = 0; i < getListingData.length; i++) {
-    //   if ($('listingCard').data('id') === currentCardId) {
-    //     console.log('gottem');
-    //   }
-    // }
-
-
-    // $.ajax({
-    //   url: `${url}/listing/${currentCardId}`,
-    //   type: 'DELETE',
-    //   data: {
-    //       userId: sessionStorage['userID']
-    //   },
-    //   success:function(result){
-    //     console.log(result)
-    //
-    //
-    //   },
-    //   error:function(err) {
-    //     console.log(err);
-    //     console.log('something went wrong deleting the product');
-    //   }
-    // });
-  // }
+      },
+      error:function(err) {
+        console.log(err);
+        console.log('something went wrong deleting the product');
+      }
+    });
+  }
 });
 
 $('#submitForm').click(function(){
@@ -478,6 +463,14 @@ $('#hamburgerNav').click(function(){
 
 // larissa untill here
 
+$('#login').click(function(){
+  $('#index').removeClass('d-none');
+  $('#signIn').addClass('d-none');
+  $('#rego').addClass('d-none');
+  $('#logBtn').addClass('d-none');
+  $('#regoBtn').addClass('d-none');
+  $('#logout').removeClass('d-none');
+});
 
 $('#logBtn').click(function(){
  $('#index').addClass('d-none');
