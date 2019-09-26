@@ -12,13 +12,13 @@ $.ajax({
     }
 });
 
-// if(sessionStorage.userName) {
-//     console.log('you are logged in ');
-//     $('#login').hide();
-//     // $('#logout').removeClass('d-none');
-// } else {
-//     console.log('please sign in');
-// }
+if(sessionStorage.userName) {
+    console.log('you are logged in ');
+    $('#login').hide();
+    // $('#logout').removeClass('d-none');
+} else {
+    console.log('please sign in');
+}
 
 console.log(sessionStorage);
 
@@ -103,35 +103,6 @@ $('#logout').click(function() {
     // $('#logout').addClass('d-none');
 });
 
-$('.listingDisplay').on('click', '.deleteBtn', function() {
-  if(!sessionStorage['userID']) {
-      console.log('You don\'t have permission to delete this item. Please sign in.');
-      return;
-  }
-  event.preventDefault();
-  console.log('Ready to be deleted');
-
-  const id = $(this).parent().parent().parent().data('id');
-  console.log(id);
-  const selected = $(this).parent().parent().parent().parent();
-
-  $.ajax({
-    url: `${url}/listing/${id}`,
-    type: 'DELETE',
-    data: {
-        userId: sessionStorage['userID']
-    },
-    success:function(result){
-      selected.remove();
-    },
-    error:function(err) {
-      console.log(err);
-      console.log('something went wrong deleting the product');
-    }
-  });
-
-});
-
 // Annie codes untill here
 
 let currentCardId;
@@ -146,7 +117,7 @@ getListingData = () => {
 
       for (var i = 0; i < result.length; i++) {
         $('.listingDisplay').append(`
-          <div class="card cardListStyle mb-4 listingCard" data-toggle="modal" data-target="#listingModel" data-id="${result[i]._id}">
+          <div class="card cardListStyle mb-4 listingCard" id="${result[i]._id}" data-toggle="modal" data-target="#listingModel" data-id="${result[i]._id}">
             <div>
               <img class="listingsImg" src="${url}/${result[i].itemImage}" class="card-img-top">
             </div>
@@ -199,6 +170,32 @@ getCommentData = () => {
     }
   });
 };
+
+$('#cardsAndComment').on('click', '.deleteBtn', function() {
+  if(!sessionStorage['userID']) {
+      console.log('You don\'t have permission to delete this item. Please sign in.');
+      return;
+  } else {
+    event.preventDefault();
+    $('#myModal').modal('hide')
+
+    $.ajax({
+      url: `${url}/listing/${currentCardId}`,
+      type: 'DELETE',
+      data: {
+          userId: sessionStorage['userID']
+      },
+      success:function(result){
+        document.getElementById(currentCardId).remove();
+
+      },
+      error:function(err) {
+        console.log(err);
+        console.log('something went wrong deleting the product');
+      }
+    });
+  }
+});
 
 $('#submitForm').click(function(){
   event.preventDefault();
@@ -260,13 +257,24 @@ $('.listingDisplay').on('click', '.listingCard', function(listingNumber){
 
       $('#listingImage').empty();
       $('#resultName').empty();
+      $('#listingCardDescription').empty();
       $('#resultPrice').empty();
+      $('#resultSeller').empty();
 
-      $('#listingImage').append(`src="${url}/${result.itemImage}" class="card-img-top">`);
+      $('#listingImage').append(`<img src="${url}/${result.itemImage}" class="card-img-top" style="width: 100%">`);
       $('#resultName').append(`${result.itemName}`);
       $('#resultPrice').append(`$${result.itemPrice}`);
+      $('#resultSeller').append(seller);
 
       getCommentData();
+
+      if(!sessionStorage['userID']) {
+          console.log('user can not update or delte');
+          return;
+      } else {
+        $('#userListingButtons').removeClass('d-none')
+      }
+
     },
     error:function(err){
         console.log(err);
@@ -323,15 +331,15 @@ $('#subitNewListing').click(function() {
       console.log(result);
       $('#addLisingModal').modal('hide')
 
-      $('#listingDisplay').append(`
-        <div class="card cardListStyle mb-4 listingCard" data-toggle="modal" data-target="#listingModel" data-id="${result._id}">
+      $('.listingDisplay').append(`
+        <div class="card cardListStyle mb-4 listingCard ${result._id}" data-toggle="modal" data-target="#listingModel" data-id="${result._id}">
           <img class="listingsImg" src="${url}/${result.itemImage}" class="card-img-top" alt="...">
           <div class="card-body d-flex justify-content-between flex-row">
             <div class="col-9">
               <h6 class="card-title">${result.itemName}</h6>
             </div>
             <div class="col-3 border-left">
-              <small class="text-muted pl-2">$${result.itemPrice}</small>
+              <small class="text-muted">$${result.itemPrice}</small>
             </div>
           </div>
         </div>
@@ -451,6 +459,14 @@ $('#hamburgerNav').click(function(){
 
 // larissa untill here
 
+$('#login').click(function(){
+  $('#index').removeClass('d-none');
+  $('#signIn').addClass('d-none');
+  $('#rego').addClass('d-none');
+  $('#logBtn').addClass('d-none');
+  $('#regoBtn').addClass('d-none');
+  $('#logout').removeClass('d-none');
+});
 
 $('#logBtn').click(function(){
  $('#index').addClass('d-none');

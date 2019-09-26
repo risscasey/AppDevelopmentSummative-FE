@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/style.min.css">
   </head>
 
-  <body>
+  <body class="px-4">
     <div class="container" id="index">
       <div id="heading">
         <div class="row mb-3">
@@ -36,17 +36,15 @@
         </div>
       </div>
 
-    </div>
-
-        <div id="navDropDown" class="pt-4 d-none">
-          <div class="row">
-            <div class="col-12">
-              <div id="navCard" class="card p-3 d-flex flex-row">
-                <div class="col-4 mr-4 d-flex justify-content-center align-items-center flex-column">
-                  <button type="button" class="btn btn-success px-4" id="logBtn">Login</button></a>
-                  <button type="button" class="btn btn-outline-success px-4 mt-3" id="regoBtn">Register</button></a>
-                  <button type="button" class="btn btn-outline-success px-4 mt-3 d-none" id="logout">Logout</button>
-                </div>
+      <div id="navDropDown" class="pt-4 d-none">
+        <div class="row">
+          <div class="col-12">
+            <div id="navCard" class="card p-3 d-flex flex-row">
+              <div id="userStatusButtons" class="col-4 mr-4 d-flex justify-content-center align-items-center flex-column">
+                <button type="button" class="btn btn-outline-success px-4 mt-3 d-none" id="logout">Logout</button>
+                <button type="button" class="btn btn-success px-4" id="logBtn">Login</button></a>
+                <button type="button" class="btn btn-outline-success px-4 mt-3" id="regoBtn">Register</button></a>
+              </div>
 
                 <div class="col-8 border-left">
                   <ul class="list-group list-group-flush">
@@ -168,7 +166,6 @@
                 <div class="listingDisplay card-columns"></div>
               </div>
             </div>
-            <a href="listings.html" id="viewListingsBtn">View All Listings</a>
           </div>
 
           <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
@@ -176,8 +173,8 @@
               <div class="modal-content">
                 <div class="card cardListStyle" id="cardModal">
 
-                  <!-- <div id="listingImage"></div> -->
-                  <img id="listingImage">
+                  <div id="listingImage" class="col-12"></div>
+
                   <div class="card-body d-flex justify-content-between flex-column p-1">
 
                     <div class="col-12">
@@ -224,7 +221,7 @@
                   <div class="col-12">
                     <div id="buttons" class="d-flex justify-content-around align-items-center flex-row p-3">
                       <button type="button" class="btn btn-warning">Edit Listing</button>
-                      <button type="button" class="btn btn-danger">Delete Listing</button>
+                      <button type="button" class="btn btn-danger deleteBtn">Delete Listing</button>
                     </div>
                   </div>
                 </div>
@@ -257,66 +254,65 @@
         </div>
       </div>
 
-
-     <div class="d-none" id="signIn">
-       <div id="loginCard">
-        <div id="gradient">
-          <div class="contents d-flex flex-column align-items-center">
-            <h1>digimart</h1>
-            <div class="card mt-4 cardStyle" style="width: 21rem;">
-              <div class="card-body">
+    <div class="d-none" id="rego">
+        <div id="loginCard">
+          <div id="gradient">
+            <div class="contents d-flex flex-column align-items-center">
+              <h1>digimart</h1>
+              <div class="card mt-4 cardStyle" style="width: 21rem;">
+                <div class="card-body">
                   <form>
-                    <div class="form-row d-flex flex-column align-items-center">
-                      <div class="form-group col-md-10 mt-4">
-                         <input class="form-control border-bottom" placeholder="Enter your Username" id="lUsername" type="text">
-                      </div>
-                      <div class="form-group col-md-10 mt-4">
-                         <input class="form-control border-bottom" placeholder="Enter your Password" id="lPassword" type="password">
-                      </div>
-                        <button id="login" type="button" class="d-flex flex-column justify-content-center align-items-center btn btn-success mt-4">Login</button>
-                        <small class="loginLink form-text text-muted mt-4">Don't have an account? <span id="signUpHere">Register Here</span></small>
+                      <div class="form-row d-flex flex-column align-items-center">
+                        <div class="form-group col-md-10 mt-4">
+                          <input class="form-control border-bottom" type="text" id="username" placeholder="Enter a Username">
+                        </div>
+                        <div class="form-group col-md-10 mt-4">
+                          <input class="form-control border-bottom" type="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group col-md-10 mt-4">
+                          <input class="form-control border-bottom"  type="password" id="password" placeholder="Enter a Password">
+                        </div>
+                        <div class="form-group col-md-10 mt-4">
+                          <input class="form-control border-bottom" type="password" id="confirmPassword" placeholder="Confirm that Password">
+                        </div>
+                        <button id="register" type="submit" class="btn btn-success mt-4">Sign Up</button>
+                        <small class="loginLink form-text text-muted mt-4">Already have an account? <span id="signInHere">Sign In Here</span></small>
                         <small class="loginLink form-text text-muted">Continue as <span class="guest">Guest</span></small>
-                    </div>
-                 </form>
+                      </div>
+                    </form>
+                 </div>
                </div>
-            </div>
-          </div>
-        </div>
-      </div>
-     </div>
+             </div>
+           </div>
+         </div>
+       </div>
 
-     <div class="d-none" id="rego">
-       <div id="loginCard">
-         <div id="gradient">
-           <div class="contents d-flex flex-column align-items-center">
-             <h1>digimart</h1>
-             <div class="card mt-4 cardStyle" style="width: 21rem;">
-               <div class="card-body">
-                 <form>
-                     <div class="form-row d-flex flex-column align-items-center">
-                       <div class="form-group col-md-10 mt-4">
-                         <input class="form-control border-bottom" type="text" id="username" placeholder="Enter a Username">
-                       </div>
-                       <div class="form-group col-md-10 mt-4">
-                         <input class="form-control border-bottom" type="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your email">
-                       </div>
-                       <div class="form-group col-md-10 mt-4">
-                         <input class="form-control border-bottom"  type="password" id="password" placeholder="Enter a Password">
-                       </div>
-                       <div class="form-group col-md-10 mt-4">
-                         <input class="form-control border-bottom" type="password" id="confirmPassword" placeholder="Confirm that Password">
-                       </div>
-                       <button id="register" type="submit" class="btn btn-success mt-4">Sign Up</button>
-                       <small class="loginLink form-text text-muted mt-4">Already have an account? <span id="signInHere">Sign In Here</span></small>
-                       <small class="loginLink form-text text-muted">Continue as <span class="guest">Guest</span></small>
-                     </div>
+    <div class="d-none" id="signIn">
+         <div id="loginCard">
+          <div id="gradient">
+            <div class="contents d-flex flex-column align-items-center">
+              <h1>digimart</h1>
+              <div class="card mt-4 cardStyle" style="width: 21rem;">
+                <div class="card-body">
+                    <form>
+                      <div class="form-row d-flex flex-column align-items-center">
+                        <div class="form-group col-md-10 mt-4">
+                           <input class="form-control border-bottom" placeholder="Enter your Username" id="lUsername" type="text">
+                        </div>
+                        <div class="form-group col-md-10 mt-4">
+                           <input class="form-control border-bottom" placeholder="Enter your Password" id="lPassword" type="password">
+                        </div>
+                          <button id="login" type="button" class="d-flex flex-column justify-content-center align-items-center btn btn-success mt-4">Login</button>
+                          <small class="loginLink form-text text-muted mt-4">Don't have an account? <span id="signUpHere">Register Here</span></small>
+                          <small class="loginLink form-text text-muted">Continue as <span class="guest">Guest</span></small>
+                      </div>
                    </form>
-                </div>
+                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+       </div>
 
     <script src="node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
