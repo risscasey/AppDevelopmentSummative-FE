@@ -12,13 +12,13 @@ $.ajax({
     }
 });
 
-// if(sessionStorage.userName) {
-//     console.log('you are logged in ');
-//     $('#login').hide();
-//     // $('#logout').removeClass('d-none');
-// } else {
-//     console.log('please sign in');
-// }
+if(sessionStorage.userName) {
+    console.log('you are logged in ');
+    $('#login').hide();
+    // $('#logout').removeClass('d-none');
+} else {
+    console.log('please sign in');
+}
 
 console.log(sessionStorage);
 
@@ -103,7 +103,7 @@ $('#logout').click(function() {
     $('#logout').addClass('d-none');
 });
 
-$('.listingDisplay').on('click', '.deleteBtn', function() {
+$('#cardsAndComment').on('click', '.deleteBtn', function() {
   if(!sessionStorage['userID']) {
       console.log('You don\'t have permission to delete this item. Please sign in.');
       return;
@@ -111,18 +111,19 @@ $('.listingDisplay').on('click', '.deleteBtn', function() {
   event.preventDefault();
   console.log('Ready to be deleted');
 
-  const id = $(this).parent().parent().parent().data('id');
-  console.log(id);
-  const selected = $(this).parent().parent().parent().parent();
+
+  const selected = currentCardId;
 
   $.ajax({
-    url: `${url}/listing/${id}`,
+    url: `${url}/listing/${currentCardId}`,
     type: 'DELETE',
     data: {
         userId: sessionStorage['userID']
     },
     success:function(result){
+      $('#myModal').modal('hide')
       selected.remove();
+
     },
     error:function(err) {
       console.log(err);
@@ -270,6 +271,14 @@ $('.listingDisplay').on('click', '.listingCard', function(listingNumber){
       $('#resultSeller').append(seller);
 
       getCommentData();
+
+      if(!sessionStorage['userID']) {
+          console.log('user can not update or delte');
+          return;
+      } else {
+        $('#userListingButtons').removeClass('d-none')
+      }
+
     },
     error:function(err){
         console.log(err);
