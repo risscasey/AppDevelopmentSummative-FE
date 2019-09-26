@@ -103,36 +103,6 @@ $('#logout').click(function() {
     $('#logout').addClass('d-none');
 });
 
-$('#cardsAndComment').on('click', '.deleteBtn', function() {
-  if(!sessionStorage['userID']) {
-      console.log('You don\'t have permission to delete this item. Please sign in.');
-      return;
-  }
-  event.preventDefault();
-  console.log('Ready to be deleted');
-
-
-  const selected = currentCardId;
-
-  $.ajax({
-    url: `${url}/listing/${currentCardId}`,
-    type: 'DELETE',
-    data: {
-        userId: sessionStorage['userID']
-    },
-    success:function(result){
-      $('#myModal').modal('hide')
-      selected.remove();
-
-    },
-    error:function(err) {
-      console.log(err);
-      console.log('something went wrong deleting the product');
-    }
-  });
-
-});
-
 // Annie codes untill here
 
 let currentCardId;
@@ -147,7 +117,7 @@ getListingData = () => {
 
       for (var i = 0; i < result.length; i++) {
         $('.listingDisplay').append(`
-          <div class="card cardListStyle mb-4 listingCard" data-toggle="modal" data-target="#listingModel" data-id="${result[i]._id}">
+          <div class="card cardListStyle mb-4 listingCard ${result[i]._id}" data-toggle="modal" data-target="#listingModel" data-id="${result[i]._id}">
             <div>
               <img class="listingsImg" src="${url}/${result[i].itemImage}" class="card-img-top">
             </div>
@@ -200,6 +170,47 @@ getCommentData = () => {
     }
   });
 };
+
+$('#cardsAndComment').on('click', '.deleteBtn', function() {
+  // if(!sessionStorage['userID']) {
+  //     console.log('You don\'t have permission to delete this item. Please sign in.');
+  //     return;
+  // } else {
+    event.preventDefault();
+    console.log(currentCardId);
+    // $('currentCardId').remove(currentCard)
+
+    // $('#myModal').modal('hide')
+    //
+    if ($('.listingCard').hasClass(currentCardId)) {
+      console.log('yeet');
+    }
+
+    // for (var i = 0; i < getListingData.length; i++) {
+    //   if ($('listingCard').data('id') === currentCardId) {
+    //     console.log('gottem');
+    //   }
+    // }
+
+
+    // $.ajax({
+    //   url: `${url}/listing/${currentCardId}`,
+    //   type: 'DELETE',
+    //   data: {
+    //       userId: sessionStorage['userID']
+    //   },
+    //   success:function(result){
+    //     console.log(result)
+    //
+    //
+    //   },
+    //   error:function(err) {
+    //     console.log(err);
+    //     console.log('something went wrong deleting the product');
+    //   }
+    // });
+  // }
+});
 
 $('#submitForm').click(function(){
   event.preventDefault();
@@ -336,7 +347,7 @@ $('#subitNewListing').click(function() {
       $('#addLisingModal').modal('hide')
 
       $('.listingDisplay').append(`
-        <div class="card cardListStyle mb-4 listingCard" data-toggle="modal" data-target="#listingModel" data-id="${result._id}">
+        <div class="card cardListStyle mb-4 listingCard ${result._id}" data-toggle="modal" data-target="#listingModel" data-id="${result._id}">
           <img class="listingsImg" src="${url}/${result.itemImage}" class="card-img-top" alt="...">
           <div class="card-body d-flex justify-content-between flex-row">
             <div class="col-9">
