@@ -74,7 +74,7 @@ $('#login').click(function() {
         sessionStorage.setItem('userID', result._id);
         sessionStorage.setItem('userName', result.username);
 
-        seller = sessionStorage['userName'];
+        seller = sessionStorage.userName;
         console.log(sessionStorage);
 
         $('#lUsername').val(null);
@@ -93,7 +93,7 @@ $('#login').click(function() {
 
 $('#logout').click(function() {
 
-    if(!sessionStorage['userID']) {
+    if(!sessionStorage.userID) {
         console.log('You don\'t have permission to access. Please sign in.');
         return;
     }
@@ -123,14 +123,13 @@ getListingData = () => {
             </div>
             <div class="card-body d-flex justify-content-between flex-row">
               <div class="col-9">
-                <h6 class="card-title">${result[i].itemName}</h6>
+                <h6 class="card-title"> ${result[i].itemName}</h6>
               </div>
               <div class="col-3 border-left">
                 <small class="text-muted pl-2">$${result[i].itemPrice}</small>
               </div>
             </div>
           </div>
-
         `);
       }
     },
@@ -153,14 +152,12 @@ getCommentData = () => {
           $('#commentsDisplay').append(`
             <div id="commentsCard" class="col-md-4">
               <div class="card mb-4 shadow-sm">
-                <div class="card-body" id="commentBody">
+                <div class="card-body " id="commentBody">
                   <p class="card-text">${commentsResult[i].commentDescription}</p>
                   </div>
               </div>
             </div>
           `);
-        } else {
-          console.log('id no match');
         }
       }
     },
@@ -172,18 +169,18 @@ getCommentData = () => {
 };
 
 $('#cardsAndComment').on('click', '.deleteBtn', function() {
-  if(!sessionStorage['userID']) {
+  if(!sessionStorage.userID) {
       console.log('You don\'t have permission to delete this item. Please sign in.');
       return;
   } else {
     event.preventDefault();
-    $('#myModal').modal('hide')
+    $('#myModal').modal('hide');
 
     $.ajax({
       url: `${url}/listing/${currentCardId}`,
       type: 'DELETE',
       data: {
-          userId: sessionStorage['userID']
+          userId: sessionStorage.userID
       },
       success:function(result){
         document.getElementById(currentCardId).remove();
@@ -197,14 +194,71 @@ $('#cardsAndComment').on('click', '.deleteBtn', function() {
   }
 });
 
+$('#cardsAndComment').on('click', '.editBtn', function() {
+  if(!sessionStorage.userID) {
+      console.log('You don\'t have permission to delete this item. Please sign in.');
+      return;
+  } else {
+    event.preventDefault();
+    $('#myModal').modal('hide');
+
+    $('#exampleModalLabel').text('Edit listing');
+    $('#addLisingModal').modal('show');
+
+      $('#cardsAndComment').on('click', '#subitNewListing', function() {
+        let itemName = $('#itemName').val();
+        let itemPrice = $('#itemPrice').val();
+        let itemDescription = $('#itemDescription').val();
+        let itemImage = $('#itemImage').val();
+        let fd = new FormData();
+
+        const file = $('#itemImage')[0].files[0];
+        fd.append('uploadImage', file);
+        fd.append('itemName', itemName);
+        fd.append('itemPrice', itemPrice);
+        fd.append('itemImage', itemImage);
+
+
+        $.ajax({
+          url: `${url}//updateListing/${currentCardId}`,
+          type: 'PATCH',
+          data: fd,
+          processData: false,
+          contentType: false,
+          success:function(result){
+            console.log(result);
+            $('#addLisingModal').modal('hide');
+
+            $('#listingImage').empty();
+            $('#resultName').empty();
+            $('#listingCardDescription').empty();
+            $('#resultPrice').empty();
+            $('#resultSeller').empty();
+
+            $('#listingImage').append(`<img src="${url}/${result.itemImage}" class="card-img-top" style="width: 100%">`);
+            $('#resultName').append(`${result.itemName}`);
+            $('#listingCardDescription').append(`${result.itemDescription}`);
+            $('#resultPrice').append(`$${result.itemPrice}`);
+            $('#resultSeller').append(seller);
+
+          },
+          error: function(error){
+            console.log(error);
+            console.log('something went wrong with sending the data');
+          }
+        });
+    });
+  }
+});
+
 $('#submitForm').click(function(){
   event.preventDefault();
   console.log(currentCardId);
 
   if(!sessionStorage.userID) {
     $('#comments').val(null);
-    $('#myModal').modal('hide')
-    $('#invalidModal').modal('show')
+    $('#myModal').modal('hide');
+    $('#invalidModal').modal('show');
   } else {
     let commentIdFromCard = currentCardId;
     let commentArea = $('#comments').val();
@@ -253,7 +307,7 @@ $('.listingDisplay').on('click', '.listingCard', function(listingNumber){
     type: 'GET',
     dataType: 'json',
     success:function(result){
-      $('#myModal').modal('show')
+      $('#myModal').modal('show');
 
       $('#listingImage').empty();
       $('#resultName').empty();
@@ -263,16 +317,17 @@ $('.listingDisplay').on('click', '.listingCard', function(listingNumber){
 
       $('#listingImage').append(`<img src="${url}/${result.itemImage}" class="card-img-top" style="width: 100%">`);
       $('#resultName').append(`${result.itemName}`);
+      $('#listingCardDescription').append(`${result.itemDescription}`);
       $('#resultPrice').append(`$${result.itemPrice}`);
       $('#resultSeller').append(seller);
 
       getCommentData();
 
-      if(!sessionStorage['userID']) {
+      if(!sessionStorage.userID) {
           console.log('user can not update or delte');
           return;
       } else {
-        $('#userListingButtons').removeClass('d-none')
+        $('#userListingButtons').removeClass('d-none');
       }
 
     },
@@ -286,10 +341,10 @@ $('.listingDisplay').on('click', '.listingCard', function(listingNumber){
 $('#addNewListing').click(function() {
   event.preventDefault();
   if(!sessionStorage.userID) {
-    $('#invalidModal').modal('show')
+    $('#invalidModal').modal('show');
   } else {
-    $('#addLisingModal').modal('show')
-    $('#itemSeller').val(seller)
+    $('#addLisingModal').modal('show');
+    $('#itemSeller').val(seller);
     console.log(seller);
   }
 });
@@ -329,7 +384,7 @@ $('#subitNewListing').click(function() {
     contentType: false,
     success:function(result){
       console.log(result);
-      $('#addLisingModal').modal('hide')
+      $('#addLisingModal').modal('hide');
 
       $('.listingDisplay').append(`
         <div class="card cardListStyle mb-4 listingCard ${result._id}" data-toggle="modal" data-target="#listingModel" data-id="${result._id}">
@@ -351,83 +406,6 @@ $('#subitNewListing').click(function() {
     }
   });
 });
-
-// $('.listingDisplay').on('click', '#editListing', function() {
-//   event.preventDefault();
-//
-//   if(!sessionStorage.userID) {
-//     $('#userListingButtons').addClass('d-none');
-//   }
-//
-//   const id = $(this).parent().parent().parent().data('id');
-//   console.log(id);
-//
-//   // $('#listingCard').empty();
-//   $('#listingDisplay').append(`
-//     <div id="addlistingForm" class="d-none mt-4">
-//
-//     </div>
-//
-//     <div id="listingCard" class="col-md-4">
-//       <div class="card mb-4 shadow-sm">
-//         <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></svg>
-//         <div class="card-body" data-id="${result[i]._id}">
-//           <div class="form-group">
-//             <label for="editedName">Item Name</label>
-//             <input type="text" name="editedName" id="editedName" class="form-control">
-//           </div>
-//
-//           <div class="form-group">
-//             <label for="editedPrice">Item Price</label>
-//             <input type="number" name="editedPrice" id="editedPrice" class="form-control">
-//           </div>
-//
-//           <div class="form-group">
-//             <label for="editedDescription">Item Description</label>
-//             <textarea type="text" name="editedDescription" id="editedDescription" rows="3" class="form-control"></textarea>
-//           </div>
-//
-//           <div class="mt-3">
-//             <button id="editNewListing" type="button" class="btn btn-success">Edit Listing</button>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//
-//   `);
-//
-//
-//   $.ajax({
-//     url: `${url}/updateListing/${id}`,
-//     type: 'get',
-//     // data: {
-//     //   userId: sessionStorage['userID']
-//     // },
-//     dataType: 'json',
-//     success:function(product){
-//       console.log(product);
-//       // if(product == '401'){
-//       //   alert('401 UNAUTHORIZED');
-//       // } else {
-//       //   // replace the input fields with the name and price from the database
-//       //   $('#productName').val(product['name']);
-//       //   $('#productPrice').val(product['price']);
-//       //   // we have a hidden input field which we need to give it the value of the products id
-//       //   $('#productID').val(product['_id']);
-//       //   // Change the buttons text to edit and add the warning class
-//       //   $('#addProductButton').text('Edit Product').addClass('btn-warning');
-//       //   // Change the heading text
-//       //   $('#heading').text('Edit Product');
-//       //   // set the global variable of editing to true
-//       //   editing = true;
-//       // }
-//     },
-//     error:function(err){
-//       console.log(err);
-//       console.log('something went wrong with getting the single product');
-//     }
-//   })
-// });
 
 $("#popularItemsCards" ).owlCarousel({
   loop:true,
